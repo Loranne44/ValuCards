@@ -8,11 +8,11 @@
 import Foundation
 import Alamofire
 
-class PokemonCardsModel {
+class CardsModel {
     // Remplacez 'YOUR_API_KEY' par votre clé d'API eBay
     private let apiKey = "YOUR_API_KEY"
     
-    func searchPokemonCards(searchKeyword: String, completion: @escaping ([Card]?, Error?) -> Void) {
+    func searchCards(searchKeyword: String, completion: @escaping ([Card]?, Error?) -> Void) {
         guard let encodedSearchKeyword = searchKeyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(nil, NSError(domain: "EncodingError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Impossible d'encoder le terme de recherche"]))
             return

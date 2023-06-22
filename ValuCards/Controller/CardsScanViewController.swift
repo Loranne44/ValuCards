@@ -11,9 +11,9 @@ import AVFoundation
 import Vision
 
 
-class CardsScannViewController: UIViewController {
+class CardsScanViewController: UIViewController {
     
-    private let model = PokemonCardsModel()
+    private let model = CardsModel()
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
     
@@ -24,10 +24,10 @@ class CardsScannViewController: UIViewController {
         setupCameraCapture()
         
         // Appel de la fonction pour scanner une carte
-        scanPokemonCard()
+        scanCard()
         
         // Exemple d'utilisation en saisissant manuellement le nom de la carte
-        searchPokemonCardByName("Pikachu")
+        searchCardByName("Pikachu")
     }
     
     private func setupCameraCapture() {
@@ -56,7 +56,7 @@ class CardsScannViewController: UIViewController {
         }
     }
     
-    private func scanPokemonCard() {
+    private func scanCard() {
         guard let captureSession = captureSession else {
             print("Capture de la caméra non initialisée")
             return
@@ -82,10 +82,10 @@ class CardsScannViewController: UIViewController {
         manualButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
     
-    private func searchPokemonCardByName(_ cardName: String) {
-        model.searchPokemonCards(searchKeyword: cardName) { cards, error in
+    private func searchCardByName(_ cardName: String) {
+        model.searchCards(searchKeyword: cardName) { cards, error in
             if let cards = cards {
-                self.handlePokemonCards(cards)
+                self.handleCards(cards)
             } else if let error = error {
                 self.handleError(error)
             }
@@ -100,7 +100,7 @@ class CardsScannViewController: UIViewController {
         
         let searchAction = UIAlertAction(title: "Rechercher", style: .default) { _ in
             if let cardName = alertController.textFields?.first?.text {
-                self.searchPokemonCardByName(cardName)
+                self.searchCardByName(cardName)
             }
         }
         
@@ -112,7 +112,7 @@ class CardsScannViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    private func handlePokemonCards(_ cards: [Card]) {
+    private func handleCards(_ cards: [Card]) {
         for card in cards {
             print("Carte : \(card.title)")
             print("Prix moyen : \(card.price.value)")
@@ -125,7 +125,7 @@ class CardsScannViewController: UIViewController {
         print("Erreur : \(error.localizedDescription)")
     }
     
-    private func searchPokemonCardByImage(_ image: UIImage) {
+    private func searchCardByImage(_ image: UIImage) {
         guard let cgImage = image.cgImage else {
                print("Impossible de convertir l'image en CGImage")
                return
@@ -153,7 +153,7 @@ class CardsScannViewController: UIViewController {
                
                if !cardName.isEmpty {
                    cardName = cardName.trimmingCharacters(in: .whitespaces)
-                   self.searchPokemonCardByName(cardName)
+                   self.searchCardByName(cardName)
                } else {
                    print("Aucun texte reconnu dans l'image")
                }
@@ -169,22 +169,48 @@ class CardsScannViewController: UIViewController {
     }
     
     private func processImage(_ image: UIImage) {
-        // Implémentez ici la logique de traitement de l'image capturée
+        guard let cgImage = image.cgImage else {
+            return
+        }
         
-        // Par exemple, vous pouvez effectuer une analyse d'image, une reconnaissance d'objet, etc.
-        // Pour cet exemple, nous affichons simplement l'image capturée dans une vue
+        // Création d'une requête de détection d'objet
+        let request = VNRecognizeTextRequest { [weak self] request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else {
+                return
+            }
+            
+            var cardNames: [String] = []
+            
+            for observation in observations {
+                guard let topCandidate = observation.topCandidates(1).first else {
+                    continue
+                }
+                
+                let cardName = topCandidate.string
+                cardNames.append(cardName)
+            }
+            
+            // Recherche des informations sur les cartes détectées
+            for cardName in cardNames {
+                self?.searchCardByName(cardName)
+            }
+        }
         
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 100)
-        view.addSubview(imageView)
+        // Configuration de la requête de détection d'objet
+        request.recognitionLevel = .accurate
         
-        // Appel de la recherche des informations sur la carte à partir de l'image
-        searchPokemonCardByImage(image)
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        
+        do {
+            // Exécution de la requête de détection d'objet
+            try handler.perform([request])
+        } catch {
+            print("Erreur lors de la détection d'objet : \(error)")
+        }
     }
 }
 
-extension CardsScannViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension CardsScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return

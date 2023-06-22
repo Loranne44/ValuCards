@@ -18,7 +18,7 @@
 		457973132A42F9040099D024 /* ValuCardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973122A42F9040099D024 /* ValuCardsUITestsLaunchTests.swift */; };
 		457973252A432B6E0099D024 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 457973242A432B6E0099D024 /* Alamofire */; };
 		457973272A432C760099D024 /* ValuCardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973262A432C760099D024 /* ValuCardsService.swift */; };
-		457973292A432D240099D024 /* CardsScannViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973282A432D240099D024 /* CardsScannViewController.swift */; };
+		457973292A432D240099D024 /* CardsScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973282A432D240099D024 /* CardsScanViewController.swift */; };
 		4579732B2A4339430099D024 /* ValuCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579732A2A4339430099D024 /* ValuCards.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +54,7 @@
 		457973102A42F9040099D024 /* ValuCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCardsUITests.swift; sourceTree = "<group>"; };
 		457973122A42F9040099D024 /* ValuCardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		457973262A432C760099D024 /* ValuCardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCardsService.swift; sourceTree = "<group>"; };
-		457973282A432D240099D024 /* CardsScannViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScannViewController.swift; sourceTree = "<group>"; };
+		457973282A432D240099D024 /* CardsScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScanViewController.swift; sourceTree = "<group>"; };
 		4579732A2A4339430099D024 /* ValuCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCards.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				457972F32A42F9030099D024 /* ViewController.swift */,
-				457973282A432D240099D024 /* CardsScannViewController.swift */,
+				457973282A432D240099D024 /* CardsScanViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				457973292A432D240099D024 /* CardsScannViewController.swift in Sources */,
+				457973292A432D240099D024 /* CardsScanViewController.swift in Sources */,
 				457972F42A42F9030099D024 /* ViewController.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
 				4579732B2A4339430099D024 /* ValuCards.swift in Sources */,
