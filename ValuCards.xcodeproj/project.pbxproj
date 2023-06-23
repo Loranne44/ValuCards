@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		451927192A458E8E00DCCE0C /* CardsScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451927182A458E8E00DCCE0C /* CardsScanner.swift */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		451927182A458E8E00DCCE0C /* CardsScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScanner.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457972EF2A42F9030099D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457972F12A42F9030099D024 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				457973262A432C760099D024 /* ValuCardsService.swift */,
 				4579732A2A4339430099D024 /* ValuCards.swift */,
+				451927182A458E8E00DCCE0C /* CardsScanner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
 				4579732B2A4339430099D024 /* ValuCards.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
+				451927192A458E8E00DCCE0C /* CardsScanner.swift in Sources */,
 				457973272A432C760099D024 /* ValuCardsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

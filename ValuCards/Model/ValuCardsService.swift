@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class CardsModel {
-    // Remplacez 'YOUR_API_KEY' par votre clé d'API eBay
+    // Remplacez 'YOUR_API_KEY' par la clé d'API eBay
     private let apiKey = "YOUR_API_KEY"
     
     func searchCards(searchKeyword: String, completion: @escaping ([Card]?, Error?) -> Void) {
