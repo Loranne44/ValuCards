@@ -10,6 +10,7 @@ import UIKit
 import CoreML
 import Vision
 
+
 class CardClassifier {
      let model: VNCoreMLModel
     

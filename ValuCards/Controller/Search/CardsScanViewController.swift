@@ -11,6 +11,7 @@ import AVFoundation
 class CardsScanViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
+    
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
      let model = CardsScanModel()

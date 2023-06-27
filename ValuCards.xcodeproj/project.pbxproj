@@ -25,8 +25,6 @@
 		4582D86C2A4AC70F00AE6084 /* CardClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D86B2A4AC70F00AE6084 /* CardClassifier.swift */; };
 		4582D8722A4B0A4E00AE6084 /* ManualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */; };
 		4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8732A4B0B0500AE6084 /* ScanViewController.swift */; };
-		4582D8782A4B0B5900AE6084 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8772A4B0B5900AE6084 /* SignInViewController.swift */; };
-		4582D87A2A4B0B6400AE6084 /* RegistrerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8792A4B0B6400AE6084 /* RegistrerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +66,6 @@
 		4582D86B2A4AC70F00AE6084 /* CardClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardClassifier.swift; sourceTree = "<group>"; };
 		4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSearchViewController.swift; sourceTree = "<group>"; };
 		4582D8732A4B0B0500AE6084 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		4582D8772A4B0B5900AE6084 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		4582D8792A4B0B6400AE6084 /* RegistrerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +119,6 @@
 			children = (
 				457973222A42F92A0099D024 /* Others */,
 				457973212A42F9220099D024 /* Controller */,
-				4582D8762A4B0B2400AE6084 /* Search */,
 				457973202A42F91D0099D024 /* View */,
 				4579731F2A42F9180099D024 /* Model */,
 			);
@@ -171,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				4582D8752A4B0B1A00AE6084 /* Auth */,
+				4582D8762A4B0B2400AE6084 /* Search */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,8 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				457972F32A42F9030099D024 /* AuthViewController.swift */,
-				4582D8772A4B0B5900AE6084 /* SignInViewController.swift */,
-				4582D8792A4B0B6400AE6084 /* RegistrerViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -200,9 +194,9 @@
 		4582D8762A4B0B2400AE6084 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				457973282A432D240099D024 /* CardsScanViewController.swift */,
 				4582D8732A4B0B0500AE6084 /* ScanViewController.swift */,
 				4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */,
-				457973282A432D240099D024 /* CardsScanViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -352,11 +346,9 @@
 				4519271F2A45B88E00DCCE0C /* CardClassifierModel.swift in Sources */,
 				4579732B2A4339430099D024 /* ValuCards.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
-				4582D8782A4B0B5900AE6084 /* SignInViewController.swift in Sources */,
 				4582D8722A4B0A4E00AE6084 /* ManualSearchViewController.swift in Sources */,
 				4582D86C2A4AC70F00AE6084 /* CardClassifier.swift in Sources */,
 				457973272A432C760099D024 /* ValuCardsService.swift in Sources */,
-				4582D87A2A4B0B6400AE6084 /* RegistrerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
