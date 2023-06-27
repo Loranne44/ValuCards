@@ -7,35 +7,15 @@
 
 import UIKit
 import AVFoundation
-import Vision
-import CoreML
 
-class CardsScanViewController: UIViewController {
-
-    private let model = CardsModel()
+class CardsScanViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var captureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
-    private var cardsScanManager: CardsScanManager?
+     let model = CardsScanModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Initialisation de la capture de la caméra
         setupCameraCapture()
-        
-        // Initialisation du manager de scan
-        cardsScanManager = CardsScanManager()
-        cardsScanManager?.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startCameraCapture()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopCameraCapture()
     }
     
     private func setupCameraCapture() {
@@ -57,39 +37,37 @@ class CardsScanViewController: UIViewController {
             if let previewLayer = previewLayer {
                 view.layer.addSublayer(previewLayer)
             }
+            
+            captureSession?.startRunning()
         } catch {
             print("Erreur lors de la configuration de la capture de la caméra : \(error.localizedDescription)")
         }
     }
     
-    private func startCameraCapture() {
-        captureSession?.startRunning()
-    }
-    
-    private func stopCameraCapture() {
-        captureSession?.stopRunning()
-    }
-    
-    private func processImage(_ image: UIImage) {
-        guard let cgImage = image.cgImage else {
-            return
-        }
-        
-        // Utilisation du manager de scan pour la reconnaissance d'image
-        cardsScanManager?.classifyImage(cgImage)
-    }
-}
-
-extension CardsScanViewController: CardsScanManagerDelegate {
-    func cardsScanManager(_ manager: CardsScanManager, didDetectCardNames cardNames: [String]) {
-        // Traitement des noms de cartes détectées
-        for cardName in cardNames {
-            searchCardByName(cardName)
+    private func searchCardByName(_ cardName: String) {
+        model.searchCards(searchKeyword: cardName) { cards, error in
+            if let cards = cards {
+                self.handleCards(cards)
+            } else if let error = error {
+                self.handleError(error)
+            }
         }
     }
-}
-
-extension CardsScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    private func handleCards(_ cards: [Card]) {
+        for card in cards {
+            print("Carte : \(card.title)")
+            print("Prix moyen : \(card.price.value)")
+            print("Nombre de ventes sur un mois : \(card.sellingStatus.soldQuantity)")
+            print("------------------------------")
+        }
+    }
+    
+    private func handleError(_ error: Error) {
+        print("Erreur : \(error.localizedDescription)")
+    }
+    
+    // AVCaptureVideoDataOutputSampleBufferDelegate method
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
@@ -100,9 +78,7 @@ extension CardsScanViewController: AVCaptureVideoDataOutputSampleBufferDelegate 
         
         if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
             let capturedImage = UIImage(cgImage: cgImage)
-            
-            // Traiter l'image capturée
-            processImage(capturedImage)
+            model.processImage(capturedImage)
         }
     }
 }
