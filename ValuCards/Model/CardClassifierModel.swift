@@ -7,6 +7,7 @@
 
 import CoreML
 
+
 class CardClassifierModel {
     // Définissez la structure de votre modèle CoreML
     // Vous pouvez utiliser l'outil CreateML d'Apple pour entraîner votre modèle et générer la classe correspondante

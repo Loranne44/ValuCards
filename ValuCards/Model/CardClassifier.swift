@@ -10,9 +10,10 @@ import UIKit
 import CoreML
 import Vision
 
+//la classe CardClassifier est responsable de la classification des images de cartes à jouer en utilisant un modèle Core ML pré-entraîné, et elle fournit une interface pour utiliser cette fonctionnalité dans le modèle CardsScanModel.
 
 class CardClassifier {
-     let model: VNCoreMLModel
+    let model: VNCoreMLModel
     
     init() {
         guard let model = try? VNCoreMLModel(for: CardClassifierModel.Model()) else {

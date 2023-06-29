@@ -161,10 +161,10 @@
             </objects>
             <point key="canvasLocation" x="-2167.1755725190837" y="-377.46478873239437"/>
         </scene>
-        <!--Cards Scan View Controller-->
+        <!--Search Card View Controller-->
         <scene sceneID="yVG-o6-VZA">
             <objects>
-                <viewController id="KU1-UU-09i" customClass="CardsScanViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KU1-UU-09i" customClass="SearchCardViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FGM-rN-TxS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,95 +176,77 @@
                                     <segment title="Scan"/>
                                 </segments>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bwy-KM-Zj8">
-                                <rect key="frame" x="0.0" y="184" width="393" height="634"/>
-                                <connections>
-                                    <segue destination="UkU-CS-DhW" kind="embed" id="hef-0M-FA6"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXH-Kz-6Vj">
-                                <rect key="frame" x="0.0" y="184" width="393" height="634"/>
-                                <connections>
-                                    <segue destination="iAo-Cs-fjR" kind="embed" id="Rbu-ga-PUs"/>
-                                </connections>
-                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-GW-ieY">
+                                <rect key="frame" x="20" y="244" width="353" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indicate your card name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgN-Ul-ABT">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="40.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AIM-QS-Np2">
+                                        <rect key="frame" x="0.0" y="50.333333333333314" width="353" height="40.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDo-3M-M4W">
+                                        <rect key="frame" x="0.0" y="100.66666666666669" width="353" height="40.333333333333343"/>
+                                        <color key="backgroundColor" red="0.29076763690000001" green="0.52060334699999999" blue="0.71019249360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Search">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="SearchManuelCardButton:" destination="KU1-UU-09i" eventType="touchUpInside" id="oCa-Gf-Geq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vWN-dJ-Vqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="Bwy-KM-Zj8" secondAttribute="trailing" id="1sX-AF-G9S"/>
-                            <constraint firstItem="WXH-Kz-6Vj" firstAttribute="top" secondItem="pke-RQ-3Dc" secondAttribute="bottom" id="9Pu-6P-guU"/>
+                            <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="pke-RQ-3Dc" secondAttribute="bottom" constant="60" id="9mu-fV-ert"/>
                             <constraint firstItem="pke-RQ-3Dc" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="50" id="AVr-0U-MvT"/>
-                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="bottom" secondItem="WXH-Kz-6Vj" secondAttribute="bottom" id="Dh5-Tn-Sv2"/>
-                            <constraint firstItem="WXH-Kz-6Vj" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" id="Elm-sQ-I3x"/>
+                            <constraint firstItem="CZG-GW-ieY" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="CVl-hZ-usp"/>
                             <constraint firstItem="pke-RQ-3Dc" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="Yan-rn-v36"/>
-                            <constraint firstItem="WXH-Kz-6Vj" firstAttribute="trailing" secondItem="vWN-dJ-Vqs" secondAttribute="trailing" id="cjW-cg-eUK"/>
-                            <constraint firstItem="Bwy-KM-Zj8" firstAttribute="top" secondItem="pke-RQ-3Dc" secondAttribute="bottom" id="efw-vM-LTv"/>
-                            <constraint firstItem="Bwy-KM-Zj8" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" id="gyM-M6-F5r"/>
                             <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="pke-RQ-3Dc" secondAttribute="trailing" constant="20" id="pZT-ZQ-sjG"/>
-                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="bottom" secondItem="Bwy-KM-Zj8" secondAttribute="bottom" id="tuQ-Tu-W41"/>
+                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="CZG-GW-ieY" secondAttribute="trailing" constant="20" id="wUy-Qr-3bE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xDF-QK-h4M"/>
+                    <connections>
+                        <outlet property="CardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
+                        <outlet property="SearchManuelCardButton" destination="aDo-3M-M4W" id="zWZ-BH-ZuS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-4c-4xV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-747" y="-402"/>
         </scene>
-        <!--Manual Search View Controller-->
+        <!--View Controller-->
         <scene sceneID="TcZ-lV-45i">
             <objects>
-                <viewController id="UkU-CS-DhW" customClass="ManualSearchViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UkU-CS-DhW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dj-jW-YTa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="678"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjz-wP-gEf">
-                                <rect key="frame" x="36" y="169.66666666666666" width="321" height="41"/>
-                                <color key="backgroundColor" red="0.29076763690000001" green="0.52060334699999999" blue="0.71019249360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Search">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SbI-W8-D1p">
-                                <rect key="frame" x="36" y="110.66666666666667" width="321" height="34.000000000000014"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indicate your card name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-vX-nhS">
-                                <rect key="frame" x="36" y="49.999999999999993" width="361" height="30.666666666666664"/>
-                                <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="q5G-vO-R7n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="SbI-W8-D1p" secondAttribute="trailing" constant="20" id="2jv-bc-0tF"/>
-                            <constraint firstItem="RqW-vX-nhS" firstAttribute="trailing" secondItem="8dj-jW-YTa" secondAttribute="trailingMargin" constant="20" id="2sE-Wa-RdX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Fjz-wP-gEf" secondAttribute="trailing" constant="20" id="4DY-qH-8vd"/>
-                            <constraint firstItem="RqW-vX-nhS" firstAttribute="top" secondItem="8dj-jW-YTa" secondAttribute="top" constant="50" id="9t6-Gq-z6a"/>
-                            <constraint firstItem="SbI-W8-D1p" firstAttribute="top" secondItem="RqW-vX-nhS" secondAttribute="bottom" constant="30" id="KRl-oC-3jl"/>
-                            <constraint firstItem="SbI-W8-D1p" firstAttribute="leading" secondItem="8dj-jW-YTa" secondAttribute="leadingMargin" constant="20" id="Nar-Tc-Z2i"/>
-                            <constraint firstItem="RqW-vX-nhS" firstAttribute="leading" secondItem="8dj-jW-YTa" secondAttribute="leadingMargin" constant="20" id="haJ-lJ-VO8"/>
-                            <constraint firstItem="Fjz-wP-gEf" firstAttribute="top" secondItem="SbI-W8-D1p" secondAttribute="bottom" constant="25" id="q9E-gD-aps"/>
-                            <constraint firstItem="Fjz-wP-gEf" firstAttribute="leading" secondItem="8dj-jW-YTa" secondAttribute="leadingMargin" constant="20" id="vfr-ZU-HdA"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ael-n6-v5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-898" y="175"/>
+            <point key="canvasLocation" x="-1115" y="315"/>
         </scene>
-        <!--Scan View Controller-->
+        <!--View Controller-->
         <scene sceneID="h5k-T9-iBe">
             <objects>
-                <viewController id="iAo-Cs-fjR" customClass="ScanViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iAo-Cs-fjR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xOZ-q0-sU4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="678"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan your card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-ba-gGp">
@@ -285,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78N-ax-gCK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="175"/>
+            <point key="canvasLocation" x="-442" y="315"/>
         </scene>
     </scenes>
     <resources>
