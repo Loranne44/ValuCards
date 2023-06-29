@@ -10,6 +10,7 @@ import AVFoundation
 
 
 class SearchCardViewController: UIViewController {
+    var names = Set<String>()
     
     @IBOutlet weak var CardNameTextField: UITextField!
     @IBOutlet weak var SearchManuelCardButton: UIButton!
@@ -25,13 +26,20 @@ class SearchCardViewController: UIViewController {
        search()
     }
     func search() {
-        CardsModel.shared.searchCards(searchKeyword: "Pika"){ (success, card)  in
-            if let card = card {
-                print(card)
-            } else {
-                print("error")
-            }
+        CardsModel.shared.searchCards(withName: "drone"){ [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else  {
+                    return
+                }
                 
+                switch result {
+                    
+                case let .success(card):
+                    print(card)
+                case let .failure(error):
+                    print(error)
+                }
+            }
             
         }
     }

@@ -33,7 +33,7 @@ class ManualCardSearch {
                 for card in cards {
                     print("Carte : \(card.title)")
                     print("Prix : \(card.price.value)")
-                    print("Quantité vendue : \(card.sellingStatus.soldQuantity)")
+                 //   print("Quantité vendue : \(card.sellingStatus.soldQuantity)")
                     print("-----------------------")
                 }
             } else if let error = error {

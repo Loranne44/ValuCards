@@ -7,6 +7,54 @@
 
 import Foundation
 
+import Foundation
+
+struct Card: Decodable {
+    let itemId: String
+    let title: String
+    let price: Price
+    let condition: String
+    let conditionId: String
+    let itemLocation: ItemLocation
+    let image: Image
+    let seller: Seller
+    let shippingOptions: [ShippingOption]
+
+    struct Price: Decodable {
+        let value: String
+        let currency: String
+    }
+
+    struct ItemLocation: Decodable {
+        let city: String
+        let stateOrProvince: String
+        let postalCode: String
+        let country: String
+    }
+
+    struct Image: Decodable {
+        let imageUrl: String
+    }
+
+    struct Seller: Decodable {
+        let username: String
+        let feedbackPercentage: String
+        let feedbackScore: Int
+    }
+
+    struct ShippingOption: Decodable {
+        let shippingServiceCode: String
+        let type: String
+        let shippingCost: Price
+        let quantityUsedForEstimate: Int
+        let minEstimatedDeliveryDate: String
+        let maxEstimatedDeliveryDate: String
+        let additionalShippingCostPerUnit: Price
+        let shippingCostType: String
+    }
+}
+
+
 let JSON = """
 {
     "itemId": "v1|1**********0|0",
@@ -1098,17 +1146,4 @@ let JSON = """
 }
 """
 
- struct Card: Codable {
-     let title: String
-     let price: Price
-     let sellingStatus: SellingStatus
-     
-     struct Price: Codable {
-         let value: Double
-     }
-     
-     struct SellingStatus: Codable {
-         let soldQuantity: Int
-     }
- }
  
