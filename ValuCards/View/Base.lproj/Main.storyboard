@@ -66,6 +66,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="txf-Mg-VpN"/>
                                             <segue destination="KU1-UU-09i" kind="show" id="b0o-rh-Csn"/>
                                         </connections>
                                     </button>
@@ -77,6 +78,9 @@
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="signUpButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="3KS-g7-IFC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

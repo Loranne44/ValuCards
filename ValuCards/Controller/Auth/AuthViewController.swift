@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AuthViewController: UIViewController {
     
@@ -57,6 +58,46 @@ class AuthViewController: UIViewController {
         currentPageType = sender.selectedSegmentIndex == 0 ? .signIn : .signUp
         
     }
+    
+    @IBAction func signInButton(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            
+            Auth.auth().createUser(withEmail: email, password: password) {
+                (result, error) in
+                
+                if let result = result, error == nil {
+                    
+                    self.navigationController?.pushViewController(SearchCardViewController(nibName: nil, bundle: nil) , animated: true)
+                } else {
+                    let alerController = UIAlertController(title: "Error", message: "Error in ...", preferredStyle: .alert)
+                    alerController.addAction(UIAlertAction(title: "Accepter", style: .default))
+                    
+                    self.present(alerController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func signUpButton(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            
+            Auth.auth().signIn(withEmail: email, password: password) {
+                (result, error) in
+                
+                if let result = result, error == nil {
+                  
+                    self.navigationController?.pushViewController(SearchCardViewController(nibName: nil, bundle: nil) , animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "An error occurred during user registration", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Aceptar", style: .default))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
     
 }
 
