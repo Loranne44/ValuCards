@@ -21,7 +21,7 @@
 		457973252A432B6E0099D024 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 457973242A432B6E0099D024 /* Alamofire */; };
 		457973272A432C760099D024 /* CardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973262A432C760099D024 /* CardsModel.swift */; };
 		457973292A432D240099D024 /* CardsScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973282A432D240099D024 /* CardsScanViewController.swift */; };
-		4579732B2A4339430099D024 /* ValuCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579732A2A4339430099D024 /* ValuCards.swift */; };
+		4579732B2A4339430099D024 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579732A2A4339430099D024 /* Card.swift */; };
 		4582D86C2A4AC70F00AE6084 /* CardClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D86B2A4AC70F00AE6084 /* CardClassifier.swift */; };
 		4582D8722A4B0A4E00AE6084 /* ManualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */; };
 		4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8732A4B0B0500AE6084 /* ScanViewController.swift */; };
@@ -75,7 +75,7 @@
 		457973122A42F9040099D024 /* ValuCardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		457973262A432C760099D024 /* CardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModel.swift; sourceTree = "<group>"; };
 		457973282A432D240099D024 /* CardsScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScanViewController.swift; sourceTree = "<group>"; };
-		4579732A2A4339430099D024 /* ValuCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCards.swift; sourceTree = "<group>"; };
+		4579732A2A4339430099D024 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4582D86B2A4AC70F00AE6084 /* CardClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardClassifier.swift; sourceTree = "<group>"; };
 		4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSearchViewController.swift; sourceTree = "<group>"; };
 		4582D8732A4B0B0500AE6084 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				459942DE2A4D7B6900BC4AF3 /* Error.swift */,
-				4579732A2A4339430099D024 /* ValuCards.swift */,
+				4579732A2A4339430099D024 /* Card.swift */,
 				457973262A432C760099D024 /* CardsModel.swift */,
 				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
 				4519271A2A45B39F00DCCE0C /* CardsScanModel.swift */,
@@ -387,7 +387,7 @@
 				4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
 				4519271F2A45B88E00DCCE0C /* CardClassifierModel.swift in Sources */,
-				4579732B2A4339430099D024 /* ValuCards.swift in Sources */,
+				4579732B2A4339430099D024 /* Card.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
 				4582D8722A4B0A4E00AE6084 /* ManualSearchViewController.swift in Sources */,
 				4582D86C2A4AC70F00AE6084 /* CardClassifier.swift in Sources */,

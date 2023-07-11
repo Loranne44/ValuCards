@@ -9,13 +9,13 @@ import Foundation
 
 class ManualCardSearch {
     
-    func searchCards(searchKeyword: String, completion: @escaping ([Card]?, Error?) -> Void) {
+    func searchCards(searchKeyword: String, completion: @escaping ([Cards2]?, Error?) -> Void) {
         // Votre implémentation pour rechercher des cartes en fonction d'un mot-clé
         // Par exemple, vous pouvez effectuer une requête API ou interroger une base de données pour récupérer des cartes correspondant au mot-clé de recherche
         // Une fois que vous avez les cartes, vous pouvez analyser la réponse dans un tableau d'objets Card
         
         // Implémentation fictive de l'exemple pour démontrer le gestionnaire de complétion
-        let cards: [Card] = []
+        let cards: [Cards2] = []
         completion(cards, nil)
         print (cards)
     }
@@ -31,8 +31,8 @@ class ManualCardSearch {
                 // Gérez les cartes récupérées
                 print("Résultats de recherche pour la carte : \(cardName)")
                 for card in cards {
-                    print("Carte : \(card.title)")
-                    print("Prix : \(card.price.value)")
+                  //  print("Carte : \(card.title)")
+                  //  print("Prix : \(card.price.value)")
                  //   print("Quantité vendue : \(card.sellingStatus.soldQuantity)")
                     print("-----------------------")
                 }

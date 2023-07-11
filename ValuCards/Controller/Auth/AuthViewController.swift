@@ -60,44 +60,44 @@ class AuthViewController: UIViewController {
     }
     
     @IBAction func signInButton(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            
-            Auth.auth().createUser(withEmail: email, password: password) {
-                (result, error) in
-                
-                if let result = result, error == nil {
-                    
-                    self.navigationController?.pushViewController(SearchCardViewController(nibName: nil, bundle: nil) , animated: true)
-                } else {
-                    let alerController = UIAlertController(title: "Error", message: "Error in ...", preferredStyle: .alert)
-                    alerController.addAction(UIAlertAction(title: "Accepter", style: .default))
-                    
-                    self.present(alerController, animated: true, completion: nil)
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+                   return
+               }
+               
+               Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
+                   guard let strongSelf = self else { return }
+                   
+                   if let error = error {
+                       print("Erreur lors de l'inscription : \(error.localizedDescription)")
+                   } else {
+                       // Inscription réussie, vous pouvez effectuer des actions supplémentaires ici
+                       strongSelf.performSegue(withIdentifier: "SearchCards", sender: nil)
                 }
             }
         }
-    }
+    
     
     
     @IBAction func signUpButton(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            
-            Auth.auth().signIn(withEmail: email, password: password) {
-                (result, error) in
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+                    return
+                }
                 
-                if let result = result, error == nil {
-                  
-                    self.navigationController?.pushViewController(SearchCardViewController(nibName: nil, bundle: nil) , animated: true)
-                } else {
-                    let alertController = UIAlertController(title: "Error", message: "An error occurred during user registration", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Aceptar", style: .default))
+                Auth.auth().signIn(withEmail: email, password: password) { [weak self] (authResult, error) in
+                    guard let strongSelf = self else { return }
                     
-                    self.present(alertController, animated: true, completion: nil)
+                    if let error = error {
+                        print("Erreur lors de la connexion : \(error.localizedDescription)")
+                    } else {
+                        // Connexion réussie, vous pouvez effectuer des actions supplémentaires ici
+                        strongSelf.performSegue(withIdentifier: "loginSuccessSegue", sender: nil)
                 }
             }
         }
-    }
+    
     
     
 }
 
+
+// PAgeViewController

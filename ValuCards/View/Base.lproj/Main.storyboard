@@ -67,7 +67,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="txf-Mg-VpN"/>
-                                            <segue destination="KU1-UU-09i" kind="show" id="b0o-rh-Csn"/>
+                                            <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards" id="Lg5-g4-BGr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBg-29-8uj">
@@ -80,6 +80,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="3KS-g7-IFC"/>
+                                            <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards1" id="mfh-3Y-s31"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -165,7 +166,29 @@
             </objects>
             <point key="canvasLocation" x="-2167.1755725190837" y="-377.46478873239437"/>
         </scene>
-        <!--Search Card View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="2Rg-W6-Pcc">
+            <objects>
+                <tabBarController id="kJM-0k-qcG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="XLH-iW-1It"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Se-kp-57m">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.42419345899999999" green="0.63871476540000005" blue="0.76323453279999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.42419345899999999" green="0.63871476540000005" blue="0.76323453279999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="KU1-UU-09i" kind="relationship" relationship="viewControllers" id="RUP-Od-yiz"/>
+                        <segue destination="iAo-Cs-fjR" kind="relationship" relationship="viewControllers" id="8y6-J9-Fo8"/>
+                        <segue destination="UkU-CS-DhW" kind="relationship" relationship="viewControllers" id="dcb-WX-lqq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyu-50-TU5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1387" y="-377"/>
+        </scene>
+        <!--Manuel-->
         <scene sceneID="yVG-o6-VZA">
             <objects>
                 <viewController id="KU1-UU-09i" customClass="SearchCardViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
@@ -173,13 +196,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pke-RQ-3Dc">
-                                <rect key="frame" x="20" y="153" width="353" height="32"/>
-                                <segments>
-                                    <segment title="Manuel search"/>
-                                    <segment title="Scan"/>
-                                </segments>
-                            </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-GW-ieY">
                                 <rect key="frame" x="20" y="244" width="353" height="141"/>
                                 <subviews>
@@ -212,14 +228,12 @@
                         <viewLayoutGuide key="safeArea" id="vWN-dJ-Vqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="pke-RQ-3Dc" secondAttribute="bottom" constant="60" id="9mu-fV-ert"/>
-                            <constraint firstItem="pke-RQ-3Dc" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="50" id="AVr-0U-MvT"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="CVl-hZ-usp"/>
-                            <constraint firstItem="pke-RQ-3Dc" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="Yan-rn-v36"/>
-                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="pke-RQ-3Dc" secondAttribute="trailing" constant="20" id="pZT-ZQ-sjG"/>
+                            <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="141" id="JNZ-UY-eb7"/>
                             <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="CZG-GW-ieY" secondAttribute="trailing" constant="20" id="wUy-Qr-3bE"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Manuel" id="uDv-Ko-dAi"/>
                     <navigationItem key="navigationItem" id="xDF-QK-h4M"/>
                     <connections>
                         <outlet property="CardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
@@ -228,9 +242,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-4c-4xV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-747" y="-402"/>
+            <point key="canvasLocation" x="-599" y="-1039"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorites-->
         <scene sceneID="TcZ-lV-45i">
             <objects>
                 <viewController id="UkU-CS-DhW" sceneMemberID="viewController">
@@ -240,41 +254,64 @@
                         <viewLayoutGuide key="safeArea" id="q5G-vO-R7n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" id="ELs-W3-xQ2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ael-n6-v5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1115" y="315"/>
+            <point key="canvasLocation" x="-599" y="318"/>
         </scene>
-        <!--View Controller-->
+        <!--Scan-->
         <scene sceneID="h5k-T9-iBe">
             <objects>
-                <viewController id="iAo-Cs-fjR" sceneMemberID="viewController">
+                <viewController id="iAo-Cs-fjR" customClass="ScanViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xOZ-q0-sU4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan your card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-ba-gGp">
-                                <rect key="frame" x="36" y="50" width="321" height="31"/>
-                                <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="03-fr" translatesAutoresizingMaskIntoConstraints="NO" id="Kn5-hw-xjT">
+                                <rect key="frame" x="0.0" y="103" width="393" height="616"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfE-Xa-Cqu">
+                                <rect key="frame" x="0.0" y="728" width="393" height="41"/>
+                                <color key="backgroundColor" red="0.2941176593" green="0.52156865600000002" blue="0.71372550729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Scan">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="ScanImageButtonsTapped:" destination="iAo-Cs-fjR" eventType="touchUpInside" id="AJx-gv-MH6"/>
+                                    <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="B2F-h3-KTc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eBC-Nu-apx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hfb-ba-gGp" firstAttribute="top" secondItem="xOZ-q0-sU4" secondAttribute="top" constant="50" id="hUR-jT-6k3"/>
-                            <constraint firstItem="hfb-ba-gGp" firstAttribute="leading" secondItem="xOZ-q0-sU4" secondAttribute="leadingMargin" constant="20" id="lhh-E9-74Y"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hfb-ba-gGp" secondAttribute="trailing" constant="20" id="xCL-3D-Jlu"/>
+                            <constraint firstItem="Kn5-hw-xjT" firstAttribute="top" secondItem="eBC-Nu-apx" secondAttribute="top" id="0Uj-FN-xQx"/>
+                            <constraint firstItem="Kn5-hw-xjT" firstAttribute="leading" secondItem="eBC-Nu-apx" secondAttribute="leading" id="6pw-3L-MfY"/>
+                            <constraint firstItem="eBC-Nu-apx" firstAttribute="trailing" secondItem="Kn5-hw-xjT" secondAttribute="trailing" id="84L-UU-Pku"/>
+                            <constraint firstItem="eBC-Nu-apx" firstAttribute="trailing" secondItem="RfE-Xa-Cqu" secondAttribute="trailing" id="oWM-gY-UAn"/>
+                            <constraint firstItem="eBC-Nu-apx" firstAttribute="bottom" secondItem="RfE-Xa-Cqu" secondAttribute="bottom" id="qaY-EC-fXp"/>
+                            <constraint firstItem="RfE-Xa-Cqu" firstAttribute="leading" secondItem="eBC-Nu-apx" secondAttribute="leading" id="vHF-u1-yd7"/>
+                            <constraint firstItem="eBC-Nu-apx" firstAttribute="bottom" secondItem="Kn5-hw-xjT" secondAttribute="bottom" constant="50" id="xhD-bK-kJa"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Scan" id="Wrl-vc-Vxq"/>
+                    <connections>
+                        <outlet property="viewImage" destination="Kn5-hw-xjT" id="GpG-i8-VFl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78N-ax-gCK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-442" y="315"/>
+            <point key="canvasLocation" x="-599" y="-377"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mfh-3Y-s31"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="03-fr" width="182" height="281"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
