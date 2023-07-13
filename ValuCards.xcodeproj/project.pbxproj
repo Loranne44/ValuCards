@@ -38,6 +38,10 @@
 		459597272A4EAFAF00F297CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459597262A4EAFAF00F297CA /* GoogleService-Info.plist */; };
 		459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DC2A4D707F00BC4AF3 /* CardsSession.swift */; };
 		459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DE2A4D7B6900BC4AF3 /* Error.swift */; };
+		45B665DA2A60059600A46C4E /* CardSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 45B665D92A60059600A46C4E /* CardSlider */; };
+		45F19C3D2A5FDE1F00274D05 /* CardsSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F19C3C2A5FDE1F00274D05 /* CardsSliderViewController.swift */; };
+		4EC54739AD0702A048577A8E /* Pods_ValuCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */; };
+		D5DB5CF7922AE180B997357F /* Pods_ValuCards_ValuCardsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		459597262A4EAFAF00F297CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		459942DC2A4D707F00BC4AF3 /* CardsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSession.swift; sourceTree = "<group>"; };
 		459942DE2A4D7B6900BC4AF3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		45F19C3C2A5FDE1F00274D05 /* CardsSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSliderViewController.swift; sourceTree = "<group>"; };
+		858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCardsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCards_ValuCardsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 				4595970D2A4E179400F297CA /* FirebaseAnalytics in Frameworks */,
 				4595970F2A4E179400F297CA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				459597192A4E179400F297CA /* FirebaseCrashlytics in Frameworks */,
+				45B665DA2A60059600A46C4E /* CardSlider in Frameworks */,
 				4595971B2A4E179400F297CA /* FirebaseDatabase in Frameworks */,
 				459597172A4E179400F297CA /* FirebaseAuthCombine-Community in Frameworks */,
 				457973252A432B6E0099D024 /* Alamofire in Frameworks */,
@@ -107,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC54739AD0702A048577A8E /* Pods_ValuCardsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5DB5CF7922AE180B997357F /* Pods_ValuCards_ValuCardsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +138,7 @@
 				457973052A42F9040099D024 /* ValuCardsTests */,
 				4579730F2A42F9040099D024 /* ValuCardsUITests */,
 				457972ED2A42F9030099D024 /* Products */,
+				9937E0E347CD8C2874AA3658 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,8 +239,19 @@
 				457973282A432D240099D024 /* CardsScanViewController.swift */,
 				4582D8732A4B0B0500AE6084 /* ScanViewController.swift */,
 				4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */,
+				45F19C3C2A5FDE1F00274D05 /* CardsSliderViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		9937E0E347CD8C2874AA3658 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */,
+				F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */,
+				B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +281,7 @@
 				459597182A4E179400F297CA /* FirebaseCrashlytics */,
 				4595971A2A4E179400F297CA /* FirebaseDatabase */,
 				4595971C2A4E179400F297CA /* FirebasePerformance */,
+				45B665D92A60059600A46C4E /* CardSlider */,
 			);
 			productName = ValuCards;
 			productReference = 457972EC2A42F9030099D024 /* ValuCards.app */;
@@ -267,6 +291,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 457973192A42F9040099D024 /* Build configuration list for PBXNativeTarget "ValuCardsTests" */;
 			buildPhases = (
+				29DF02795F728DE23502A736 /* [CP] Check Pods Manifest.lock */,
 				457972FE2A42F9040099D024 /* Sources */,
 				457972FF2A42F9040099D024 /* Frameworks */,
 				457973002A42F9040099D024 /* Resources */,
@@ -285,6 +310,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4579731C2A42F9040099D024 /* Build configuration list for PBXNativeTarget "ValuCardsUITests" */;
 			buildPhases = (
+				2311F405F74EB3F9AD89CB3E /* [CP] Check Pods Manifest.lock */,
 				457973082A42F9040099D024 /* Sources */,
 				457973092A42F9040099D024 /* Frameworks */,
 				4579730A2A42F9040099D024 /* Resources */,
@@ -334,6 +360,7 @@
 			packageReferences = (
 				457973232A432B6E0099D024 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4595970B2A4E179400F297CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				45B665D82A60059600A46C4E /* XCRemoteSwiftPackageReference "cardslider" */,
 			);
 			productRefGroup = 457972ED2A42F9030099D024 /* Products */;
 			projectDirPath = "";
@@ -374,6 +401,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2311F405F74EB3F9AD89CB3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ValuCards-ValuCardsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29DF02795F728DE23502A736 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ValuCardsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		457972E82A42F9030099D024 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -382,6 +456,7 @@
 				4519271B2A45B39F00DCCE0C /* CardsScanModel.swift in Sources */,
 				4582D87C2A4B6FC600AE6084 /* ManualCardSearch.swift in Sources */,
 				457973292A432D240099D024 /* CardsScanViewController.swift in Sources */,
+				45F19C3D2A5FDE1F00274D05 /* CardsSliderViewController.swift in Sources */,
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
 				4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */,
@@ -752,6 +827,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		45B665D82A60059600A46C4E /* XCRemoteSwiftPackageReference "cardslider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Ramotion/cardslider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -804,6 +887,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4595970B2A4E179400F297CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebasePerformance;
+		};
+		45B665D92A60059600A46C4E /* CardSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45B665D82A60059600A46C4E /* XCRemoteSwiftPackageReference "cardslider" */;
+			productName = CardSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

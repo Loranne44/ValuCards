@@ -8,7 +8,8 @@
 import Foundation
 
 struct Cards2: Decodable {
-    let itemSummaries: [Card]
+    let itemSummaries: [Card]?
+    let total: Int
 }
 
 struct Card: Decodable {

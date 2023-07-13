@@ -10,10 +10,12 @@ import UIKit
 class ScanViewController: UIViewController {
     
     @IBOutlet weak var viewImage: UIImageView!
+    @IBOutlet weak var scanButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        scanButton.layer.cornerRadius = 15
+
         // Do any additional setup after loading the view.
     }
     
