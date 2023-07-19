@@ -191,17 +191,18 @@
         <!--View Controller-->
         <scene sceneID="uGe-6G-gg7">
             <objects>
-                <viewController id="6jJ-fF-VEh" sceneMemberID="viewController">
+                <viewController id="6jJ-fF-VEh" customClass="ViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kfO-7P-z6y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="8hd-tB-zZ8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kZl-PR-NFD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04f-ZU-hqv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621" y="-561"/>
+            <point key="canvasLocation" x="748.85496183206101" y="-648.59154929577471"/>
         </scene>
         <!--Manuel-->
         <scene sceneID="yVG-o6-VZA">
@@ -239,12 +240,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZV-fG-eoh">
+                                <rect key="frame" x="159" y="409" width="75" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="6jJ-fF-VEh" kind="show" id="VB6-2x-EM3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vWN-dJ-Vqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="UZV-fG-eoh" firstAttribute="centerY" secondItem="FGM-rN-TxS" secondAttribute="centerY" id="9G9-F3-oEi"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="CVl-hZ-usp"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="141" id="JNZ-UY-eb7"/>
+                            <constraint firstItem="UZV-fG-eoh" firstAttribute="centerX" secondItem="FGM-rN-TxS" secondAttribute="centerX" id="fe3-Q2-968"/>
                             <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="CZG-GW-ieY" secondAttribute="trailing" constant="20" id="wUy-Qr-3bE"/>
                         </constraints>
                     </view>
