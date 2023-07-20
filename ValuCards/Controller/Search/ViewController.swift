@@ -7,58 +7,90 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
-    var scrollView: UIScrollView!
-    var imageNames: [String] = ["AA", "BB", "CC"]
-    var imageViews: [UIImageView] = []
-    var currentIndex: Int = 0
-
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var cardModel = CardModel()
+    
+    private var initialPanPoint: CGPoint = CGPoint.zero
+    private let maxRotationAngle: CGFloat = CGFloat.pi / 3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Créez une UIScrollView pour afficher les images.
-        scrollView = UIScrollView(frame: view.bounds)
-        scrollView.delegate = self
-        scrollView.isPagingEnabled = true
-        scrollView.contentSize = CGSize(width: view.bounds.width * CGFloat(imageNames.count), height: view.bounds.height)
-        view.addSubview(scrollView)
-
-        // Ajoutez les images à la UIScrollView.
-        for i in 0..<imageNames.count {
-            let imageView = UIImageView(image: UIImage(named: imageNames[i]))
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.frame = CGRect(x: CGFloat(i) * view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-            scrollView.addSubview(imageView)
-            imageViews.append(imageView)
-        }
-
-        // Ajoutez un geste de balayage vers la gauche.
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeft))
-        swipeLeft.direction = .left
-        view.addGestureRecognizer(swipeLeft)
-
-        // Ajoutez un geste de balayage vers la droite.
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRight))
-        swipeRight.direction = .right
-        view.addGestureRecognizer(swipeRight)
+        imageView.isUserInteractionEnabled = true
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        imageView.addGestureRecognizer(panGesture)
+        
+        // Ajouter une ombre à l'image
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        imageView.layer.shadowOpacity = 0.8
+        imageView.layer.shadowRadius = 4.0
+        
+        // Afficher la première image au lancement de l'application
+        updateImage()
     }
-
-    // Méthode pour gérer le geste de balayage vers la gauche.
-    @objc func handleSwipeLeft() {
-        if currentIndex < imageViews.count - 1 {
-            currentIndex += 1
-            let offsetX = CGFloat(currentIndex) * view.bounds.width
-            scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+    
+    @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            initialPanPoint = gesture.translation(in: imageView)
+        case .changed:
+            performCardAction(with: gesture.translation(in: imageView))
+        case .ended, .cancelled:
+            imageView.alpha = 1.0
+            UIView.animate(withDuration: 0.3) {
+                self.imageView.transform = .identity
+            }
+            
+            let translation = gesture.translation(in: imageView).x
+            if translation > 0 {
+                cardModel.showPreviousImage()
+                navigateToResultViewController()
+            } else {
+                cardModel.showNextImage()
+            }
+            
+            updateImage()
+            
+        default:
+            break
         }
     }
-
-    // Méthode pour gérer le geste de balayage vers la droite.
-    @objc func handleSwipeRight() {
-        if currentIndex > 0 {
-            currentIndex -= 1
-            let offsetX = CGFloat(currentIndex) * view.bounds.width
-            scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
-        }
+    
+    func navigateToResultViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyboard.instantiateViewController(withIdentifier: "Result") as! ResultViewController
+        navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    func updateImage() {
+        let imageName = cardModel.getCurrentImageName()
+        imageView.image = UIImage(named: imageName)
+    }
+    
+    @IBAction func nextImageButton(_ sender: UIButton) {
+        cardModel.showNextImage()
+        updateImage()
+        
+    }
+    
+    @IBAction func validateImageButton(_ sender: UIButton) {
+        navigateToResultViewController()
+    }
+    
+    func performCardAction(with translation: CGPoint) {
+        let translationTransform = CGAffineTransform(translationX: translation.x, y: translation.y)
+        let translationPercent = translation.x / (UIScreen.main.bounds.width / 2)
+        let rotationAngle = maxRotationAngle * translationPercent
+        let rotationTransform = CGAffineTransform(rotationAngle: rotationAngle)
+        let transform = translationTransform.concatenating(rotationTransform)
+        imageView.transform = transform
+        
+        let alphaPercent = abs(translationPercent)
+        imageView.alpha = 1.0 - alphaPercent
     }
 }
+

@@ -195,14 +195,92 @@
                     <view key="view" contentMode="scaleToFill" id="kfO-7P-z6y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this the wanted card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjw-Se-0vr">
+                                <rect key="frame" x="52.333333333333343" y="118.00000000000001" width="288.33333333333326" height="30.666666666666671"/>
+                                <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XXq-9t-CEO">
+                                <rect key="frame" x="10" y="762" width="373" height="46"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf2-ps-GMu">
+                                        <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="skip" title=""/>
+                                        <connections>
+                                            <action selector="nextImageButton:" destination="6jJ-fF-VEh" eventType="touchUpInside" id="9FK-02-edv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqX-mH-GWb">
+                                        <rect key="frame" x="186.66666666666663" y="0.0" width="186.33333333333337" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="like"/>
+                                        <connections>
+                                            <action selector="validateImageButton:" destination="6jJ-fF-VEh" eventType="touchUpInside" id="vUC-lg-e5O"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="CC" translatesAutoresizingMaskIntoConstraints="NO" id="haM-yk-lOO">
+                                <rect key="frame" x="0.0" y="178" width="393" height="529"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8hd-tB-zZ8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="haM-yk-lOO" firstAttribute="top" secondItem="Pjw-Se-0vr" secondAttribute="bottom" constant="29.329999999999998" id="BO4-x4-plE"/>
+                            <constraint firstItem="8hd-tB-zZ8" firstAttribute="trailing" secondItem="XXq-9t-CEO" secondAttribute="trailing" constant="10" id="SKK-QO-HOt"/>
+                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="top" secondItem="8hd-tB-zZ8" secondAttribute="top" constant="15" id="bwk-Nt-HdH"/>
+                            <constraint firstItem="XXq-9t-CEO" firstAttribute="leading" secondItem="8hd-tB-zZ8" secondAttribute="leading" constant="10" id="eCE-ZM-gWw"/>
+                            <constraint firstItem="8hd-tB-zZ8" firstAttribute="bottom" secondItem="XXq-9t-CEO" secondAttribute="bottom" constant="10" id="eoi-5q-ERg"/>
+                            <constraint firstItem="haM-yk-lOO" firstAttribute="leading" secondItem="kfO-7P-z6y" secondAttribute="leading" id="izv-OC-Gfu"/>
+                            <constraint firstItem="XXq-9t-CEO" firstAttribute="top" secondItem="haM-yk-lOO" secondAttribute="bottom" priority="999" constant="55" id="mck-Zf-woj"/>
+                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="centerX" secondItem="haM-yk-lOO" secondAttribute="centerX" id="ry5-9Y-DO6"/>
+                            <constraint firstAttribute="trailing" secondItem="haM-yk-lOO" secondAttribute="trailing" id="tTR-81-ka9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kZl-PR-NFD"/>
+                    <connections>
+                        <outlet property="imageView" destination="haM-yk-lOO" id="GmG-dF-QpG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04f-ZU-hqv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="xUm-Uo-4ut">
+                    <connections>
+                        <outlet property="delegate" destination="haM-yk-lOO" id="y9l-CG-6rv"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="748.85496183206101" y="-648.59154929577471"/>
+            <point key="canvasLocation" x="319.84732824427482" y="-654.22535211267609"/>
+        </scene>
+        <!--Result View Controller-->
+        <scene sceneID="9D4-4f-PKr">
+            <objects>
+                <viewController storyboardIdentifier="Result" id="DtF-FD-7Ix" customClass="ResultViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="omz-JH-eiy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tableau, scroll, max de data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxu-HJ-BgO">
+                                <rect key="frame" x="-90.333333333333314" y="396" width="573.66666666666663" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MsG-wZ-uaG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Sxu-HJ-BgO" firstAttribute="centerY" secondItem="omz-JH-eiy" secondAttribute="centerY" id="6rZ-TS-uoi"/>
+                            <constraint firstItem="Sxu-HJ-BgO" firstAttribute="centerX" secondItem="omz-JH-eiy" secondAttribute="centerX" id="bZP-dP-4Rg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smZ-VJ-qN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="-643"/>
         </scene>
         <!--Manuel-->
         <scene sceneID="yVG-o6-VZA">
@@ -338,6 +416,9 @@
         <segue reference="mfh-3Y-s31"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="CC" width="679" height="945"/>
+        <image name="like" width="32" height="32"/>
+        <image name="skip" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4519271B2A45B39F00DCCE0C /* CardsScanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519271A2A45B39F00DCCE0C /* CardsScanModel.swift */; };
 		4519271F2A45B88E00DCCE0C /* CardClassifierModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519271E2A45B88E00DCCE0C /* CardClassifierModel.swift */; };
+		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
+		45526D4B2A691E0E000843DD /* ImageModelPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D4A2A691E0E000843DD /* ImageModelPan.swift */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* AuthViewController.swift */; };
@@ -63,6 +65,8 @@
 /* Begin PBXFileReference section */
 		4519271A2A45B39F00DCCE0C /* CardsScanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsScanModel.swift; sourceTree = "<group>"; };
 		4519271E2A45B88E00DCCE0C /* CardClassifierModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardClassifierModel.swift; sourceTree = "<group>"; };
+		45526D472A68422D000843DD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		45526D4A2A691E0E000843DD /* ImageModelPan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModelPan.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457972EF2A42F9030099D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457972F12A42F9030099D024 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45526D492A691DF3000843DD /* ViewLogique */ = {
+			isa = PBXGroup;
+			children = (
+				45526D4A2A691E0E000843DD /* ImageModelPan.swift */,
+			);
+			path = ViewLogique;
+			sourceTree = "<group>";
+		};
 		457972E32A42F9030099D024 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +193,7 @@
 		4579731F2A42F9180099D024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45526D492A691DF3000843DD /* ViewLogique */,
 				459942DE2A4D7B6900BC4AF3 /* Error.swift */,
 				4579732A2A4339430099D024 /* Card.swift */,
 				457973262A432C760099D024 /* CardsModel.swift */,
@@ -238,6 +251,7 @@
 				4582D8732A4B0B0500AE6084 /* ScanViewController.swift */,
 				4582D8712A4B0A4E00AE6084 /* ManualSearchViewController.swift */,
 				45F19C3C2A5FDE1F00274D05 /* ViewController.swift */,
+				45526D472A68422D000843DD /* ResultViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -452,10 +466,12 @@
 				4519271B2A45B39F00DCCE0C /* CardsScanModel.swift in Sources */,
 				4582D87C2A4B6FC600AE6084 /* ManualCardSearch.swift in Sources */,
 				457973292A432D240099D024 /* CardsScanViewController.swift in Sources */,
+				45526D482A68422D000843DD /* ResultViewController.swift in Sources */,
 				45F19C3D2A5FDE1F00274D05 /* ViewController.swift in Sources */,
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
 				4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */,
+				45526D4B2A691E0E000843DD /* ImageModelPan.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
 				4519271F2A45B88E00DCCE0C /* CardClassifierModel.swift in Sources */,
 				4579732B2A4339430099D024 /* Card.swift in Sources */,
