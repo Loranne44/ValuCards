@@ -11,6 +11,8 @@
 		4519271F2A45B88E00DCCE0C /* CardClassifierModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519271E2A45B88E00DCCE0C /* CardClassifierModel.swift */; };
 		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
 		45526D4B2A691E0E000843DD /* ImageModelPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D4A2A691E0E000843DD /* ImageModelPan.swift */; };
+		45526D4F2A6A7B89000843DD /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45526D4E2A6A7B89000843DD /* DGCharts */; };
+		45526D512A6A7B89000843DD /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 45526D502A6A7B89000843DD /* DGChartsDynamic */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* AuthViewController.swift */; };
@@ -105,11 +107,13 @@
 				459597152A4E179400F297CA /* FirebaseAuth in Frameworks */,
 				4595971D2A4E179400F297CA /* FirebasePerformance in Frameworks */,
 				459597132A4E179400F297CA /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				45526D512A6A7B89000843DD /* DGChartsDynamic in Frameworks */,
 				4595970D2A4E179400F297CA /* FirebaseAnalytics in Frameworks */,
 				4595970F2A4E179400F297CA /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				459597192A4E179400F297CA /* FirebaseCrashlytics in Frameworks */,
 				4595971B2A4E179400F297CA /* FirebaseDatabase in Frameworks */,
 				459597172A4E179400F297CA /* FirebaseAuthCombine-Community in Frameworks */,
+				45526D4F2A6A7B89000843DD /* DGCharts in Frameworks */,
 				457973252A432B6E0099D024 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +297,8 @@
 				459597182A4E179400F297CA /* FirebaseCrashlytics */,
 				4595971A2A4E179400F297CA /* FirebaseDatabase */,
 				4595971C2A4E179400F297CA /* FirebasePerformance */,
+				45526D4E2A6A7B89000843DD /* DGCharts */,
+				45526D502A6A7B89000843DD /* DGChartsDynamic */,
 			);
 			productName = ValuCards;
 			productReference = 457972EC2A42F9030099D024 /* ValuCards.app */;
@@ -371,6 +377,7 @@
 			packageReferences = (
 				457973232A432B6E0099D024 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4595970B2A4E179400F297CA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				45526D4D2A6A7B89000843DD /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 457972ED2A42F9030099D024 /* Products */;
 			projectDirPath = "";
@@ -823,6 +830,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		45526D4D2A6A7B89000843DD /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		457973232A432B6E0099D024 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -842,6 +857,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		45526D4E2A6A7B89000843DD /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45526D4D2A6A7B89000843DD /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		45526D502A6A7B89000843DD /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45526D4D2A6A7B89000843DD /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
+		};
 		457973242A432B6E0099D024 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 457973232A432B6E0099D024 /* XCRemoteSwiftPackageReference "Alamofire" */;

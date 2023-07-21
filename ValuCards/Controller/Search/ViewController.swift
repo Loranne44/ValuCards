@@ -39,6 +39,7 @@ class ViewController: UIViewController {
             initialPanPoint = gesture.translation(in: imageView)
         case .changed:
             performCardAction(with: gesture.translation(in: imageView))
+            applyColorFilter()
         case .ended, .cancelled:
             imageView.alpha = 1.0
             UIView.animate(withDuration: 0.3) {
@@ -51,12 +52,37 @@ class ViewController: UIViewController {
                 navigateToResultViewController()
             } else {
                 cardModel.showNextImage()
+                // Mettre à jour l'image une fois l'animation terminée
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.updateImage()
+                    self.resetColorFilter()
+                }
             }
-            
-            updateImage()
             
         default:
             break
+        }
+    }
+    
+    func applyColorFilter() {
+        let colorFilter = UIView()
+        colorFilter.frame = imageView.bounds
+        
+        let translation = imageView.transform.tx
+        if translation > 0 {
+            // Le geste va vers la droite, donc appliquer un filtre vert
+            colorFilter.backgroundColor = UIColor.green.withAlphaComponent(0.03)
+        } else {
+            // Le geste va vers la gauche, donc appliquer un filtre rouge
+            colorFilter.backgroundColor = UIColor.red.withAlphaComponent(0.03)
+        }
+        
+        imageView.addSubview(colorFilter)
+    }
+    
+    func resetColorFilter() {
+        for subview in imageView.subviews {
+            subview.removeFromSuperview()
         }
     }
     
@@ -74,7 +100,6 @@ class ViewController: UIViewController {
     @IBAction func nextImageButton(_ sender: UIButton) {
         cardModel.showNextImage()
         updateImage()
-        
     }
     
     @IBAction func validateImageButton(_ sender: UIButton) {
