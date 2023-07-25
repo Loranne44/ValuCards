@@ -7,7 +7,7 @@
 
 import UIKit
 import Charts
-import DGCharts
+//import DGCharts
 
 
 class ResultViewController: UIViewController {
