@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIdentifier</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string></string>
+		</dict>
+	</array>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
@@ -28,6 +35,28 @@
 				</dict>
 			</array>
 		</dict>
+        <key>CFBundleURLTypes</key>
+        <array>
+          <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>fbAPP-ID</string>
+          </array>
+          </dict>
+        </array>
+        <key>FacebookAppID</key>
+        <string>641132091415334</string>
+        <key>FacebookClientToken</key>
+        <string>6d4e2d49a62883ee3ee819f9e2cebaf4</string>
+        <key>FacebookDisplayName</key>
+        <string>ValuCards</string>
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+          <string>fbapi</string>
+          <string>fb-messenger-share-api</string>
+        </array>
 	</dict>
 </dict>
 </plist>
+
+

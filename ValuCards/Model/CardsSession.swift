@@ -22,7 +22,7 @@ class CardsProvider: CardsProviderProtocol {
                    headers: headers,
                    interceptor: nil)
         .validate(statusCode: 200..<600)
-        .responseDecodable(of: Cards2.self) { response in
+        .responseDecodable(of: EbayBrowseResponse.self) { response in
             
             guard let data = response.data else {
                 completion(.failure(.errorDecode2))

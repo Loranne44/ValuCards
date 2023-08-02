@@ -21,28 +21,32 @@ class CardsModel {
     }
     
     // MARK: - Properties
-    static let apiKey = "v^1.1#i^1#r^0#I^3#p^1#f^0#t^H4sIAAAAAAAAAOVYa2wURRzv9QUFigQJKI9w2WpQmt2b3bve7W16p9eXHIE+uLa0jbTZx2y7dm93uzvb9tQPFbQlamJQo5EiVPhA/IAiTVSiQkD9ICbGD2qQgB9EAiIBJU2FiMHZu1KulUChl9jE/bKZmf/zN//HzIC+/ILV/Wv6/yx0zcoe6gN92S4XPRcU5OcVz8/JXpqXBdIIXEN9D/Xlbs45V2rxcdXgNkDL0DULunvjqmZxyckQYZsap/OWYnEaH4cWh0QuFlm/jmMowBmmjnRRVwl3tCJEiLQMBVYQWcZPgyCg8ax2Q2a9HiJ8JbBE9gt+gWdE3i9LeN2ybBjVLMRrKEQwgPGSIEDSTD3wcz6WAyzFeAMthLsRmpaia5iEAkQ4aS6X5DXTbL29qbxlQRNhIUQ4GqmK1USiFZXV9aWeNFnhMRxiiEe2NXFUrkvQ3cirNry9GitJzcVsUYSWRXjCKQ0ThXKRG8bcg/lJqGlGCgh+KAb5IC0DIGQEyirdjPPo9nY4M4pEyklSDmpIQYk7IYrREJ6CIhobVWMR0Qq386uzeVWRFWiGiMqySHOktpYIr9NNXtPgWtJBu5w3JTJW1kQyQRw6MhsEJCN5AZBEYUxRStoYzJM0leuapDigWe5qHZVBbDWcjI03DRtMVKPVmBEZORal07HjGDItzqamdtFGHZqzrzCOgXAnh3fegXFuhExFsBEclzB5IQlRiOANQ5GIyYvJWBwLn14rRHQgZHAeT09PD9XjpXSz3cMAQHua1q+LiR0wzhOY1sn1FL1yZwZSSboiQsxpKRxKGNiWXhyr2ACtnQj7gC/gBWO4TzQrPHn2XxNpPnsmZkSmMsQv00EvywhMEDJsIAAzkSHhsSD1OHZAgU+Qcd7shMhQeRGSIo4zOw5NReK8JTLjZWVISv6gTPqCskwKJZKfxAUSAggFQQyy/6dEmWqox6BoQpSRWM9YnEtsgi+OM0Gzs8fwN/iquurikhrtri5rr4/YG82KZvXpyi5vj4fuiIammg23dL5cVTAy9Vh/JgBwcj1zIKzRLQSlabkXE3UD1uqqIiZm1gZ7TamWN1GizE7gcQyqKv5Ny9WIYUQzU7Ez5uRdFot78ztzneo/6lK39MpyAndmeeXwW1gAbygU7kNOricoUY97dB4fQpzptqTV7kmEtyTyCHaCarehhbAlEj4HTplJwcWcwi1NmjpLqmFiJ6bOgi8Zki2ie1KU7MwURlNp70DWXensnQ4ogq12Tp1Fgrw6rRBV8FVjRgUo9jTlsiKl7ghU0m/K6hYpE1q6beLrEVXjHJnr9U6o4QMIMnVVhWYjPe3SG4/biBdUONNqcAZqkYJz3XVlhp2QaD8bpH0+H8tOyzcxef5pm2kdJNOd8y5uQp6J7zLhrORHb3Z9Bja7Dma7XCAASLoYPJqf05CbM4+wcO2hLF6TBL2XUniZwmVP45FtQqoTJgxeMbPzXcqJ78QraS9CQ5vAA+NvQgU59Ny0ByKw/OZKHn3fkkLGCwI0A/w+FrAtoOjmai69OHfRsdU5G0Y/bFhVd+yvtk2zW9/ZMeC7DgrHiVyuvCwcvlnFp7/f8uRhteH4a/v7z+8s9c3ZljNn7+OXLtUd7Lq0c+v5+tHdF0e+OTF3uKlZfeXHrbMHzvgXDz4sLny26eehC1uOrmxb+YFxpOvqXuLTs60DF2p7WrYefnn5V0XnTjYeeumt/stf5C4drDv6RMGuXLX51e3vVS55n+KPtuYt23akdlZ4tODUJ0W/n9+9dMHG/Qde9N+/9uKZX46fOvs5jDy4cS3Ys/Dvnx6rCFxua36EeuHL+Irhq2+u+vrbwZGi4dc/Gqka3G2fnHN90fp3Cxb+ussq21HUO4/+uOvQ9ucGtIvD+1pzB5+vXsEu2Kn+BvP2Xa55+xk3/cORa4VvdI/+Edxz4PQ1Yb6+rHtH6UhXXWob/wE4+FnXqxMAAA=="
+    static let apiKey = "v^1.1#i^1#r^0#p^1#I^3#f^0#t^H4sIAAAAAAAAAOVYfWwTZRhv90XGZ4h8ZRIph8bAvOt71/Z2d9Jit3auY590kA6B8fbu7XasvTvvrmxFJXOamRAVQ0JAETIj/AH6h5hoNGYGiYGFEIOiSARiYgRJ5I8xRRQFfK/rRjcJIGviEvtPc8/7vM/7+/3e53m/QFdR8ZKeqp6r0+yT8nq7QFee3U5PAcVFhaXT8/NKCm0gy8He2/VwV0F3/sWlBkzENWEFMjRVMZCjMxFXDCFt9BJJXRFUaMiGoMAEMgRTFML+2hqBoYCg6aqpimqccIQCXoL1cGVRGHVL7hgq88QkbFWGYzapXsKDEC/xgI+ykkhzCOF2w0iikGKYUDG9BAMYFwk4EjBNgBNcvMBwFOeiVxOOVUg3ZFXBLhQgfGm4QrqvnoX1zlChYSDdxEEIX8hfGa73hwLBuqalzqxYvowOYROaSWP0V4UqIccqGE+iOw9jpL2FcFIUkWEQTt/QCKODCv5hMPcBPy212+2KcmVsGRN1s1wUwZxIWanqCWjeGYdlkSUylnYVkGLKZupuimI1ohuQaGa+6nCIUMBh/TUmYVyOyUj3EsFyf7O/oYHw1ag6VBRUTVpqV0BdIhtWBEgPzwKe4crcJA89CLK0OzPQULSMzGNGqlAVSbZEMxx1qlmOMGo0VhsmSxvsVK/U6/6YaSHK8qPBsIYM9nMOz2LSbFOseUUJLIQj/Xn3GRjpbZq6HE2aaCTC2Ia0RF4CaposEWMb07mYSZ9Ow0u0maYmOJ0dHR1Uh4tS9VYnAwDtjNTWhMU2lMAZ0pmwan3IX757B1JOUxFxmWJ/wUxpGEsnzlUMQGklfO4yjgFcRvfRsHxjrf8wZHF2jq6IXFUIB1jWJULWjTzQ5YZ8LirEl0lSp4UDRWGKTEC9HZlaHIqIFHGeJRNIlyXB5YkxLi6GSInlY6Sbj8XIqEdiSTqGEEAoGhV57v9UKPea6mEk6sjMSa7nLM+r2p3+Jk1uDHgqE2FzY6WWTKUivNS5IQK1ECtH+MbS5pV1kfJITa33XqvhtuQr4jJWpgmPnwsBrFrPoQiqYSJpXPTCoqqhBjUui6mJNcEuXWqAupkKo3gcG8ZF0q9podys1Tmj9y+Xifvjnbs96j/an27LyrBSdmKxsvobOADUZMragShRTTitWlchPn5Y5pY06nHxlvHJdUKxxiSH2MrS0JGTStOljI0ipSNDTer4tE3VWyewJrUdKXg/M3U1Hkf6Knrc9ZxIJE0YjaOJVtg5SHAZTrDNlmbx/ZD1eNjx8RLTW2nLRFuScrEUFzx5n8dq5+hLvs+W/tHd9sOg2/5pnt0OloJH6EVgYVH+yoL8qSWGbCJKhjHKkFsVfHfVEdWOUhqU9bwHbFfBT7vES1X7t7Tf6Hj6wuPP2bLfGHrXgnkjrwzF+fSUrCcHMP9WSyE9Y+40xgU4gPPYhSVYDRbdai2g5xTMemjt6b4/z7u2imeOVBUfXb697fIT18C0ESe7vdBW0G23Leu/YPuotl97/1KwYsHnpTxg5/8iL3nxRk9ndM+g/ahHn3rldHPfQN8mvrc22HLm1a+3SsVH910PnM/rOBUs/njb7IORgYFnQMmBE69sqbi4pujXPa/Tvd/NOBn/sfqt48r6KYeOBcjNry37bftx5oVHf6e+oDzBD4p+eL567oOLQ3PeOHxsySb13ORtM9/LX/zOJ5PX7L28cPZjh3evOxR7qpFePOvSYP/gz19+v0+eFdm5S3vzs2db1ZYdk9eXvLy5Z45IfQumn+0+Kc/rPrf3pbPXT0ySd/g2Nu4sjc0YmHRz3aa/Pjz51eCp8pnO8iN9Nw7uYr659u6CyisHQpU395f7lvdrwebdbzv4P4bm8m+pGQNj/REAAA=="
     
-    //"https://api.ebay.com/buy/browse/v1/item_summary/search?q=\(encodedSearchKeyword)&filter=category_ids:{183473}&limit=400"
     
     let headers: HTTPHeaders = ["Authorization": "Bearer \(CardsModel.apiKey)"]
     
     
     // MARK: - searchCards
-    func searchCards(withName name: String, completion: @escaping (Result<Cards2, ErrorCase>) -> Void) {
-        let urlString = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search?q=\(name)&limit=100"
+    func searchCards(withName name: String, completion: @escaping (Result<EbayBrowseResponse, ErrorCase>) -> Void) {
+        
+        let urlString = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=\(name)&limit=3"
+        
         guard let url = URL(string: urlString) else {
-            completion(.failure(.errorDecode1))
+            completion(.failure(.errorDecode))
             return
         }
-                                                                     print(url)
+        
+        print(url)
         
         task?.cancel()
+        
         session.getRequest(url: url, headers: headers) { result in
+            
             switch result {
             case let .success(data):
                 do {
-                    let responseJSON = try JSONDecoder().decode(Cards2.self, from: data)
+                    let responseJSON = try JSONDecoder().decode(EbayBrowseResponse.self, from: data)
                     completion(.success(responseJSON))
                 } catch {
                     print(error)
@@ -51,8 +55,6 @@ class CardsModel {
             case let .failure(error):
                 completion(.failure(error))
             }
-            
-        
         }
     }
 }
@@ -62,3 +64,4 @@ class CardsModel {
 // Plutot passer par des webService type Google Lens ? Chat Gpt 4 ? Que CoreML
 
 // Nettoyer l'image comme note; mise a plat d'image
+

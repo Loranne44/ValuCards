@@ -25,16 +25,31 @@ class SearchCardViewController: UIViewController {
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
        search()
     }
+    
     func search() {
-        CardsModel.shared.searchCards(withName: "drone"){ [weak self] result in
+        CardsModel.shared.searchCards(withName: "pokemon") { [weak self] result in
             DispatchQueue.main.async {
-                guard let self = self else  {
+                guard let self = self else {
                     return
                 }
                 
                 switch result {
-                    
                 case let .success(card):
+                    print(card)
+                    /*
+                    let prices = card.itemSummaries.compactMap { Double($0.price.value) } // Convert String prices to Double
+                    
+                    let minPrice = prices.min()
+                    let maxPrice = prices.max()
+                    let avgPrice = prices.reduce(0, +) / Double(prices.count)
+                    
+                    let numberOfSales = card.total  // If 'total' represents the total number of sales
+                    
+                    print("Min price: \(minPrice ?? 0)")
+                    print("Max price: \(maxPrice ?? 0)")
+                    print("Avg price: \(avgPrice)")
+                    print("Number of sales: \(numberOfSales)")
+                    */
                     print(card)
                 case let .failure(error):
                     print(error)

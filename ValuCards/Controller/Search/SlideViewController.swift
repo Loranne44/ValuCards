@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SlideViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     

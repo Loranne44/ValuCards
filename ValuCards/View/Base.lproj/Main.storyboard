@@ -106,6 +106,9 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="googleAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="AK6-68-gaJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bf4-u1-cKp">
                                 <rect key="frame" x="20" y="448.33333333333331" width="353" height="40.333333333333314"/>
@@ -124,6 +127,9 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="facebookAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="CZj-qc-sL5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fxH-6J-ywG"/>
@@ -155,7 +161,7 @@
                         <outlet property="emailTextField" destination="Yg7-kC-cRU" id="rmw-NR-hJ0"/>
                         <outlet property="facebookButton" destination="JmJ-zy-IeC" id="rYg-OD-aW7"/>
                         <outlet property="forgetPasswordButton" destination="waU-fB-MgI" id="SB3-Q6-bgR"/>
-                        <outlet property="googleButton" destination="89D-nm-yUE" id="oWP-ef-S1R"/>
+                        <outlet property="googleButton" destination="89D-nm-yUE" id="2uU-sq-A2V"/>
                         <outlet property="passwordTextField" destination="kv2-I0-W8y" id="Juu-il-p3X"/>
                         <outlet property="segmentedControl" destination="XKI-gS-prB" id="96g-PN-Yme"/>
                         <outlet property="signInButton" destination="RSU-sU-Ka4" id="vgh-4o-c3h"/>
@@ -188,10 +194,10 @@
             </objects>
             <point key="canvasLocation" x="-1387" y="-377"/>
         </scene>
-        <!--View Controller-->
+        <!--Slide View Controller-->
         <scene sceneID="uGe-6G-gg7">
             <objects>
-                <viewController id="6jJ-fF-VEh" customClass="ViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6jJ-fF-VEh" customClass="SlideViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kfO-7P-z6y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -468,7 +474,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lineChartView" destination="IFZ-Ej-VPU" id="2cK-K9-u3S"/>
+                        <outlet property="averagePriceLabel" destination="iBq-86-Pcl" id="wYx-Kt-tBx"/>
+                        <outlet property="highestPriceLabel" destination="h85-8i-HhX" id="y3F-ih-V82"/>
+                        <outlet property="iconePriceTrend" destination="Fj3-54-6s8" id="sng-c7-3H0"/>
+                        <outlet property="lowestPriceLabel" destination="il4-fF-jE1" id="Gsj-SV-qNE"/>
+                        <outlet property="priceTrendLabel" destination="rRy-O5-dmp" id="e0S-DP-Z3X"/>
+                        <outlet property="saleNumberPrice" destination="qsD-CJ-qJ5" id="YAR-Dk-k8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smZ-VJ-qN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
