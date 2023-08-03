@@ -18,7 +18,6 @@ struct ItemSearchResult: Decodable {
 
 struct ItemSummary: Decodable {
     let title: String
-   // let itemGroupHref: String
     let leafCategoryIds: [String]
     let categories: [Category]
     let image: Image

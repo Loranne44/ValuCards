@@ -96,8 +96,23 @@ class SlideViewController: UIViewController {
     }
     
     func updateImage() {
-        let imageName = slideResponseModel.getCurrentImageName()
-        imageView.image = UIImage(named: imageName)
+        let imageUrlString = slideResponseModel.getCurrentImageName()
+            guard let imageUrl = URL(string: imageUrlString) else { return }
+
+            // Télécharger l'image en arrière-plan
+            DispatchQueue.global().async {
+                do {
+                    let data = try Data(contentsOf: imageUrl)
+                    guard let image = UIImage(data: data) else { return }
+
+                    // Mettre à jour l'image dans le thread principal
+                    DispatchQueue.main.async {
+                        self.imageView.image = image
+                    }
+                } catch {
+                    print("Erreur lors du téléchargement de l'image:", error)
+                }
+            }
     }
     
     @IBAction func nextImageButton(_ sender: UIButton) {

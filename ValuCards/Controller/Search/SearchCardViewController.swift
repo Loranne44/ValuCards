@@ -14,6 +14,7 @@ class SearchCardViewController: UIViewController {
     @IBOutlet weak var CardNameTextField: UITextField!
     @IBOutlet weak var SearchManuelCardButton: UIButton!
     
+    var imageUrlsToSend: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,26 +39,26 @@ class SearchCardViewController: UIViewController {
                 }
                 
                 switch result {
-                   
                 case let .success(card):
                     print(card)
                     let imageUrls = card.itemSummaries.flatMap { $0.thumbnailImages.map { $0.imageUrl } }
                     
-                    // Créer une instance de SlideViewController et passer les URLs
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    if let slideViewController = storyboard.instantiateViewController(withIdentifier: "SlideViewController") as? SlideViewController {
-                        // Remplacez "SlideViewController" par l'identifiant de votre vue controller dans le storyboard
-                        slideViewController.imageUrls = imageUrls
-                        self.navigationController?.pushViewController(slideViewController, animated: true)
-                    }
-                    print(card)
+                    // Stocker les URLs d'image de manière à ce qu'elles puissent être passées au SlideViewController
+                    self.imageUrlsToSend = imageUrls
                     
+                    // Effectuer la transition en utilisant le segue
+                    self.performSegue(withIdentifier: "SlideViewController", sender: self)
                 case let .failure(error):
                     print(error)
                 }
             }
-            
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SlideViewController",
+           let slideViewController = segue.destination as? SlideViewController {
+            slideViewController.imageUrls = imageUrlsToSend
+        }
+    }
 }
