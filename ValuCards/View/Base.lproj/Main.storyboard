@@ -197,7 +197,7 @@
         <!--Slide View Controller-->
         <scene sceneID="uGe-6G-gg7">
             <objects>
-                <viewController id="6jJ-fF-VEh" customClass="SlideViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlideViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6jJ-fF-VEh" customClass="SlideViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kfO-7P-z6y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -527,7 +527,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <segue destination="6jJ-fF-VEh" kind="show" id="VB6-2x-EM3"/>
+                                    <segue destination="6jJ-fF-VEh" kind="show" identifier="SlideViewController" id="VB6-2x-EM3"/>
                                 </connections>
                             </button>
                         </subviews>

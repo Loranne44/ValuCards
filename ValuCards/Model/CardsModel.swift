@@ -21,16 +21,16 @@ class CardsModel {
     }
     
     // MARK: - Properties
-    static let apiKey = "v^1.1#i^1#r^0#p^1#I^3#f^0#t^H4sIAAAAAAAAAOVYfWwTZRhv90XGZ4h8ZRIph8bAvOt71/Z2d9Jit3auY590kA6B8fbu7XasvTvvrmxFJXOamRAVQ0JAETIj/AH6h5hoNGYGiYGFEIOiSARiYgRJ5I8xRRQFfK/rRjcJIGviEvtPc8/7vM/7+/3e53m/QFdR8ZKeqp6r0+yT8nq7QFee3U5PAcVFhaXT8/NKCm0gy8He2/VwV0F3/sWlBkzENWEFMjRVMZCjMxFXDCFt9BJJXRFUaMiGoMAEMgRTFML+2hqBoYCg6aqpimqccIQCXoL1cGVRGHVL7hgq88QkbFWGYzapXsKDEC/xgI+ykkhzCOF2w0iikGKYUDG9BAMYFwk4EjBNgBNcvMBwFOeiVxOOVUg3ZFXBLhQgfGm4QrqvnoX1zlChYSDdxEEIX8hfGa73hwLBuqalzqxYvowOYROaSWP0V4UqIccqGE+iOw9jpL2FcFIUkWEQTt/QCKODCv5hMPcBPy212+2KcmVsGRN1s1wUwZxIWanqCWjeGYdlkSUylnYVkGLKZupuimI1ohuQaGa+6nCIUMBh/TUmYVyOyUj3EsFyf7O/oYHw1ag6VBRUTVpqV0BdIhtWBEgPzwKe4crcJA89CLK0OzPQULSMzGNGqlAVSbZEMxx1qlmOMGo0VhsmSxvsVK/U6/6YaSHK8qPBsIYM9nMOz2LSbFOseUUJLIQj/Xn3GRjpbZq6HE2aaCTC2Ia0RF4CaposEWMb07mYSZ9Ow0u0maYmOJ0dHR1Uh4tS9VYnAwDtjNTWhMU2lMAZ0pmwan3IX757B1JOUxFxmWJ/wUxpGEsnzlUMQGklfO4yjgFcRvfRsHxjrf8wZHF2jq6IXFUIB1jWJULWjTzQ5YZ8LirEl0lSp4UDRWGKTEC9HZlaHIqIFHGeJRNIlyXB5YkxLi6GSInlY6Sbj8XIqEdiSTqGEEAoGhV57v9UKPea6mEk6sjMSa7nLM+r2p3+Jk1uDHgqE2FzY6WWTKUivNS5IQK1ECtH+MbS5pV1kfJITa33XqvhtuQr4jJWpgmPnwsBrFrPoQiqYSJpXPTCoqqhBjUui6mJNcEuXWqAupkKo3gcG8ZF0q9podys1Tmj9y+Xifvjnbs96j/an27LyrBSdmKxsvobOADUZMragShRTTitWlchPn5Y5pY06nHxlvHJdUKxxiSH2MrS0JGTStOljI0ipSNDTer4tE3VWyewJrUdKXg/M3U1Hkf6Knrc9ZxIJE0YjaOJVtg5SHAZTrDNlmbx/ZD1eNjx8RLTW2nLRFuScrEUFzx5n8dq5+hLvs+W/tHd9sOg2/5pnt0OloJH6EVgYVH+yoL8qSWGbCJKhjHKkFsVfHfVEdWOUhqU9bwHbFfBT7vES1X7t7Tf6Hj6wuPP2bLfGHrXgnkjrwzF+fSUrCcHMP9WSyE9Y+40xgU4gPPYhSVYDRbdai2g5xTMemjt6b4/z7u2imeOVBUfXb697fIT18C0ESe7vdBW0G23Leu/YPuotl97/1KwYsHnpTxg5/8iL3nxRk9ndM+g/ahHn3rldHPfQN8mvrc22HLm1a+3SsVH910PnM/rOBUs/njb7IORgYFnQMmBE69sqbi4pujXPa/Tvd/NOBn/sfqt48r6KYeOBcjNry37bftx5oVHf6e+oDzBD4p+eL567oOLQ3PeOHxsySb13ORtM9/LX/zOJ5PX7L28cPZjh3evOxR7qpFePOvSYP/gz19+v0+eFdm5S3vzs2db1ZYdk9eXvLy5Z45IfQumn+0+Kc/rPrf3pbPXT0ySd/g2Nu4sjc0YmHRz3aa/Pjz51eCp8pnO8iN9Nw7uYr659u6CyisHQpU395f7lvdrwebdbzv4P4bm8m+pGQNj/REAAA=="
+    static let apiKey = "v^1.1#i^1#f^0#p^1#I^3#r^0#t^H4sIAAAAAAAAAOVYe2wURRi/64sQXjESKK96rhgU3L3ZvUd317uL15bSI31ypTma1jK7NwtLbx/uztG7GEytWhWJBkmIColVVAQ1gAj+ISGKkCjGP4j4SECUxEBFEnwQ+KMJuLst5VoJIL3EJt4/l/nmm29+v99838zsgO6SiQt7a3ovT3FPKOjrBt0Fbjc9CUwsKV40tbBgdrEL5Di4+7rndxf1FPaHTKikdH4ZMnVNNZEno6RUk3eMYSJtqLwGTdnkVaggk8ciH4/W1fIMBXjd0LAmainCE6sKE/5yIEgc6xdFiRbZcmhZ1Wsxm7UwIQRpWkJcgAsyAb8f2P2mmUYx1cRQxWGCAYyPBCwJfM2A42mG9wUpAAKthKcFGaasqZYLBYiIA5d3xho5WG8OFZomMrAVhIjEotXxhmisanF9c8ibEysypEMcQ5w2R7YqtSTytMBUGt18GtPx5uNpUUSmSXgjgzOMDMpHr4G5A/iO1IKfAxIjiT6WCbJ+5MuLlNWaoUB8cxy2RU6SkuPKIxXLOHsrRS01hDVIxEOteitErMpj/zWlYUqWZGSEicUV0RXRxkYiUqsZUFXRUtJWuxIaSbJxWRVpJQ3gGLbcT3IwgGCQ9g9NNBhtSOZRM1VqalK2RTM99RquQBZqNFobkKON5dSgNhhRCduIcvxo2tEwQHEc12ov6uAqpvFq1V5XpFhCeJzmrVdgeDTGhiykMRqOMLrDkShMQF2Xk8ToTicXh9InY4aJ1RjrvNfb1dVFdfkozVjlZQCgvYm62ri4GilWsWUUu9YH/eVbDyBlh4qIrJGmzOOsbmHJWLlqAVBXERF/OcsAdkj3kbAio63/MORw9o6siHxVCGPtQpwkoAArsSIQ8lIhkaEk9do4kACzpAKNToT1FBQRKVp5llaQISetTJEYHyshMhnkJNLPSRIpBJJB0tr+EEBIEESO/T8Vyu2mehyJBsJ5yfW85XlNpzfarMtNVYFqJY7XVuvpbDbBJTNrElCPBeUE17RoxfL6REWiti58u9VwQ/KVKdlSptmaPx8C2LWeRxE0E6PkmOjFRU1HjVpKFrPja4F9RrIRGjgbR6mUZRgTyaiux/KzV+eN3r/cJu6Md/7OqP/ofLohK9NO2fHFyh5vWgGgLlP2CUSJmuK1a12D1vXDNnc4qMfEW7ZuruOKtUVykK2cHLxyUg5dylwrUgYytbRh3bapBvsG1qx1ItU6z7ChpVLIaKHHXM+KksZQSKHxVth5SHAZjrPDlg5yNAj4uEBgTLxE5yjtGG9bUj624qIld3it9o78yI+4nB/d4z4EetwHC9xuEAL30/eBe0sKlxcVTp5tyhhRMpQoU16lWt+uBqI6UVaHslFwt+syOLtFPF+zY33nla7Hzjy8zpX7xtDXDkqHXxkmFtKTcp4cwNzrPcX0tJlTGB9ggQ9wNOMLtoL7rvcW0TOKppd27B6YfC6+4+oXd73fdvTdkH/eqR4wZdjJ7S52FfW4XQVzTv/xyLYj7S19C76vU155pn/gnjkftPxytMSz8tjGp658PrBTD396JtCxvu2NnQf39G/a2b2u5qXnjl89Ul/6hNo04/jbv1ZcvcwuOzXz6N4t28wLr/rVvadLn+xtPwzA8nMvPr0dlq2ZulV5+bXfynazm9+JqA8s3UwVLXHNQuXvnQz91Jqoa4x/9t2O2eKm3/Wviqv3P3jgwNzkpv4L7dl55/764fV1icDWC5v3w+ijuw4JG84GqB8Pn+jr+3j+ktCe7ecvfRj69khqIRQgs7JXxCfPfjPBu4D8RF9/+OLFS1H68X2z3uyc/vWzlzbsy+x9vuzPL9/aeGKgrcyVcf/80QuTj+2a5npILmgbXMu/AfJSVpT9EQAA"
     
     
     let headers: HTTPHeaders = ["Authorization": "Bearer \(CardsModel.apiKey)"]
     
     
     // MARK: - searchCards
-    func searchCards(withName name: String, completion: @escaping (Result<EbayBrowseResponse, ErrorCase>) -> Void) {
+    func searchCards(withName name: String, completion: @escaping (Result<ItemSearchResult, ErrorCase>) -> Void) {
         
-        let urlString = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=\(name)&limit=3"
+        let urlString = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=pikachu&limit=3"
         
         guard let url = URL(string: urlString) else {
             completion(.failure(.errorDecode))
@@ -46,7 +46,7 @@ class CardsModel {
             switch result {
             case let .success(data):
                 do {
-                    let responseJSON = try JSONDecoder().decode(EbayBrowseResponse.self, from: data)
+                    let responseJSON = try JSONDecoder().decode(ItemSearchResult.self, from: data)
                     completion(.success(responseJSON))
                 } catch {
                     print(error)

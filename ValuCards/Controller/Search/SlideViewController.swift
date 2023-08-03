@@ -11,13 +11,16 @@ class SlideViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    var cardModel = CardModel()
+    var imageUrls: [String]!  // Ajouté pour stocker les URLs d'image
+    var slideResponseModel: ResponseModel!
     
     private var initialPanPoint: CGPoint = CGPoint.zero
     private let maxRotationAngle: CGFloat = CGFloat.pi / 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        slideResponseModel = ResponseModel(imageUrls: imageUrls)
         imageView.isUserInteractionEnabled = true
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
@@ -48,10 +51,10 @@ class SlideViewController: UIViewController {
             
             let translation = gesture.translation(in: imageView).x
             if translation > 0 {
-                cardModel.showPreviousImage()
+                slideResponseModel?.showPreviousImage()
                 navigateToResultViewController()
             } else {
-                cardModel.showNextImage()
+                slideResponseModel?.showNextImage()
                 // Mettre à jour l'image une fois l'animation terminée
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.updateImage()
@@ -93,12 +96,12 @@ class SlideViewController: UIViewController {
     }
     
     func updateImage() {
-        let imageName = cardModel.getCurrentImageName()
+        let imageName = slideResponseModel.getCurrentImageName()
         imageView.image = UIImage(named: imageName)
     }
     
     @IBAction func nextImageButton(_ sender: UIButton) {
-        cardModel.showNextImage()
+        slideResponseModel.showNextImage()
         updateImage()
     }
     

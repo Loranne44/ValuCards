@@ -7,20 +7,37 @@
 
 import Foundation
 
-struct EbayBrowseResponse: Decodable {
-    let items: [EbayItem]
+struct ItemSearchResult: Decodable {
+    let href: String
+    let total: Int
+    let next: String
+    let limit: Int
+    let offset: Int
+    let itemSummaries: [ItemSummary]
 }
 
-
-struct EbayItem: Decodable {
+struct ItemSummary: Decodable {
     let title: String
-    let price: Double
-    let condition: String
-    let shipping: EbayShipping
+   // let itemGroupHref: String
+    let leafCategoryIds: [String]
+    let categories: [Category]
+    let image: Image
+    let price: Price
+    let thumbnailImages: [Image]
 }
 
-struct EbayShipping: Decodable {
-    let price: Double
-    let type: String
+struct Category: Decodable {
+    let categoryId: String
+    let categoryName: String
 }
+
+struct Image: Decodable {
+    let imageUrl: String
+}
+
+struct Price: Decodable {
+    let value: String
+    let currency: String
+}
+
 

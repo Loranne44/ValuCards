@@ -71,9 +71,8 @@ class AuthViewController: UIViewController {
             if let error = error {
                 strongSelf.showAlert(title: "Erreur d'inscription", message: error.localizedDescription)
             } else {
-                strongSelf.showSuccessPopup(message: "Inscription réussie !")
-                
                 strongSelf.performSegue(withIdentifier: "SearchCards", sender: nil)
+                strongSelf.showSuccessPopup(message: "Inscription réussie !")
             }
         }
     }
