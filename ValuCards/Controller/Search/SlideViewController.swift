@@ -10,8 +10,10 @@ import UIKit
 class SlideViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
-    var imageUrls: [String]!  // Ajouté pour stocker les URLs d'image
+    var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)] = []
+    
     var slideResponseModel: ResponseModel!
     
     private var initialPanPoint: CGPoint = CGPoint.zero
@@ -20,7 +22,7 @@ class SlideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        slideResponseModel = ResponseModel(imageUrls: imageUrls)
+        slideResponseModel = ResponseModel(imagesAndTitlesAndPrices: imagesAndTitlesAndPrices)
         imageView.isUserInteractionEnabled = true
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
@@ -32,8 +34,7 @@ class SlideViewController: UIViewController {
         imageView.layer.shadowOpacity = 0.8
         imageView.layer.shadowRadius = 4.0
         
-        // Afficher la première image au lancement de l'application
-        updateImage()
+        updateImageAndTitle()
     }
     
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -57,7 +58,7 @@ class SlideViewController: UIViewController {
                 slideResponseModel?.showNextImage()
                 // Mettre à jour l'image une fois l'animation terminée
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.updateImage()
+                    self.updateImageAndTitle()
                     self.resetColorFilter()
                 }
             }
@@ -73,10 +74,10 @@ class SlideViewController: UIViewController {
         
         let translation = imageView.transform.tx
         if translation > 0 {
-            // Le geste va vers la droite, donc appliquer un filtre vert
+            // The gesture goes to the right, so apply a green filter
             colorFilter.backgroundColor = UIColor.green.withAlphaComponent(0.03)
         } else {
-            // Le geste va vers la gauche, donc appliquer un filtre rouge
+            // The gesture goes to the left, so apply a red filter
             colorFilter.backgroundColor = UIColor.red.withAlphaComponent(0.03)
         }
         
@@ -89,35 +90,54 @@ class SlideViewController: UIViewController {
         }
     }
     
-    func navigateToResultViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyboard.instantiateViewController(withIdentifier: "Result") as! ResultViewController
-        navigationController?.pushViewController(newViewController, animated: true)
-    }
     
-    func updateImage() {
+    
+    func updateImageAndTitle() {
         let imageUrlString = slideResponseModel.getCurrentImageName()
-            guard let imageUrl = URL(string: imageUrlString) else { return }
-
-            // Télécharger l'image en arrière-plan
-            DispatchQueue.global().async {
-                do {
-                    let data = try Data(contentsOf: imageUrl)
-                    guard let image = UIImage(data: data) else { return }
-
-                    // Mettre à jour l'image dans le thread principal
-                    DispatchQueue.main.async {
+        var title = slideResponseModel.getCurrentTitle()
+        if title.isEmpty {
+            title = "NB"
+        }
+        titleLabel.text = title
+        
+        guard let imageUrl = URL(string: imageUrlString) else {
+            self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si l'URL est invalide
+            return
+        }
+        // Download background image
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: imageUrl)
+                
+                // Mettre à jour l'image dans le thread principal
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data) {
                         self.imageView.image = image
+                    } else {
+                        self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si l'image téléchargée est invalide
                     }
-                } catch {
-                    print("Erreur lors du téléchargement de l'image:", error)
+                }
+            } catch {
+                print("Erreur lors du téléchargement de l'image:", error)
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si une erreur se produit lors du téléchargement
                 }
             }
+        }
+    }
+    
+    func navigateToResultViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let resultViewController = storyboard.instantiateViewController(withIdentifier: "Result") as? ResultViewController {
+            resultViewController.priceValue = slideResponseModel.getCurrentPrice()
+            //slideResponseModel.getCurrentPrice().value
+            navigationController?.pushViewController(resultViewController, animated: true)
+        }
     }
     
     @IBAction func nextImageButton(_ sender: UIButton) {
         slideResponseModel.showNextImage()
-        updateImage()
+        updateImageAndTitle()
     }
     
     @IBAction func validateImageButton(_ sender: UIButton) {

@@ -20,7 +20,6 @@ class ScanViewController: UIViewController {
     }
     
     @IBAction func ScanImageButtonsTapped(_ sender: UIButton) {
-        
         let alert = UIAlertController(title: "Choose a source", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in

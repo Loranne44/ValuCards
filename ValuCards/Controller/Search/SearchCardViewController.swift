@@ -14,8 +14,8 @@ class SearchCardViewController: UIViewController {
     @IBOutlet weak var CardNameTextField: UITextField!
     @IBOutlet weak var SearchManuelCardButton: UIButton!
     
-    var imageUrlsToSend: [String]!
-    
+    var imagesAndTitlesAndPricesToSend: [(imageName: String, title: String, price: Price)] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SearchManuelCardButton.layer.cornerRadius = 15
@@ -32,7 +32,7 @@ class SearchCardViewController: UIViewController {
             return
         }
         
-        CardsModel.shared.searchCards(withName: "pikachu") { [weak self] result in
+        CardsModel.shared.searchCards(withName: name) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else {
                     return
@@ -41,13 +41,15 @@ class SearchCardViewController: UIViewController {
                 switch result {
                 case let .success(card):
                     print(card)
-                    let imageUrls = card.itemSummaries.flatMap { $0.thumbnailImages.map { $0.imageUrl } }
+                    let imagesAndTitlesAndPrices = card.itemSummaries.flatMap { summary in
+                        summary.thumbnailImages.map { image in
+                            (imageName: image.imageUrl, title: summary.title, price: summary.price)
+                        }
+                    }
                     
-                    // Stocker les URLs d'image de manière à ce qu'elles puissent être passées au SlideViewController
-                    self.imageUrlsToSend = imageUrls
-                    
-                    // Effectuer la transition en utilisant le segue
-                    self.performSegue(withIdentifier: "SlideViewController", sender: self)
+                    // store image urls and prices to be passed to SlideViewController
+                    self.imagesAndTitlesAndPricesToSend = imagesAndTitlesAndPrices
+                    self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
                 case let .failure(error):
                     print(error)
                 }
@@ -56,9 +58,9 @@ class SearchCardViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SlideViewController",
+        if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {
-            slideViewController.imageUrls = imageUrlsToSend
+            slideViewController.imagesAndTitlesAndPrices = imagesAndTitlesAndPricesToSend
         }
     }
 }

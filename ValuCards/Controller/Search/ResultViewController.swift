@@ -8,7 +8,9 @@
 import UIKit
 
 class ResultViewController: UIViewController {
-    
+    var priceValue: Price?
+
+    @IBOutlet weak var priceActual: UILabel!
     @IBOutlet weak var priceTrendLabel: UILabel!
     @IBOutlet weak var iconePriceTrend: UIImageView!
     @IBOutlet weak var lowestPriceLabel: UILabel!
@@ -18,6 +20,10 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let priceValue = priceValue {
+                priceActual.text = formattedPrice(for: priceValue)
+            } else {
+                priceActual.text = "NB"
+            }
     }
 }

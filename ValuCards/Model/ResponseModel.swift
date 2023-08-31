@@ -8,22 +8,32 @@
 import Foundation
 
 class ResponseModel {
-    var imageNames: [String]
+    var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)]
+
     var currentImageIndex = 0
     
-    init(imageUrls: [String]) {
-        self.imageNames = imageUrls
+    init(imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)]) {
+        self.imagesAndTitlesAndPrices = imagesAndTitlesAndPrices
     }
+
     
     func showNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % imageNames.count
+        currentImageIndex = (currentImageIndex + 1) % imagesAndTitlesAndPrices.count
     }
     
     func showPreviousImage() {
-        currentImageIndex = (currentImageIndex - 1 + imageNames.count) % imageNames.count
+        currentImageIndex = (currentImageIndex - 1 + imagesAndTitlesAndPrices.count) % imagesAndTitlesAndPrices.count
     }
     
     func getCurrentImageName() -> String {
-        return imageNames[currentImageIndex]
+        return imagesAndTitlesAndPrices[currentImageIndex].imageName
+    }
+    
+    func getCurrentTitle() -> String {
+        return imagesAndTitlesAndPrices[currentImageIndex].title
+    }
+    
+    func getCurrentPrice() -> Price {
+        return imagesAndTitlesAndPrices[currentImageIndex].price
     }
 }

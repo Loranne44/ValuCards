@@ -11,8 +11,8 @@
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
 		4514BEBE2A6FADAA004498FD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBD2A6FADAA004498FD /* FirebaseCrashlytics */; };
+		45420B452A7CD785006C5C8C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45420B442A7CD785006C5C8C /* Extension.swift */; };
 		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
-		45526D4B2A691E0E000843DD /* ImageModelPan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D4A2A691E0E000843DD /* ImageModelPan.swift */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* AuthViewController.swift */; };
@@ -54,8 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45420B442A7CD785006C5C8C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		45526D472A68422D000843DD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		45526D4A2A691E0E000843DD /* ImageModelPan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModelPan.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457972EF2A42F9030099D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457972F12A42F9030099D024 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,14 +115,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		45526D492A691DF3000843DD /* ViewLogique */ = {
-			isa = PBXGroup;
-			children = (
-				45526D4A2A691E0E000843DD /* ImageModelPan.swift */,
-			);
-			path = ViewLogique;
-			sourceTree = "<group>";
-		};
 		457972E32A42F9030099D024 = {
 			isa = PBXGroup;
 			children = (
@@ -175,12 +167,12 @@
 		4579731F2A42F9180099D024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				45526D492A691DF3000843DD /* ViewLogique */,
 				459942DE2A4D7B6900BC4AF3 /* Error.swift */,
 				4579732A2A4339430099D024 /* Card.swift */,
 				457973262A432C760099D024 /* CardsModel.swift */,
 				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
 				4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */,
+				45420B442A7CD785006C5C8C /* Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,8 +436,8 @@
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
 				4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */,
-				45526D4B2A691E0E000843DD /* ImageModelPan.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
+				45420B452A7CD785006C5C8C /* Extension.swift in Sources */,
 				4579732B2A4339430099D024 /* Card.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
 				459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */,

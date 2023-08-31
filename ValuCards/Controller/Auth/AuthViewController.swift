@@ -71,13 +71,12 @@ class AuthViewController: UIViewController {
             if let error = error {
                 strongSelf.showAlert(title: "Erreur d'inscription", message: error.localizedDescription)
             } else {
-                strongSelf.performSegue(withIdentifier: "SearchCards", sender: nil)
                 strongSelf.showSuccessPopup(message: "Inscription réussie !")
             }
         }
     }
     
-    
+    // Inverser SignIn et SignUP
     
     @IBAction func signUpButton(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
@@ -91,7 +90,6 @@ class AuthViewController: UIViewController {
                 strongSelf.showAlert(title: "Erreur de connexion", message: error.localizedDescription)
             } else {
                 strongSelf.showSuccessPopup(message: "Connexion réussie !")
-                strongSelf.performSegue(withIdentifier: "SearchCards", sender: nil)
             }
         }
     }
@@ -135,12 +133,15 @@ class AuthViewController: UIViewController {
     
     private func showSuccessPopup(message: String) {
         let alert = UIAlertController(title: "Succès", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: {  [weak self] _ in
+            self?.performSegue(withIdentifier: "SearchCards", sender: nil)
+        })
         alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true) {
+            
+        }
     }
-    
 }
-
 // PAgeViewController
+
 

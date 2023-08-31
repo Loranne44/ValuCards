@@ -67,7 +67,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="txf-Mg-VpN"/>
-                                            <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards" id="Lg5-g4-BGr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBg-29-8uj">
@@ -80,7 +79,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="3KS-g7-IFC"/>
-                                            <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards1" id="mfh-3Y-s31"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -166,6 +164,7 @@
                         <outlet property="segmentedControl" destination="XKI-gS-prB" id="96g-PN-Yme"/>
                         <outlet property="signInButton" destination="RSU-sU-Ka4" id="vgh-4o-c3h"/>
                         <outlet property="signUpButton" destination="mBg-29-8uj" id="Ezl-fk-aZf"/>
+                        <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards" id="VEc-m7-gRO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u86-rw-Sz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -203,13 +202,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this the wanted card?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjw-Se-0vr">
-                                <rect key="frame" x="52.333333333333343" y="118.00000000000001" width="288.33333333333326" height="30.666666666666671"/>
+                                <rect key="frame" x="52.333333333333343" y="103" width="288.33333333333326" height="30.666666666666657"/>
                                 <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XXq-9t-CEO">
-                                <rect key="frame" x="10" y="762" width="373" height="46"/>
+                                <rect key="frame" x="10" y="772" width="373" height="46"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf2-ps-GMu">
                                         <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="46"/>
@@ -230,26 +229,37 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="CC" translatesAutoresizingMaskIntoConstraints="NO" id="haM-yk-lOO">
-                                <rect key="frame" x="0.0" y="178" width="393" height="529"/>
+                                <rect key="frame" x="0.0" y="211" width="393" height="525"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7D-qU-BDH">
+                                <rect key="frame" x="155.33333333333334" y="170.66666666666666" width="82.333333333333343" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8hd-tB-zZ8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="haM-yk-lOO" firstAttribute="top" secondItem="Pjw-Se-0vr" secondAttribute="bottom" constant="29.329999999999998" id="BO4-x4-plE"/>
+                            <constraint firstItem="haM-yk-lOO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V7D-qU-BDH" secondAttribute="bottom" constant="20" id="BMk-Qz-8XS"/>
+                            <constraint firstItem="V7D-qU-BDH" firstAttribute="top" secondItem="Pjw-Se-0vr" secondAttribute="bottom" constant="37" id="Fnq-V3-peO"/>
                             <constraint firstItem="8hd-tB-zZ8" firstAttribute="trailing" secondItem="XXq-9t-CEO" secondAttribute="trailing" constant="10" id="SKK-QO-HOt"/>
-                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="top" secondItem="8hd-tB-zZ8" secondAttribute="top" constant="15" id="bwk-Nt-HdH"/>
+                            <constraint firstItem="8hd-tB-zZ8" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V7D-qU-BDH" secondAttribute="trailing" id="TKA-jb-UKF"/>
+                            <constraint firstItem="XXq-9t-CEO" firstAttribute="top" secondItem="haM-yk-lOO" secondAttribute="bottom" constant="36" id="Z4t-lo-RuY"/>
+                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="centerX" secondItem="kfO-7P-z6y" secondAttribute="centerX" id="bcC-tS-wpt"/>
+                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="top" secondItem="8hd-tB-zZ8" secondAttribute="top" id="bwk-Nt-HdH"/>
                             <constraint firstItem="XXq-9t-CEO" firstAttribute="leading" secondItem="8hd-tB-zZ8" secondAttribute="leading" constant="10" id="eCE-ZM-gWw"/>
-                            <constraint firstItem="8hd-tB-zZ8" firstAttribute="bottom" secondItem="XXq-9t-CEO" secondAttribute="bottom" constant="10" id="eoi-5q-ERg"/>
-                            <constraint firstItem="haM-yk-lOO" firstAttribute="leading" secondItem="kfO-7P-z6y" secondAttribute="leading" id="izv-OC-Gfu"/>
-                            <constraint firstItem="XXq-9t-CEO" firstAttribute="top" secondItem="haM-yk-lOO" secondAttribute="bottom" priority="999" constant="55" id="mck-Zf-woj"/>
-                            <constraint firstItem="Pjw-Se-0vr" firstAttribute="centerX" secondItem="haM-yk-lOO" secondAttribute="centerX" id="ry5-9Y-DO6"/>
-                            <constraint firstAttribute="trailing" secondItem="haM-yk-lOO" secondAttribute="trailing" id="tTR-81-ka9"/>
+                            <constraint firstItem="8hd-tB-zZ8" firstAttribute="bottom" secondItem="XXq-9t-CEO" secondAttribute="bottom" id="eoi-5q-ERg"/>
+                            <constraint firstItem="V7D-qU-BDH" firstAttribute="centerX" secondItem="kfO-7P-z6y" secondAttribute="centerX" id="fBE-a0-H4M"/>
+                            <constraint firstItem="haM-yk-lOO" firstAttribute="trailing" secondItem="8hd-tB-zZ8" secondAttribute="trailing" id="msw-bo-AH7"/>
+                            <constraint firstItem="V7D-qU-BDH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8hd-tB-zZ8" secondAttribute="leading" id="ohg-tx-CXF"/>
+                            <constraint firstItem="haM-yk-lOO" firstAttribute="leading" secondItem="8hd-tB-zZ8" secondAttribute="leading" id="sHQ-hX-Z9y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kZl-PR-NFD"/>
                     <connections>
                         <outlet property="imageView" destination="haM-yk-lOO" id="GmG-dF-QpG"/>
+                        <outlet property="titleLabel" destination="V7D-qU-BDH" id="bYL-xd-UDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04f-ZU-hqv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -438,10 +448,6 @@
                                 <color key="textColor" red="0.29076763690000001" green="0.52060334699999999" blue="0.71019249360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFZ-Ej-VPU" customClass="LineChartView" customModule="DGCharts">
-                                <rect key="frame" x="15" y="296" width="363" height="248.33333333333337"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MsG-wZ-uaG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -454,7 +460,6 @@
                             <constraint firstItem="m7f-eE-7CJ" firstAttribute="top" secondItem="Ayy-3s-nR6" secondAttribute="bottom" constant="10" id="B7a-Ii-CGC"/>
                             <constraint firstItem="AwO-EB-1yU" firstAttribute="leading" secondItem="MsG-wZ-uaG" secondAttribute="leading" constant="15" id="BTC-G4-Z8v"/>
                             <constraint firstItem="0bZ-bn-m6M" firstAttribute="top" secondItem="m7f-eE-7CJ" secondAttribute="bottom" constant="35" id="Bjw-J2-ekw"/>
-                            <constraint firstItem="IFZ-Ej-VPU" firstAttribute="leading" secondItem="MsG-wZ-uaG" secondAttribute="leading" constant="15" id="DzP-y9-YGP"/>
                             <constraint firstItem="m7f-eE-7CJ" firstAttribute="leading" secondItem="MsG-wZ-uaG" secondAttribute="leading" constant="15" id="HhO-MX-LZS"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="JH7-Gk-kTi" secondAttribute="trailing" constant="15" id="JOX-uy-Nwk"/>
                             <constraint firstItem="0bZ-bn-m6M" firstAttribute="leading" secondItem="MsG-wZ-uaG" secondAttribute="leading" constant="15" id="Kr6-m2-AfA"/>
@@ -462,15 +467,12 @@
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="bottom" secondItem="AwO-EB-1yU" secondAttribute="bottom" constant="65" id="STw-wS-3ns"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="rQf-8h-zTp" secondAttribute="trailing" constant="15" id="Tzn-1b-GIg"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="YpP-z8-rEp" secondAttribute="trailing" constant="15" id="U3H-Li-HXU"/>
-                            <constraint firstItem="JH7-Gk-kTi" firstAttribute="top" secondItem="IFZ-Ej-VPU" secondAttribute="bottom" constant="10" id="VUC-Yv-UyL"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="0bZ-bn-m6M" secondAttribute="trailing" constant="15" id="Wkn-Tv-pkD"/>
-                            <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="IFZ-Ej-VPU" secondAttribute="trailing" constant="15" id="Yqg-Hn-NTU"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="AwO-EB-1yU" secondAttribute="trailing" constant="15" id="cwh-cy-6lQ"/>
                             <constraint firstItem="Ayy-3s-nR6" firstAttribute="top" secondItem="MsG-wZ-uaG" secondAttribute="top" constant="20" id="dNT-lk-JbV"/>
                             <constraint firstItem="MsG-wZ-uaG" firstAttribute="trailing" secondItem="Ayy-3s-nR6" secondAttribute="trailing" constant="15" id="rII-JX-lJJ"/>
                             <constraint firstItem="Ayy-3s-nR6" firstAttribute="leading" secondItem="MsG-wZ-uaG" secondAttribute="leading" constant="15" id="u9J-On-KIX"/>
                             <constraint firstItem="AwO-EB-1yU" firstAttribute="top" secondItem="rQf-8h-zTp" secondAttribute="bottom" constant="15" id="ww0-sE-5jO"/>
-                            <constraint firstItem="IFZ-Ej-VPU" firstAttribute="top" secondItem="YpP-z8-rEp" secondAttribute="bottom" constant="10" id="ziF-zN-u8f"/>
                         </constraints>
                     </view>
                     <connections>
@@ -478,6 +480,7 @@
                         <outlet property="highestPriceLabel" destination="h85-8i-HhX" id="y3F-ih-V82"/>
                         <outlet property="iconePriceTrend" destination="Fj3-54-6s8" id="sng-c7-3H0"/>
                         <outlet property="lowestPriceLabel" destination="il4-fF-jE1" id="Gsj-SV-qNE"/>
+                        <outlet property="priceActual" destination="CFZ-Tq-B3W" id="X29-0d-7rW"/>
                         <outlet property="priceTrendLabel" destination="rRy-O5-dmp" id="e0S-DP-Z3X"/>
                         <outlet property="saleNumberPrice" destination="qsD-CJ-qJ5" id="YAR-Dk-k8M"/>
                     </connections>
@@ -486,10 +489,10 @@
             </objects>
             <point key="canvasLocation" x="1113.7404580152672" y="-643.66197183098598"/>
         </scene>
-        <!--Manuel-->
+        <!--Search Card View Controller-->
         <scene sceneID="yVG-o6-VZA">
             <objects>
-                <viewController id="KU1-UU-09i" customClass="SearchCardViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KU1-UU-09i" userLabel="Search Card View Controller" customClass="SearchCardViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FGM-rN-TxS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -522,22 +525,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZV-fG-eoh">
-                                <rect key="frame" x="159" y="409" width="75" height="34.333333333333314"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="6jJ-fF-VEh" kind="show" identifier="SlideViewController" id="VB6-2x-EM3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vWN-dJ-Vqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UZV-fG-eoh" firstAttribute="centerY" secondItem="FGM-rN-TxS" secondAttribute="centerY" id="9G9-F3-oEi"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="CVl-hZ-usp"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="141" id="JNZ-UY-eb7"/>
-                            <constraint firstItem="UZV-fG-eoh" firstAttribute="centerX" secondItem="FGM-rN-TxS" secondAttribute="centerX" id="fe3-Q2-968"/>
                             <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="CZG-GW-ieY" secondAttribute="trailing" constant="20" id="wUy-Qr-3bE"/>
                         </constraints>
                     </view>
@@ -546,6 +539,7 @@
                     <connections>
                         <outlet property="CardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
                         <outlet property="SearchManuelCardButton" destination="aDo-3M-M4W" id="zWZ-BH-ZuS"/>
+                        <segue destination="6jJ-fF-VEh" kind="show" identifier="SlideViewControllerSegue" id="MV3-4h-dWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-4c-4xV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -616,9 +610,6 @@
             <point key="canvasLocation" x="-599" y="-377"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="mfh-3Y-s31"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="CC" width="679" height="945"/>
         <image name="like" width="32" height="32"/>
