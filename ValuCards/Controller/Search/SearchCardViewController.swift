@@ -51,12 +51,22 @@ class SearchCardViewController: UIViewController {
                     self.imagesAndTitlesAndPricesToSend = imagesAndTitlesAndPrices
                     self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
                 case let .failure(error):
-                    print(error)
+                    switch error {
+                    case .noCardsFound:
+                        self.showNoCardsFoundAlert()
+                    default:
+                        print(error)
+                    }
                 }
             }
         }
     }
     
+    func showNoCardsFoundAlert() {
+        let alert = UIAlertController(title: "Pas de résultats", message: "Aucune carte trouvée pour votre recherche. Veuillez réessayer.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {

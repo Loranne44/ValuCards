@@ -13,6 +13,7 @@ enum ErrorCase: Error {
     case errorDecode2
     case errorDecode3
     case errorDecode4
+    case noCardsFound
     
     var message : String {
         switch self {
@@ -26,6 +27,8 @@ enum ErrorCase: Error {
             return "Sorry, no JSON"
         case .errorDecode4:
             return "Sorry, no JSON"
+        case .noCardsFound:
+            return "Entrer un nom de carte"
     
         }
     }
