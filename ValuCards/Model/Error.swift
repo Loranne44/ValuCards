@@ -8,28 +8,51 @@
 import Foundation
 
 enum ErrorCase: Error {
-    case errorDecode
-    case errorDecode1
-    case errorDecode2
-    case errorDecode3
-    case errorDecode4
+    case invalidURL
+    case jsonDecodingError(error: Error)
     case noCardsFound
+    case requestFailed(error: Error)
+    case generalNetworkError
+    case serverError
+    case erreurInscription
+    case erreurConnexion
+    case erreurConnexionFb
+    case erreurConnexionFirebase
+    case nomCarteManquante
+    case autreCarteManquante
+    case rechercheCarte
+    case connexionInternetImage
     
-    var message : String {
+    var message: String {
         switch self {
-        case .errorDecode:
-            return "Sorry, no JSON"
-        case .errorDecode1:
-            return "Sorry, no JSON"
-        case .errorDecode2:
-            return "Sorry, no JSON"
-        case .errorDecode3:
-            return "Sorry, no JSON"
-        case .errorDecode4:
-            return "Sorry, no JSON"
+        case .invalidURL:
+            return "Erreur de création d'URL. Vérifiez la chaîne de requête."
+        case .jsonDecodingError(let error):
+            return "Erreur de décodage JSON: \(error.localizedDescription)"
         case .noCardsFound:
-            return "Entrer un nom de carte"
-    
+            return "Aucune carte correspondant à votre recherche n'a été trouvée. Essayez avec un autre nom de carte ou vérifiez l'orthographe"
+        case .requestFailed(let error):
+            return "Échec de la requête: \(error.localizedDescription)"
+        case .generalNetworkError:
+            return "Une erreur réseau s'est produite. Veuillez réessayer."
+        case .serverError:
+            return "Une erreur serveur s'est produite. Veuillez réessayer plus tard."
+        case .erreurInscription:
+            return "Erreur d'inscription"
+        case .erreurConnexion:
+            return "Erreur de connexion"
+        case .erreurConnexionFb:
+            return "Erreur lors de la connexion via Facebook"
+        case .erreurConnexionFirebase:
+            return "Erreur lors de la connexion via Firebase"
+        case .nomCarteManquante:
+            return "Veuillez entrer le nom de la carte que vous souhaitez rechercher"
+        case .autreCarteManquante:
+            return  "Impossible de trouver la carte demandée. Veuillez vérifier l'orthographe du nom ou essayez une recherche différente"
+        case .rechercheCarte:
+            return "Une erreur s'est produite lors de la recherche de la carte. Veuillez réessayer"
+        case .connexionInternetImage:
+            return "Impossible de télécharger l'image. Veuillez vérifier votre connexion et réessayer"
         }
     }
 }

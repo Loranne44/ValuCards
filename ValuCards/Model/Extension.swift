@@ -22,6 +22,3 @@ extension String {
     }
 }
 
-func formattedPrice(for price: Price) -> String {
-    return price.currency.currencySymbol() + (price.value.isEmpty ? "NB" : price.value)
-}

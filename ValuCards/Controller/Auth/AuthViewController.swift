@@ -48,7 +48,7 @@ class AuthViewController: UIViewController {
     private func setupViewsFor(pageType: PageType) {
         signInButton.isHidden = pageType == .signUp
         signUpButton.isHidden = pageType == .signIn
-        forgetPasswordButton.isHidden = pageType == .signIn
+        forgetPasswordButton.isHidden = pageType == .signUp
     }
     
     @IBAction func forgetPasswordButtonTapped(_ sender: Any) {
@@ -56,29 +56,14 @@ class AuthViewController: UIViewController {
     
     
     @IBAction func segmentedContolChanged(_ sender: UISegmentedControl) {
-        currentPageType = sender.selectedSegmentIndex == 0 ? .signIn : .signUp
-        
+        if sender.titleForSegment(at: sender.selectedSegmentIndex) == "Sign In" {
+            currentPageType = .signIn
+        } else {
+            currentPageType = .signUp
+        }
     }
     
     @IBAction func signInButton(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
-            guard let strongSelf = self else { return }
-            
-            if let error = error {
-                strongSelf.showAlert(title: "Erreur d'inscription", message: error.localizedDescription)
-            } else {
-                strongSelf.showSuccessPopup(message: "Inscription réussie !")
-            }
-        }
-    }
-    
-    // Inverser SignIn et SignUP
-    
-    @IBAction func signUpButton(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
@@ -87,9 +72,25 @@ class AuthViewController: UIViewController {
             guard let strongSelf = self else { return }
             
             if let error = error {
-                strongSelf.showAlert(title: "Erreur de connexion", message: error.localizedDescription)
+                strongSelf.showAlert(for: .erreurConnexion)
             } else {
-                strongSelf.showSuccessPopup(message: "Connexion réussie !")
+                strongSelf.showSuccessPopup(for: .connexionReussi)
+            }
+        }
+    }
+    
+    @IBAction func signUpButton(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authResult, error) in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                strongSelf.showAlert(for: .erreurInscription)
+            } else {
+                strongSelf.showSuccessPopup(for: .inscriptionReussi, segueIdentifier: "SearchCards")
             }
         }
     }
@@ -101,7 +102,7 @@ class AuthViewController: UIViewController {
             guard let strongSelf = self else { return }
             
             if let error = error {
-                print("Erreur lors de la connexion via Facebook : \(error.localizedDescription)")
+                strongSelf.showAlert(for: .erreurConnexionFb)
                 return
             }
             
@@ -111,34 +112,14 @@ class AuthViewController: UIViewController {
                 // Connexion à Firebase avec Facebook
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     if let error = error {
-                        print("Erreur lors de la connexion via Firebase : \(error.localizedDescription)")
+                        strongSelf.showAlert(for: .erreurConnexionFirebase)
                     } else {
-                        // Connexion réussie, vous pouvez effectuer des actions supplémentaires ici
-                        print("Connexion via Firebase réussie !")
                         let userID = authResult?.user.uid ?? ""
-                        strongSelf.showSuccessPopup(message: "Connexion via Facebook réussie ! UserID : \(userID)")
-                        strongSelf.performSegue(withIdentifier: "SearchCards", sender: nil)
+                        let message = "Connexion via Facebook réussie ! UserID : \(userID)"
+                        strongSelf.showSuccessPopup(for: .customMessage(message), segueIdentifier: "SearchCards")
                     }
                 }
             }
-        }
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showSuccessPopup(message: String) {
-        let alert = UIAlertController(title: "Succès", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: {  [weak self] _ in
-            self?.performSegue(withIdentifier: "SearchCards", sender: nil)
-        })
-        alert.addAction(okAction)
-        present(alert, animated: true) {
-            
         }
     }
 }

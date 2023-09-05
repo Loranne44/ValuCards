@@ -10,7 +10,7 @@ import Foundation
 struct ItemSearchResult: Decodable {
     let href: String
     let total: Int
-    let next: String
+    let next: String?
     let limit: Int
     let offset: Int
     let itemSummaries: [ItemSummary]

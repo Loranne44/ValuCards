@@ -15,6 +15,8 @@ class SlideViewController: UIViewController {
     var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)] = []
     
     var slideResponseModel: ResponseModel!
+    let pricingService = CardPricingService()
+    var numberCardsSale: Int?
     
     private var initialPanPoint: CGPoint = CGPoint.zero
     private let maxRotationAngle: CGFloat = CGFloat.pi / 3
@@ -22,19 +24,24 @@ class SlideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        slideResponseModel = ResponseModel(imagesAndTitlesAndPrices: imagesAndTitlesAndPrices)
-        imageView.isUserInteractionEnabled = true
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-        imageView.addGestureRecognizer(panGesture)
-        
-        // Ajouter une ombre à l'image
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        imageView.layer.shadowOpacity = 0.8
-        imageView.layer.shadowRadius = 4.0
-        
-        updateImageAndTitle()
+        imageView.layer.cornerRadius = 30
+            imageView.layer.masksToBounds = true
+                
+            let cardItems = imagesAndTitlesAndPrices.map { CardItem(imageName: $0.imageName, title: $0.title, price: $0.price) }
+                
+            slideResponseModel = ResponseModel(cardItems: cardItems)
+            imageView.isUserInteractionEnabled = true
+                
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+            imageView.addGestureRecognizer(panGesture)
+                
+            // Ajouter une ombre à l'image
+            imageView.layer.shadowColor = UIColor.black.cgColor
+            imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+            imageView.layer.shadowOpacity = 0.8
+            imageView.layer.shadowRadius = 4.0
+                
+            updateImageAndTitle()
     }
     
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -50,17 +57,29 @@ class SlideViewController: UIViewController {
                 self.imageView.transform = .identity
             }
             
-            let translation = gesture.translation(in: imageView).x
-            if translation > 0 {
-                slideResponseModel?.showPreviousImage()
-                navigateToResultViewController()
-            } else {
-                slideResponseModel?.showNextImage()
-                // Mettre à jour l'image une fois l'animation terminée
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.updateImageAndTitle()
-                    self.resetColorFilter()
+            let translationX = gesture.translation(in: imageView).x
+            let currentTitle = slideResponseModel.getCurrentTitle()
+            
+            if translationX > 0 {
+                CardsModel.shared.searchCards(withName: currentTitle) { [weak self] result in
+                    
+                    switch result {
+                    case let .success(card):
+                        guard let strongSelf = self else { return }
+                        let averagePrice = strongSelf.pricingService.getAveragePrice(from: card.itemSummaries)
+                        let lowestPrice = strongSelf.pricingService.getLowestPrice(from: card.itemSummaries)
+                        let highestPrice = strongSelf.pricingService.getHighestPrice(from: card.itemSummaries)
+                        if let currency = card.itemSummaries.first?.price.currency {
+                            self?.navigateToResultViewController(with: averagePrice, lowest: lowestPrice, highest: highestPrice, currency: currency)
+                        }
+                    case .failure(_):
+                        self?.showAlert(for: .rechercheCarte)
+                    }
                 }
+            } else {
+                slideResponseModel.showNextImage()
+                updateImageAndTitle()
+                resetColorFilter()
             }
             
         default:
@@ -75,10 +94,10 @@ class SlideViewController: UIViewController {
         let translation = imageView.transform.tx
         if translation > 0 {
             // The gesture goes to the right, so apply a green filter
-            colorFilter.backgroundColor = UIColor.green.withAlphaComponent(0.03)
+            colorFilter.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         } else {
             // The gesture goes to the left, so apply a red filter
-            colorFilter.backgroundColor = UIColor.red.withAlphaComponent(0.03)
+            colorFilter.backgroundColor = UIColor.red.withAlphaComponent(0.5)
         }
         
         imageView.addSubview(colorFilter)
@@ -90,8 +109,6 @@ class SlideViewController: UIViewController {
         }
     }
     
-    
-    
     func updateImageAndTitle() {
         let imageUrlString = slideResponseModel.getCurrentImageName()
         var title = slideResponseModel.getCurrentTitle()
@@ -101,7 +118,7 @@ class SlideViewController: UIViewController {
         titleLabel.text = title
         
         guard let imageUrl = URL(string: imageUrlString) else {
-            self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si l'URL est invalide
+            self.imageView.image = UIImage(named: "defaultImage")
             return
         }
         // Download background image
@@ -114,26 +131,29 @@ class SlideViewController: UIViewController {
                     if let image = UIImage(data: data) {
                         self.imageView.image = image
                     } else {
-                        self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si l'image téléchargée est invalide
+                        self.imageView.image = UIImage(named: "defaultImage")
                     }
                 }
             } catch {
-                print("Erreur lors du téléchargement de l'image:", error)
                 DispatchQueue.main.async {
-                    self.imageView.image = UIImage(named: "defaultImage") // Utilisez l'image par défaut si une erreur se produit lors du téléchargement
+                    self.imageView.image = UIImage(named: "defaultImage")
+                    self.showAlert(for: .connexionInternetImage)
                 }
             }
         }
     }
     
-    func navigateToResultViewController() {
+    func navigateToResultViewController(with averagePrice: Double, lowest: Double, highest: Double, currency: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let resultViewController = storyboard.instantiateViewController(withIdentifier: "Result") as? ResultViewController {
-            resultViewController.priceValue = slideResponseModel.getCurrentPrice()
-            //slideResponseModel.getCurrentPrice().value
+            resultViewController.averagePrice = averagePrice
+            resultViewController.lowestPrice = lowest
+            resultViewController.highestPrice = highest
+            resultViewController.currency = currency
+            resultViewController.numberCardsSale = slideResponseModel.cardItems.count
+            resultViewController.image = imageView.image
             navigationController?.pushViewController(resultViewController, animated: true)
-        }
-    }
+        }    }
     
     @IBAction func nextImageButton(_ sender: UIButton) {
         slideResponseModel.showNextImage()
@@ -141,7 +161,21 @@ class SlideViewController: UIViewController {
     }
     
     @IBAction func validateImageButton(_ sender: UIButton) {
-        navigateToResultViewController()
+        let currentTitle = slideResponseModel.getCurrentTitle()
+        CardsModel.shared.searchCards(withName: currentTitle) { [weak self] result in
+            switch result {
+            case let .success(card):
+                guard let strongSelf = self else { return }
+                let averagePrice = strongSelf.pricingService.getAveragePrice(from: card.itemSummaries)
+                let lowestPrice = strongSelf.pricingService.getLowestPrice(from: card.itemSummaries)
+                let highestPrice = strongSelf.pricingService.getHighestPrice(from: card.itemSummaries)
+                if let currency = card.itemSummaries.first?.price.currency {
+                    self?.navigateToResultViewController(with: averagePrice, lowest: lowestPrice, highest: highestPrice, currency: currency)
+                }
+            case .failure(_):
+                self?.showAlert(for: .rechercheCarte)
+            }
+        }
     }
     
     func performCardAction(with translation: CGPoint) {
@@ -152,8 +186,7 @@ class SlideViewController: UIViewController {
         let transform = translationTransform.concatenating(rotationTransform)
         imageView.transform = transform
         
-        let alphaPercent = abs(translationPercent)
+        let alphaPercent = min(abs(translationPercent) * 2, 1.0)
         imageView.alpha = 1.0 - alphaPercent
     }
 }
-

@@ -11,6 +11,8 @@
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
 		4514BEBE2A6FADAA004498FD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBD2A6FADAA004498FD /* FirebaseCrashlytics */; };
+		451699082AA23DE20022C44B /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451699072AA23DE20022C44B /* CardItem.swift */; };
+		4528543D2AA710C30069A57A /* SuccessCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4528543C2AA710C30069A57A /* SuccessCase.swift */; };
 		45420B452A7CD785006C5C8C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45420B442A7CD785006C5C8C /* Extension.swift */; };
 		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
@@ -32,6 +34,8 @@
 		459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DC2A4D707F00BC4AF3 /* CardsSession.swift */; };
 		459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DE2A4D7B6900BC4AF3 /* Error.swift */; };
 		45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */; };
+		45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C42AA5D596003BDB0E /* CardPricingService.swift */; };
+		45F433C72AA5E1BC003BDB0E /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */; };
 		4EC54739AD0702A048577A8E /* Pods_ValuCardsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */; };
 		D5DB5CF7922AE180B997357F /* Pods_ValuCards_ValuCardsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		451699072AA23DE20022C44B /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
+		4528543C2AA710C30069A57A /* SuccessCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCase.swift; sourceTree = "<group>"; };
 		45420B442A7CD785006C5C8C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		45526D472A68422D000843DD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +84,8 @@
 		459942DC2A4D707F00BC4AF3 /* CardsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSession.swift; sourceTree = "<group>"; };
 		459942DE2A4D7B6900BC4AF3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewController.swift; sourceTree = "<group>"; };
+		45F433C42AA5D596003BDB0E /* CardPricingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPricingService.swift; sourceTree = "<group>"; };
+		45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCardsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCards_ValuCardsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +181,10 @@
 				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
 				4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */,
 				45420B442A7CD785006C5C8C /* Extension.swift */,
+				451699072AA23DE20022C44B /* CardItem.swift */,
+				45F433C42AA5D596003BDB0E /* CardPricingService.swift */,
+				45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */,
+				4528543C2AA710C30069A57A /* SuccessCase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -430,8 +442,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4582D87C2A4B6FC600AE6084 /* ResponseModel.swift in Sources */,
+				45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */,
 				457973292A432D240099D024 /* SearchCardViewController.swift in Sources */,
 				45526D482A68422D000843DD /* ResultViewController.swift in Sources */,
+				4528543D2AA710C30069A57A /* SuccessCase.swift in Sources */,
 				45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */,
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
@@ -439,8 +453,10 @@
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
 				45420B452A7CD785006C5C8C /* Extension.swift in Sources */,
 				4579732B2A4339430099D024 /* Card.swift in Sources */,
+				45F433C72AA5E1BC003BDB0E /* UIViewController+Alerts.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
 				459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */,
+				451699082AA23DE20022C44B /* CardItem.swift in Sources */,
 				457973272A432C760099D024 /* CardsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

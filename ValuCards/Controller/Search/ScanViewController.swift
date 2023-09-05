@@ -63,7 +63,6 @@ class ScanViewController: UIViewController {
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true, completion: nil)
     }
-    
 }
 
 extension ScanViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -73,13 +72,11 @@ extension ScanViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         guard let image = info[.editedImage] as? UIImage else {
             print("No image found")
             return
         }
         viewImage.image = image
-        
         
         picker.dismiss(animated: true, completion: nil)
     }

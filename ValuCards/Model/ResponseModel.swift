@@ -8,32 +8,33 @@
 import Foundation
 
 class ResponseModel {
-    var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)]
-
+    var cardItems: [CardItem]
     var currentImageIndex = 0
     
-    init(imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)]) {
-        self.imagesAndTitlesAndPrices = imagesAndTitlesAndPrices
+    init(cardItems: [CardItem]) {
+        self.cardItems = cardItems
     }
-
     
     func showNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % imagesAndTitlesAndPrices.count
+        currentImageIndex = (currentImageIndex + 1) % cardItems.count
     }
     
     func showPreviousImage() {
-        currentImageIndex = (currentImageIndex - 1 + imagesAndTitlesAndPrices.count) % imagesAndTitlesAndPrices.count
+        currentImageIndex = (currentImageIndex - 1 + cardItems.count) % cardItems.count
     }
     
     func getCurrentImageName() -> String {
-        return imagesAndTitlesAndPrices[currentImageIndex].imageName
+        guard !cardItems.isEmpty else { return "" }
+        return cardItems[currentImageIndex].imageName
     }
     
     func getCurrentTitle() -> String {
-        return imagesAndTitlesAndPrices[currentImageIndex].title
+        guard !cardItems.isEmpty else { return "" }
+        return cardItems[currentImageIndex].title
     }
     
     func getCurrentPrice() -> Price {
-        return imagesAndTitlesAndPrices[currentImageIndex].price
+        guard !cardItems.isEmpty else { return Price(value: "", currency: "") }
+        return cardItems[currentImageIndex].price
     }
 }

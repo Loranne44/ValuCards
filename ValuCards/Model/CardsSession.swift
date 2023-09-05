@@ -13,7 +13,6 @@ protocol CardsProviderProtocol {
 }
 
 class CardsProvider: CardsProviderProtocol {
-    
     func getRequest(url: URL,  headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void) {
         
         AF.request(url,
@@ -21,46 +20,24 @@ class CardsProvider: CardsProviderProtocol {
                    headers: headers,
                    interceptor: nil)
         .validate(statusCode: 200..<600)
-        .responseJSON { response in
+        .responseData { response in
             switch response.result {
             case .success(let data):
-                if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: []) {
-                    completion(.success(jsonData))
+                completion(.success(data))
+            case .failure(let error):
+                if let statusCode = response.response?.statusCode {
+                    switch statusCode {
+                    case 404:
+                        completion(.failure(.noCardsFound))
+                    case 500..<600:
+                        completion(.failure(.serverError))
+                    default:
+                        completion(.failure(.generalNetworkError))
+                    }
                 } else {
-                    completion(.failure(.errorDecode2))
+                    completion(.failure(.requestFailed(error: error)))
                 }
-            case .failure(_):
-                completion(.failure(.errorDecode2))
             }
         }
     }
 }
-
-/*
- protocol CardsProviderProtocol {
- func getRequest(url: URL, headers: HTTPHeaders,completion: @escaping (Result<Data, ErrorCase>) -> Void)
- }
- 
- class CardsProvider: CardsProviderProtocol {
- 
- func getRequest(url: URL,  headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void) {
- 
- let headers: HTTPHeaders = ["Authorization": "Bearer \(CardsModel.apiKey)"]
- AF.request(url,
- method: .get,
- headers: headers,
- interceptor: nil)
- .validate(statusCode: 200..<600)
- .responseDecodable(of: ItemSummary.self) { response in
- 
- guard let data = response.data else {
- completion(.failure(.errorDecode2))
- return
- }
- print("Raw Response Data: \(String(data: data, encoding: .utf8) ?? "")")
- completion(.success(data))
- }
- }
- }
- 
- */

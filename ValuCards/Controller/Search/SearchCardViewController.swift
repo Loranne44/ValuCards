@@ -15,7 +15,7 @@ class SearchCardViewController: UIViewController {
     @IBOutlet weak var SearchManuelCardButton: UIButton!
     
     var imagesAndTitlesAndPricesToSend: [(imageName: String, title: String, price: Price)] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SearchManuelCardButton.layer.cornerRadius = 15
@@ -28,7 +28,7 @@ class SearchCardViewController: UIViewController {
     
     func search() {
         guard let name = CardNameTextField.text, !name.isEmpty else {
-            // MESSAGE D'ERREUR pour indiquer que ca ne peut pas etre vide
+            self.showAlert(for: .nomCarteManquante)
             return
         }
         
@@ -47,26 +47,21 @@ class SearchCardViewController: UIViewController {
                         }
                     }
                     
-                    // store image urls and prices to be passed to SlideViewController
                     self.imagesAndTitlesAndPricesToSend = imagesAndTitlesAndPrices
                     self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
                 case let .failure(error):
                     switch error {
                     case .noCardsFound:
-                        self.showNoCardsFoundAlert()
+                        self.showAlert(for: .autreCarteManquante)
                     default:
-                        print(error)
+                        self.showAlert(for: .autreCarteManquante)
                     }
                 }
             }
         }
     }
     
-    func showNoCardsFoundAlert() {
-        let alert = UIAlertController(title: "Pas de résultats", message: "Aucune carte trouvée pour votre recherche. Veuillez réessayer.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {
@@ -74,3 +69,48 @@ class SearchCardViewController: UIViewController {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+/*
+ //
+ //  UIViewController+Alerts.swift
+ //  ValuCards
+ //
+ //  Created by Loranne Joncheray on 04/09/2023.
+ //
+
+ import Foundation
+ import UIKit
+
+ extension UIViewController {
+     
+     func showAlert(for error: ErrorCase, completion: (() -> Void)? = nil) {
+         let alert = UIAlertController(title: "Erreur", message: error.message, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+             completion?()
+         })
+         alert.addAction(okAction)
+         present(alert, animated: true, completion: nil)
+     }
+     
+     func showSuccessPopup(for success: SuccessCase, segueIdentifier: String? = nil) {
+         let alert = UIAlertController(title: "Succès", message: success.message, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+             if let identifier = segueIdentifier {
+                 self?.performSegue(withIdentifier: identifier, sender: nil)
+             }
+         })
+         alert.addAction(okAction)
+         present(alert, animated: true, completion: nil)
+     }
+ }
+
+ */
