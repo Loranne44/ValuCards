@@ -24,7 +24,7 @@ class SlideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.layer.cornerRadius = 30
+        imageView.layer.cornerRadius = 40
             imageView.layer.masksToBounds = true
                 
             let cardItems = imagesAndTitlesAndPrices.map { CardItem(imageName: $0.imageName, title: $0.title, price: $0.price) }
@@ -37,9 +37,9 @@ class SlideViewController: UIViewController {
                 
             // Ajouter une ombre à l'image
             imageView.layer.shadowColor = UIColor.black.cgColor
-            imageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+            imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
             imageView.layer.shadowOpacity = 0.8
-            imageView.layer.shadowRadius = 4.0
+            imageView.layer.shadowRadius = 9.0
                 
             updateImageAndTitle()
     }

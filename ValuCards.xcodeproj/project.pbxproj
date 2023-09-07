@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45115FE32AA9B15600E0C3FC /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45115FE22AA9B15600E0C3FC /* DGCharts */; };
+		45115FE52AA9B15600E0C3FC /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 45115FE42AA9B15600E0C3FC /* DGChartsDynamic */; };
 		4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB32A6FAD73004498FD /* Alamofire */; };
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
@@ -57,6 +59,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		45B5B3A12AA9E96000A0E169 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		451699072AA23DE20022C44B /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
 		4528543C2AA710C30069A57A /* SuccessCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCase.swift; sourceTree = "<group>"; };
@@ -100,6 +115,8 @@
 				4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */,
 				4514BEBE2A6FADAA004498FD /* FirebaseCrashlytics in Frameworks */,
 				4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */,
+				45115FE32AA9B15600E0C3FC /* DGCharts in Frameworks */,
+				45115FE52AA9B15600E0C3FC /* DGChartsDynamic in Frameworks */,
 				4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,16 +192,13 @@
 		4579731F2A42F9180099D024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				459942DE2A4D7B6900BC4AF3 /* Error.swift */,
+				45A7D7C42AA9A8130051C706 /* Others */,
 				4579732A2A4339430099D024 /* Card.swift */,
 				457973262A432C760099D024 /* CardsModel.swift */,
 				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
 				4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */,
-				45420B442A7CD785006C5C8C /* Extension.swift */,
 				451699072AA23DE20022C44B /* CardItem.swift */,
 				45F433C42AA5D596003BDB0E /* CardPricingService.swift */,
-				45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */,
-				4528543C2AA710C30069A57A /* SuccessCase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +252,17 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		45A7D7C42AA9A8130051C706 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				459942DE2A4D7B6900BC4AF3 /* Error.swift */,
+				4528543C2AA710C30069A57A /* SuccessCase.swift */,
+				45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */,
+				45420B442A7CD785006C5C8C /* Extension.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		9937E0E347CD8C2874AA3658 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +283,7 @@
 				457972E82A42F9030099D024 /* Sources */,
 				457972E92A42F9030099D024 /* Frameworks */,
 				457972EA2A42F9030099D024 /* Resources */,
+				45B5B3A12AA9E96000A0E169 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +296,8 @@
 				4514BEBB2A6FADAA004498FD /* FirebaseAuth */,
 				4514BEBD2A6FADAA004498FD /* FirebaseCrashlytics */,
 				4595D3702A7113D600106278 /* FacebookLogin */,
+				45115FE22AA9B15600E0C3FC /* DGCharts */,
+				45115FE42AA9B15600E0C3FC /* DGChartsDynamic */,
 			);
 			productName = ValuCards;
 			productReference = 457972EC2A42F9030099D024 /* ValuCards.app */;
@@ -349,6 +377,7 @@
 				4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4514BEB82A6FADAA004498FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4595D36F2A7113D600106278 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 457972ED2A42F9030099D024 /* Products */;
 			projectDirPath = "";
@@ -801,6 +830,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -828,6 +865,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		45115FE22AA9B15600E0C3FC /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		45115FE42AA9B15600E0C3FC /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
+		};
 		4514BEB32A6FAD73004498FD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */;
