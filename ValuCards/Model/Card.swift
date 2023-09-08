@@ -38,5 +38,3 @@ struct Price: Decodable {
     let value: String
     let currency: String
 }
-
-

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45115FE32AA9B15600E0C3FC /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45115FE22AA9B15600E0C3FC /* DGCharts */; };
-		45115FE52AA9B15600E0C3FC /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 45115FE42AA9B15600E0C3FC /* DGChartsDynamic */; };
 		4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB32A6FAD73004498FD /* Alamofire */; };
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
@@ -35,6 +33,7 @@
 		4595D3712A7113D600106278 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4595D3702A7113D600106278 /* FacebookLogin */; };
 		459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DC2A4D707F00BC4AF3 /* CardsSession.swift */; };
 		459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DE2A4D7B6900BC4AF3 /* Error.swift */; };
+		45B5B3B32AAB044800A0E169 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45B5B3B22AAB044800A0E169 /* DGCharts */; };
 		45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */; };
 		45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C42AA5D596003BDB0E /* CardPricingService.swift */; };
 		45F433C72AA5E1BC003BDB0E /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */; };
@@ -98,6 +97,7 @@
 		459597262A4EAFAF00F297CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		459942DC2A4D707F00BC4AF3 /* CardsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSession.swift; sourceTree = "<group>"; };
 		459942DE2A4D7B6900BC4AF3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		45B5B3A62AA9F1B100A0E169 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewController.swift; sourceTree = "<group>"; };
 		45F433C42AA5D596003BDB0E /* CardPricingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPricingService.swift; sourceTree = "<group>"; };
 		45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
@@ -115,8 +115,7 @@
 				4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */,
 				4514BEBE2A6FADAA004498FD /* FirebaseCrashlytics in Frameworks */,
 				4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */,
-				45115FE32AA9B15600E0C3FC /* DGCharts in Frameworks */,
-				45115FE52AA9B15600E0C3FC /* DGChartsDynamic in Frameworks */,
+				45B5B3B32AAB044800A0E169 /* DGCharts in Frameworks */,
 				4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +265,7 @@
 		9937E0E347CD8C2874AA3658 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45B5B3A62AA9F1B100A0E169 /* Charts.framework */,
 				858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */,
 				F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */,
 				B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */,
@@ -296,8 +296,7 @@
 				4514BEBB2A6FADAA004498FD /* FirebaseAuth */,
 				4514BEBD2A6FADAA004498FD /* FirebaseCrashlytics */,
 				4595D3702A7113D600106278 /* FacebookLogin */,
-				45115FE22AA9B15600E0C3FC /* DGCharts */,
-				45115FE42AA9B15600E0C3FC /* DGChartsDynamic */,
+				45B5B3B22AAB044800A0E169 /* DGCharts */,
 			);
 			productName = ValuCards;
 			productReference = 457972EC2A42F9030099D024 /* ValuCards.app */;
@@ -377,7 +376,7 @@
 				4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4514BEB82A6FADAA004498FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4595D36F2A7113D600106278 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
-				45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */,
+				45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 457972ED2A42F9030099D024 /* Products */;
 			projectDirPath = "";
@@ -830,14 +829,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -862,19 +853,17 @@
 				minimumVersion = 14.0.0;
 			};
 		};
+		45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		45115FE22AA9B15600E0C3FC /* DGCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGCharts;
-		};
-		45115FE42AA9B15600E0C3FC /* DGChartsDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 45115FE12AA9B15600E0C3FC /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGChartsDynamic;
-		};
 		4514BEB32A6FAD73004498FD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -899,6 +888,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4595D36F2A7113D600106278 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
+		};
+		45B5B3B22AAB044800A0E169 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
