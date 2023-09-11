@@ -17,8 +17,9 @@ class ResultViewController: UIViewController {
     var currency: String?
     var image: UIImage?
     var cardTitle: String?
-    var numberCardsSale: Int = 0
+    var numberCardsSale: Int?
     
+    // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var inconePriceTrendLowest: UILabel!
     @IBOutlet weak var iconePriceTrendAverage: UILabel!
@@ -30,355 +31,140 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var priceChartView: BarChartView!
     @IBOutlet weak var titleCards: UILabel!
     
+    
+    // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
     
-    // Constants for colors
-    private let colorYellow = ChartColorTemplates.colorFromString("#FFD700")
-    private let colorOrange = ChartColorTemplates.colorFromString("#FFA500")
-    private let colorDarkRed = ChartColorTemplates.colorFromString("#FF4500")
-    
-    
-    private let priceCategories: [(range: ClosedRange<Int>, label: String)] = [
-        (1...1, "Only 1"),
-        (5...9, "5 or more"),
-        (10...24, "10 or more"),
-        (25...49, "25 or more"),
-        (50...99, "50 or more"),
-        (100...199, "100 or more"),
-        (200...299, "200 or more"),
-        (300...Int.max, "300 or more")
+    // MARK: - Constants
+    private let chartColor = NSUIColor.systemYellow
+    private let priceCategories: [PriceCategory] = [
+        .init(range: 1...4, label: "<5"),
+        .init(range: 5...9, label: "5-9"),
+        .init(range: 10...24, label: "10-24"),
+        .init(range: 25...49, label: "25-49"),
+        .init(range: 50...99, label: "50-99"),
+        .init(range: 100...199, label: "100-199"),
+        .init(range: 200...299, label: "200-299"),
+        .init(range: 300...Int.max, label: "300+")
     ]
-    
-    
     private var counts: [String: Int] = [:]
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         categorizeData()
         setupChart()
     }
-    
-    private func initializeCounts() {
-        for category in priceCategories {
-            counts[category.label] = 0
-        }
-    }
-    
-    func setupViews() {
-        if let passedImage = image {
-            imageView.image = passedImage
-        }
-        
-        let cardTitleDisplay = cardTitle ?? "Résultats"
-        titleCards.text = cardTitleDisplay
-        imageView.layer.cornerRadius = 30
+
+    // MARK: - UI Configuration
+    private func setupViews() {
+        imageView.image = image
+        titleCards.text = cardTitle ?? "Résultats"
         
         let currencySymbol = currency?.currencySymbol() ?? ""
-        
+        configurePriceLabels(with: currencySymbol)
+    }
+    
+    private func configurePriceLabels(with symbol: String) {
         averagePriceLabel.text = formatPrice(averagePrice)
         lowestPriceLabel.text = formatPrice(lowestPrice)
         highestPriceLabel.text = formatPrice(highestPrice)
-        numberCardsSaleLabel.text = "\(numberCardsSale)"
+        numberCardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
         
-        inconePriceTrendLowest.text = currencySymbol
-        iconePriceTrendAverage.text = currencySymbol
-        iconePriceTrendHighest.text = currencySymbol
+        inconePriceTrendLowest.text = symbol
+        iconePriceTrendAverage.text = symbol
+        iconePriceTrendHighest.text = symbol
     }
     
-    func formatPrice(_ price: Double?) -> String {
+    // MARK: - Data Helpers
+    private func formatPrice(_ price: Double?) -> String {
         guard let price = price else { return "NB" }
         return String(format: "%.2f", price)
     }
     
-    func categorizeData() {
+    private func categorizeData() {
         for card in cards {
-            guard let priceValue = Int(card.price.value) else { continue }
-            
-            for category in priceCategories {
-                if category.range.contains(priceValue) {
-                    counts[category.label]! += 1
-                    break
+            if let priceValueDouble = Double(card.price.value) {
+                let priceValue = Int(priceValueDouble)
+                for category in priceCategories {
+                    if category.range.contains(priceValue) {
+                        counts[category.label, default: 0] += 1
+                        break
+                    }
                 }
             }
         }
     }
     
-    func setupChart() {
-        let dataEntries = counts.keys.sorted().enumerated().map {
-            BarChartDataEntry(x: Double($0.offset), y: Double(counts[$0.element]!))
+    // MARK: - Chart Configuration
+    private func setupChart() {
+        let filteredCounts = counts.filter { $0.value > 0 }
+        
+        let sortedKeys = Array(filteredCounts.keys).sorted {
+            (key1, key2) in
+            let index1 = priceCategories.firstIndex(where: { $0.label == key1 }) ?? 0
+            let index2 = priceCategories.firstIndex(where: { $0.label == key2 }) ?? 0
+            return index1 < index2
         }
         
-        let dataSet = BarChartDataSet(entries: dataEntries, label: "Nombre de cartes disponibles")
+        priceChartView.clear()
         
-        dataSet.colors = [colorYellow, colorOrange, colorDarkRed]
+        let dataEntries = sortedKeys.enumerated().map {
+            BarChartDataEntry(x: Double($0.offset), y: Double(filteredCounts[$0.element]!))
+        }
+        
+        let dataSet = BarChartDataSet(entries: dataEntries, label: "Number of cards for sale")
+        dataSet.colors = [chartColor]
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 0
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
         
         let data = BarChartData(dataSet: dataSet)
         priceChartView.data = data
-        
         priceChartView.xAxis.labelPosition = .bottom
         priceChartView.xAxis.setLabelCount(dataEntries.count, force: true)
-        priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: counts.keys.sorted())
+        print("Sorted Keys: \(sortedKeys)")
+
+        priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedKeys)
         priceChartView.xAxis.granularity = 1
+        priceChartView.xAxis.drawGridLinesEnabled = false
+        priceChartView.leftAxis.enabled = false
         priceChartView.rightAxis.enabled = false
-        priceChartView.legend.horizontalAlignment = .right
-        priceChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        let legend = priceChartView.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .center
+        legend.verticalAlignment = .bottom
+        legend.orientation = .horizontal
+        legend.drawInside = false
+        legend.yOffset = 5
+        legend.font = .systemFont(ofSize: 10)
+        
+        priceChartView.marker = nil
+        
+        dataSet.valueFont = .systemFont(ofSize: 15)
+        dataSet.valueTextColor = .black
+        dataSet.valueFormatter = IntValueFormatter()
+        
+        priceChartView.notifyDataSetChanged()
+        priceChartView.setNeedsDisplay()
+    }
+    
+    private class IntValueFormatter: ValueFormatter {
+        func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+            return String(Int(value))
+        }
+    }
+    
+    private class PriceCategory {
+        var range: ClosedRange<Int>
+        var label: String
+
+        init(range: ClosedRange<Int>, label: String) {
+            self.range = range
+            self.label = label
+        }
     }
 }
-
-/*var counts: [String: Int] = [
- "Only 1": 0,
- "5 or more": 0,
- "10 or more": 0,
- "25 or more": 0,
- "50 or more": 0,
- "100 or more": 0,
- "200 or more": 0,
- "300 or more": 0
- ]
- 
- 
- override func viewDidLoad() {
- super.viewDidLoad()
- setupViews()
- categorizeData()
- setupChart()
- }
- 
- func setupViews() {
- if let passedImage = image {
- imageView.image = passedImage
- }
- let cardTitleDisplay = cardTitle ?? "Résultats"
- titleCards.text = cardTitleDisplay
- 
- imageView.layer.cornerRadius = 30
- 
- let currencySymbol = currency?.currencySymbol() ?? ""
- 
- averagePriceLabel.text = formatPrice(averagePrice)
- lowestPriceLabel.text = formatPrice(lowestPrice)
- highestPriceLabel.text = formatPrice(highestPrice)
- numberCardsSaleLabel.text = "\(numberCardsSale)"
- 
- inconePriceTrendLowest.text = currencySymbol
- iconePriceTrendAverage.text = currencySymbol
- iconePriceTrendHighest.text = currencySymbol
- }
- 
- func formatPrice(_ price: Double?) -> String {
- guard let price = price else { return "NB" }
- return String(format: "%.2f", price)
- }
- 
- func categorizeData() {
- // Reset counts before recounting
- counts = counts.mapValues { _ in 0 }
- 
- for card in cards {
- guard let priceValue = Int(card.price.value) else { continue }
- 
- switch priceValue {
- case 1:
- counts["Only 1"]! += 1
- case 2..<5:
- counts["5 or more"]! += 1
- case 5..<10:
- counts["10 or more"]! += 1
- case 10..<25:
- counts["25 or more"]! += 1
- case 25..<50:
- counts["50 or more"]! += 1
- case 50..<100:
- counts["100 or more"]! += 1
- case 100..<200:
- counts["200 or more"]! += 1
- case 200..<300:
- counts["300 or more"]! += 1
- default:
- continue
- }
- }
- }
- 
- func setupChart() {
- let dataEntries = counts.keys.sorted().enumerated().map {
- BarChartDataEntry(x: Double($0.offset), y: Double(counts[$0.element]!))
- }
- 
- let dataSet = BarChartDataSet(entries: dataEntries, label: "Nombre de cartes disponibles")
- 
- dataSet.colors = [
- ChartColorTemplates.colorFromString("#FFD700"), // Jaune
- ChartColorTemplates.colorFromString("#FFA500"), // Orange
- ChartColorTemplates.colorFromString("#FF4500")  // Rouge foncé
- ]
- 
- let data = BarChartData(dataSet: dataSet)
- priceChartView.data = data
- 
- priceChartView.xAxis.labelPosition = .bottom
- priceChartView.xAxis.setLabelCount(dataEntries.count, force: true)
- priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: counts.keys.sorted())
- priceChartView.xAxis.granularity = 1
- priceChartView.rightAxis.enabled = false
- priceChartView.legend.horizontalAlignment = .right
- priceChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
- }
- } */
-
-
-
-
-/*
- import UIKit
- import DGCharts
- 
- class ResultViewController: UIViewController {
- 
- // MARK: - Properties
- var averagePrice: Double?
- var lowestPrice: Double?
- var highestPrice: Double?
- var currency: String?
- var image: UIImage?
- var cardTitle: String?
- var numberCardsSale: Int = 0
- var cards: [ValuCards.ItemSummary] = []
- var counts: [String: Int] = [:]
- var graphData: [Double] = []
- 
- @IBOutlet weak var imageView: UIImageView!
- @IBOutlet weak var inconePriceTrendLowest: UILabel!
- @IBOutlet weak var iconePriceTrendAverage: UILabel!
- @IBOutlet weak var iconePriceTrendHighest: UILabel!
- @IBOutlet weak var lowestPriceLabel: UILabel!
- @IBOutlet weak var averagePriceLabel: UILabel!
- @IBOutlet weak var highestPriceLabel: UILabel!
- @IBOutlet weak var numberCardsSaleLabel: UILabel!
- @IBOutlet weak var priceChartView: BarChartView!
- @IBOutlet weak var titleCards: UILabel!
- 
- override func viewDidLoad() {
- super.viewDidLoad()
- 
- initializeCounts()
- categorizeData()
- print("After categorizeData: \(counts)")
- setupUI()
- setupChart()
- }
- 
- private func initializeCounts() {
- counts = [
- "Only 1": 0,
- "5 or more": 0,
- "10 or more": 0,
- "25 or more": 0,
- "50 or more": 0,
- "100 or more": 0,
- "200 or more": 0,
- "300 or more": 0
- ]
- }
- 
- private func categorizeData() {
- print("Number of cards: \(cards.count)")
- for card in cards {
- print("Price value of card: \(card.price.value)")
- 
- guard let priceValue = Int(card.price.value) else { continue }
- 
- switch priceValue {
- case 1:
- counts["Only 1"]! += 1
- case 2..<5:
- counts["5 or more"]! += 1
- case 5..<10:
- counts["10 or more"]! += 1
- case 10..<25:
- counts["25 or more"]! += 1
- case 25..<50:
- counts["50 or more"]! += 1
- case 50..<100:
- counts["100 or more"]! += 1
- case 100..<200:
- counts["200 or more"]! += 1
- case 200..<300:
- counts["300 or more"]! += 1
- default:
- continue
- }
- }
- print("Counts After categorizing: \(counts)")
- }
- 
- private func setupUI() {
- titleCards.text = cardTitle ?? "Titre non disponible"
- 
- if let passedImage = image {
- imageView.image = passedImage
- }
- imageView.layer.cornerRadius = 30
- let currencySymbol = currency?.currencySymbol() ?? ""
- 
- averagePriceLabel.text = averagePrice != nil ? String(format: "%.2f", averagePrice!) : "NB"
- lowestPriceLabel.text = lowestPrice != nil ? String(format: "%.2f", lowestPrice!) : "NB"
- highestPriceLabel.text = highestPrice != nil ? String(format: "%.2f", highestPrice!) : "NB"
- numberCardsSaleLabel.text = "\(numberCardsSale)"
- 
- inconePriceTrendLowest.text = currencySymbol
- iconePriceTrendAverage.text = currencySymbol
- iconePriceTrendHighest.text = currencySymbol
- }
- 
- func setupChart() {
- var dataEntries: [BarChartDataEntry] = []
- let keysOrder = ["Only 1", "5 or more", "10 or more", "25 or more", "50 or more", "100 or more", "200 or more", "300 or more"]
- 
- for (index, key) in keysOrder.enumerated() {
- if let countValue = counts[key] {
- let entry = BarChartDataEntry(x: Double(index), y: Double(countValue))
- dataEntries.append(entry)
- }
- }
- 
- let dataSet = BarChartDataSet(entries: dataEntries, label: "")
- 
- let gradientColors = [
- ChartColorTemplates.colorFromString("#FFD700"),
- ChartColorTemplates.colorFromString("#FFC100"),
- ChartColorTemplates.colorFromString("#FFAD00"),
- ChartColorTemplates.colorFromString("#FF9A00"),
- ChartColorTemplates.colorFromString("#FF8500"),
- ChartColorTemplates.colorFromString("#FF7000"),
- ChartColorTemplates.colorFromString("#FF5C00"),
- ChartColorTemplates.colorFromString("#FF4500")
- ]
- 
- dataSet.colors = gradientColors
- 
- let data = BarChartData(dataSet: dataSet)
- priceChartView.data = data
- 
- priceChartView.xAxis.labelPosition = .bottom
- priceChartView.xAxis.setLabelCount(dataEntries.count, force: true)
- priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: keysOrder)
- priceChartView.xAxis.granularity = 1
- priceChartView.rightAxis.enabled = false
- 
- // Désactiver la légende
- priceChartView.legend.enabled = false
- 
- // Centrer le graphique
- let centerX = view.bounds.width / 2
- let centerY = view.bounds.height / 2
- let chartWidth = priceChartView.bounds.width
- let chartHeight = priceChartView.bounds.height
- priceChartView.frame = CGRect(x: centerX - chartWidth / 2, y: centerY - chartHeight / 2, width: chartWidth, height: chartHeight)
- 
- priceChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
- }
- }
- 
- */
