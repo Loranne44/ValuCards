@@ -33,7 +33,7 @@ class CardsModel {
         var components = URLComponents(string: "https://api.ebay.com/buy/browse/v1/item_summary/search")
             components?.queryItems = [
                 URLQueryItem(name: "q", value: searchQuery),
-                URLQueryItem(name: "limit", value: "3"),
+                URLQueryItem(name: "limit", value: "200"),
                 URLQueryItem(name: "category_ids", value: "2536")
             ]
 
@@ -43,7 +43,6 @@ class CardsModel {
             }
         
         task?.cancel()
-        print(url)
         session.getRequest(url: url, headers: headers) { result in
             switch result {
             case let .success(data):

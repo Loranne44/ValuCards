@@ -95,44 +95,45 @@ class ResultViewController: UIViewController {
                 }
             }
         }
+        print(counts)
     }
-    
-    // MARK: - Chart Configuration
+ 
     private func setupChart() {
-        let filteredCounts = counts.filter { $0.value > 0 }
-        
-        let sortedKeys = Array(filteredCounts.keys).sorted {
-            (key1, key2) in
-            let index1 = priceCategories.firstIndex(where: { $0.label == key1 }) ?? 0
-            let index2 = priceCategories.firstIndex(where: { $0.label == key2 }) ?? 0
-            return index1 < index2
+        // Faites une liste des entrées
+        var dataEntries: [BarChartDataEntry] = []
+
+        for (index, category) in priceCategories.enumerated() {
+            let value = Double(counts[category.label] ?? 0)
+            let entry = BarChartDataEntry(x: Double(index), y: value)
+            dataEntries.append(entry)
         }
-        
+
+        // Utilisez directement dataEntries pour définir les étiquettes de l'axe X
+        let xAxisLabels = dataEntries.map { priceCategories[Int($0.x)].label }
+
         priceChartView.clear()
-        
-        let dataEntries = sortedKeys.enumerated().map {
-            BarChartDataEntry(x: Double($0.offset), y: Double(filteredCounts[$0.element]!))
-        }
-        
+
         let dataSet = BarChartDataSet(entries: dataEntries, label: "Number of cards for sale")
         dataSet.colors = [chartColor]
-        
+
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 0
         dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
-        
+
         let data = BarChartData(dataSet: dataSet)
         priceChartView.data = data
-        priceChartView.xAxis.labelPosition = .bottom
-        priceChartView.xAxis.setLabelCount(dataEntries.count, force: true)
-        print("Sorted Keys: \(sortedKeys)")
 
-        priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedKeys)
+        priceChartView.xAxis.labelFont = .systemFont(ofSize: 10)
+        priceChartView.xAxis.axisMinimum = 0.0
+        priceChartView.xAxis.axisMaximum = Double(priceCategories.count - 1)
+        priceChartView.xAxis.labelPosition = .bottom
+        priceChartView.xAxis.setLabelCount(priceCategories.count, force: true)
+        priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
         priceChartView.xAxis.granularity = 1
         priceChartView.xAxis.drawGridLinesEnabled = false
         priceChartView.leftAxis.enabled = false
         priceChartView.rightAxis.enabled = false
-        
+
         let legend = priceChartView.legend
         legend.enabled = true
         legend.horizontalAlignment = .center
@@ -141,17 +142,17 @@ class ResultViewController: UIViewController {
         legend.drawInside = false
         legend.yOffset = 5
         legend.font = .systemFont(ofSize: 10)
-        
+
         priceChartView.marker = nil
-        
+
         dataSet.valueFont = .systemFont(ofSize: 15)
         dataSet.valueTextColor = .black
         dataSet.valueFormatter = IntValueFormatter()
-        
+
         priceChartView.notifyDataSetChanged()
         priceChartView.setNeedsDisplay()
     }
-    
+
     private class IntValueFormatter: ValueFormatter {
         func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
             return String(Int(value))
