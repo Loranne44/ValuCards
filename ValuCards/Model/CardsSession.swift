@@ -8,13 +8,16 @@
 import Foundation
 import Alamofire
 
+// Protocol to ensure proper structure for card providers
 protocol CardsProviderProtocol {
     func getRequest(url: URL, headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void)
 }
 
 class CardsProvider: CardsProviderProtocol {
+    // Implement the GET request method using Alamofire
     func getRequest(url: URL,  headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void) {
         
+        // Make a GET request with validation
         AF.request(url,
                    method: .get,
                    headers: headers,

@@ -95,11 +95,9 @@ class ResultViewController: UIViewController {
                 }
             }
         }
-        print(counts)
     }
  
     private func setupChart() {
-        // Faites une liste des entrées
         var dataEntries: [BarChartDataEntry] = []
 
         for (index, category) in priceCategories.enumerated() {
@@ -108,7 +106,6 @@ class ResultViewController: UIViewController {
             dataEntries.append(entry)
         }
 
-        // Utilisez directement dataEntries pour définir les étiquettes de l'axe X
         let xAxisLabels = dataEntries.map { priceCategories[Int($0.x)].label }
 
         priceChartView.clear()
@@ -123,6 +120,10 @@ class ResultViewController: UIViewController {
         let data = BarChartData(dataSet: dataSet)
         priceChartView.data = data
 
+        configureChartAxis(with: xAxisLabels)
+    }
+
+    private func configureChartAxis(with xAxisLabels: [String]) {
         priceChartView.xAxis.labelFont = .systemFont(ofSize: 10)
         priceChartView.xAxis.axisMinimum = 0.0
         priceChartView.xAxis.axisMaximum = Double(priceCategories.count - 1)
@@ -145,27 +146,13 @@ class ResultViewController: UIViewController {
 
         priceChartView.marker = nil
 
-        dataSet.valueFont = .systemFont(ofSize: 15)
-        dataSet.valueTextColor = .black
-        dataSet.valueFormatter = IntValueFormatter()
+        let dataSet = priceChartView.data?.dataSets.first as? BarChartDataSet
+        dataSet?.valueFont = .systemFont(ofSize: 15)
+        dataSet?.valueTextColor = .black
+        dataSet?.valueFormatter = IntValueFormatter()
 
         priceChartView.notifyDataSetChanged()
         priceChartView.setNeedsDisplay()
     }
 
-    private class IntValueFormatter: ValueFormatter {
-        func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-            return String(Int(value))
-        }
-    }
-    
-    private class PriceCategory {
-        var range: ClosedRange<Int>
-        var label: String
-
-        init(range: ClosedRange<Int>, label: String) {
-            self.range = range
-            self.label = label
-        }
-    }
 }

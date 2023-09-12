@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Model to manage and represent a collection of card items.
 class ResponseModel {
     var cardItems: [CardItem]
     var currentImageIndex = 0

@@ -10,30 +10,28 @@ import Foundation
 enum SuccessCase {
     case cardAddedSuccessfully
     case cardUpdatedSuccessfully
-    case inscriptionReussi
-    case connexionReussi
-    case connexionFb
-    case connexionFirebase
+    case registrationSuccessful
+    case loginSuccessful
+    case facebookLoginSuccessful
+    case firebaseLoginSuccessful
     case customMessage(String)
-   
-
+    
     var message: String {
         switch self {
         case .cardAddedSuccessfully:
-            return "Carte ajoutée avec succès."
+            return "Card added successfully."
         case .cardUpdatedSuccessfully:
-            return "Carte mise à jour avec succès."
-        case .inscriptionReussi:
-            return "Inscription réussie !"
-        case .connexionReussi:
-            return "Connexion réussie !"
-        case .connexionFb:
-            return "Connexion via Firebase réussie !"
-        case .connexionFirebase:
-            return "Connexion réussie !"
-        case .customMessage(let customMsg): 
-                    return customMsg
-      
+            return "Card updated successfully."
+        case .registrationSuccessful:
+            return "Registration successful!"
+        case .loginSuccessful:
+            return "Login successful!"
+        case .facebookLoginSuccessful:
+            return "Logged in successfully via Facebook!"
+        case .firebaseLoginSuccessful:
+            return "Logged in successfully via Firebase!"
+        case .customMessage(let customMsg):
+            return customMsg
         }
     }
 }

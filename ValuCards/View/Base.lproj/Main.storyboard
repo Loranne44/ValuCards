@@ -173,34 +173,12 @@
                         <outlet property="segmentedControl" destination="XKI-gS-prB" id="96g-PN-Yme"/>
                         <outlet property="signInButton" destination="RSU-sU-Ka4" id="vgh-4o-c3h"/>
                         <outlet property="signUpButton" destination="mBg-29-8uj" id="Ezl-fk-aZf"/>
-                        <segue destination="kJM-0k-qcG" kind="show" identifier="SearchCards" id="VEc-m7-gRO"/>
+                        <segue destination="KU1-UU-09i" kind="show" identifier="SearchCards" id="D7x-md-xbs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u86-rw-Sz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2167.1755725190837" y="-377.46478873239437"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="2Rg-W6-Pcc">
-            <objects>
-                <tabBarController id="kJM-0k-qcG" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="XLH-iW-1It"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Se-kp-57m">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="KU1-UU-09i" kind="relationship" relationship="viewControllers" id="RUP-Od-yiz"/>
-                        <segue destination="iAo-Cs-fjR" kind="relationship" relationship="viewControllers" id="8y6-J9-Fo8"/>
-                        <segue destination="UkU-CS-DhW" kind="relationship" relationship="viewControllers" id="dcb-WX-lqq"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyu-50-TU5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1387" y="-377"/>
         </scene>
         <!--Slide View Controller-->
         <scene sceneID="uGe-6G-gg7">
@@ -285,7 +263,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="391.60305343511448" y="-377.46478873239437"/>
+            <point key="canvasLocation" x="-405" y="-377"/>
         </scene>
         <!--Result View Controller-->
         <scene sceneID="9D4-4f-PKr">
@@ -443,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smZ-VJ-qN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1235.8778625954199" y="-377.46478873239437"/>
+            <point key="canvasLocation" x="482" y="-377"/>
         </scene>
         <!--Search Card View Controller-->
         <scene sceneID="yVG-o6-VZA">
@@ -457,9 +435,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-GW-ieY">
-                                <rect key="frame" x="20" y="244" width="353" height="166"/>
+                                <rect key="frame" x="20" y="255" width="353" height="166"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indicate your card name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgN-Ul-ABT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indicate your card name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgN-Ul-ABT">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="48.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -474,7 +452,7 @@
                                         <rect key="frame" x="0.0" y="117.33333333333333" width="353" height="48.666666666666671"/>
                                         <color key="backgroundColor" red="0.92549020049999997" green="0.6784313917" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Search">
+                                        <buttonConfiguration key="configuration" style="plain" title="Find my card">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
@@ -484,17 +462,54 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSR-8Y-hnC">
+                                <rect key="frame" x="36" y="530" width="320" height="216"/>
+                            </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3a-jd-rFH">
+                                <rect key="frame" x="76" y="451" width="240" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="k9e-br-Dwt"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ValuCards" translatesAutoresizingMaskIntoConstraints="NO" id="SDz-KN-1UC">
+                                <rect key="frame" x="76" y="85" width="240" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SDz-KN-1UC" secondAttribute="height" multiplier="16:9" id="BKN-Cs-r5b"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your country for more accurate results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-q1-46x">
+                                <rect key="frame" x="20" y="472" width="353" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="uTG-Af-yyj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vWN-dJ-Vqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xSR-8Y-hnC" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="36" id="2o5-yE-ICs"/>
                             <constraint firstAttribute="bottom" secondItem="2S5-b6-Kcy" secondAttribute="bottom" id="7oJ-0Q-fzq"/>
                             <constraint firstItem="CZG-GW-ieY" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="20" id="CVl-hZ-usp"/>
                             <constraint firstItem="2S5-b6-Kcy" firstAttribute="top" secondItem="FGM-rN-TxS" secondAttribute="top" id="Di0-kK-e0G"/>
-                            <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="vWN-dJ-Vqs" secondAttribute="top" constant="141" id="JNZ-UY-eb7"/>
+                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="bottom" secondItem="xSR-8Y-hnC" secondAttribute="bottom" constant="72" id="HSp-xV-azk"/>
+                            <constraint firstItem="H3a-jd-rFH" firstAttribute="top" secondItem="CZG-GW-ieY" secondAttribute="bottom" constant="30" id="VXG-R0-Ngn"/>
+                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="SDz-KN-1UC" secondAttribute="trailing" constant="77" id="aqq-95-0v5"/>
+                            <constraint firstItem="CZG-GW-ieY" firstAttribute="top" secondItem="SDz-KN-1UC" secondAttribute="bottom" constant="35" id="b8c-ff-Ul0"/>
                             <constraint firstItem="2S5-b6-Kcy" firstAttribute="leading" secondItem="FGM-rN-TxS" secondAttribute="leading" id="bce-VV-wqC"/>
+                            <constraint firstItem="xSR-8Y-hnC" firstAttribute="top" secondItem="RD9-q1-46x" secondAttribute="bottom" constant="2" id="gJQ-Io-rw1"/>
+                            <constraint firstItem="H3a-jd-rFH" firstAttribute="leading" secondItem="SDz-KN-1UC" secondAttribute="leading" id="gQj-sU-h86"/>
+                            <constraint firstAttribute="trailing" secondItem="RD9-q1-46x" secondAttribute="trailing" constant="20" id="gRX-R2-94u"/>
+                            <constraint firstItem="RD9-q1-46x" firstAttribute="centerX" secondItem="FGM-rN-TxS" secondAttribute="centerX" id="hkT-m5-Vh8"/>
+                            <constraint firstItem="RD9-q1-46x" firstAttribute="top" secondItem="H3a-jd-rFH" secondAttribute="bottom" constant="20" id="mWQ-Fo-HHB"/>
                             <constraint firstAttribute="trailing" secondItem="2S5-b6-Kcy" secondAttribute="trailing" id="sgH-pj-VgF"/>
+                            <constraint firstItem="SDz-KN-1UC" firstAttribute="leading" secondItem="vWN-dJ-Vqs" secondAttribute="leading" constant="76" id="uvM-4A-l8U"/>
+                            <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="xSR-8Y-hnC" secondAttribute="trailing" constant="37" id="vsJ-W3-91S"/>
                             <constraint firstItem="vWN-dJ-Vqs" firstAttribute="trailing" secondItem="CZG-GW-ieY" secondAttribute="trailing" constant="20" id="wUy-Qr-3bE"/>
+                            <constraint firstItem="H3a-jd-rFH" firstAttribute="trailing" secondItem="SDz-KN-1UC" secondAttribute="trailing" id="zyl-He-TPA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manuel" id="uDv-Ko-dAi"/>
@@ -502,84 +517,27 @@
                     <connections>
                         <outlet property="CardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
                         <outlet property="SearchManuelCardButton" destination="aDo-3M-M4W" id="zWZ-BH-ZuS"/>
+                        <outlet property="countryPickerView" destination="xSR-8Y-hnC" id="FA7-wh-iVH"/>
                         <segue destination="6jJ-fF-VEh" kind="show" identifier="SlideViewControllerSegue" id="MV3-4h-dWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-4c-4xV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-521.37404580152668" y="-377.46478873239437"/>
-        </scene>
-        <!--Favorites-->
-        <scene sceneID="TcZ-lV-45i">
-            <objects>
-                <viewController id="UkU-CS-DhW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8dj-jW-YTa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="q5G-vO-R7n"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" id="ELs-W3-xQ2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ael-n6-v5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1387" y="388"/>
-        </scene>
-        <!--Scan-->
-        <scene sceneID="h5k-T9-iBe">
-            <objects>
-                <viewController id="iAo-Cs-fjR" customClass="ScanViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xOZ-q0-sU4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kn5-hw-xjT">
-                                <rect key="frame" x="0.0" y="103" width="393" height="616"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfE-Xa-Cqu">
-                                <rect key="frame" x="0.0" y="728" width="393" height="41"/>
-                                <color key="backgroundColor" red="0.2941176593" green="0.52156865600000002" blue="0.71372550729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Scan">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="ScanImageButtonsTapped:" destination="iAo-Cs-fjR" eventType="touchUpInside" id="AJx-gv-MH6"/>
-                                    <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="B2F-h3-KTc"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="eBC-Nu-apx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Kn5-hw-xjT" firstAttribute="top" secondItem="eBC-Nu-apx" secondAttribute="top" id="0Uj-FN-xQx"/>
-                            <constraint firstItem="Kn5-hw-xjT" firstAttribute="leading" secondItem="eBC-Nu-apx" secondAttribute="leading" id="6pw-3L-MfY"/>
-                            <constraint firstItem="eBC-Nu-apx" firstAttribute="trailing" secondItem="Kn5-hw-xjT" secondAttribute="trailing" id="84L-UU-Pku"/>
-                            <constraint firstItem="eBC-Nu-apx" firstAttribute="trailing" secondItem="RfE-Xa-Cqu" secondAttribute="trailing" id="oWM-gY-UAn"/>
-                            <constraint firstItem="eBC-Nu-apx" firstAttribute="bottom" secondItem="RfE-Xa-Cqu" secondAttribute="bottom" id="qaY-EC-fXp"/>
-                            <constraint firstItem="RfE-Xa-Cqu" firstAttribute="leading" secondItem="eBC-Nu-apx" secondAttribute="leading" id="vHF-u1-yd7"/>
-                            <constraint firstItem="eBC-Nu-apx" firstAttribute="bottom" secondItem="Kn5-hw-xjT" secondAttribute="bottom" constant="50" id="xhD-bK-kJa"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Scan" id="Wrl-vc-Vxq"/>
-                    <connections>
-                        <outlet property="scanButton" destination="RfE-Xa-Cqu" id="6FP-Yg-8xg"/>
-                        <outlet property="viewImage" destination="Kn5-hw-xjT" id="GpG-i8-VFl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="78N-ax-gCK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-669" y="387"/>
+            <point key="canvasLocation" x="-1225.1908396946565" y="-377.46478873239437"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="CC" width="679" height="945"/>
         <image name="Dance To Forget" width="910" height="1450"/>
+        <image name="ValuCards" width="500" height="499"/>
         <image name="pngaaa.com-28984 (1)" width="45" height="45"/>
         <image name="pngaaa.com-7520044 (1)" width="45" height="45"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

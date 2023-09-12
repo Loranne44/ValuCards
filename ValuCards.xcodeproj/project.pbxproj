@@ -15,6 +15,12 @@
 		4528543D2AA710C30069A57A /* SuccessCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4528543C2AA710C30069A57A /* SuccessCase.swift */; };
 		45420B452A7CD785006C5C8C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45420B442A7CD785006C5C8C /* Extension.swift */; };
 		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
+		456A2E652AB046CF00DA85C1 /* IntValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E642AB046CF00DA85C1 /* IntValueFormatter.swift */; };
+		456A2E672AB046E300DA85C1 /* PriceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E662AB046E300DA85C1 /* PriceCategory.swift */; };
+		456A2E692AB04F6300DA85C1 /* CardGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E682AB04F6300DA85C1 /* CardGestureHandler.swift */; };
+		456A2E6B2AB04F9600DA85C1 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E6A2AB04F9600DA85C1 /* ImageService.swift */; };
+		456A2E6D2AB0506F00DA85C1 /* ColorFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */; };
+		456A2E712AB0587400DA85C1 /* EbayCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E702AB0587400DA85C1 /* EbayCountry.swift */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* AuthViewController.swift */; };
@@ -27,7 +33,6 @@
 		457973272A432C760099D024 /* CardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973262A432C760099D024 /* CardsModel.swift */; };
 		457973292A432D240099D024 /* SearchCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973282A432D240099D024 /* SearchCardViewController.swift */; };
 		4579732B2A4339430099D024 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579732A2A4339430099D024 /* Card.swift */; };
-		4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D8732A4B0B0500AE6084 /* ScanViewController.swift */; };
 		4582D87C2A4B6FC600AE6084 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */; };
 		459597272A4EAFAF00F297CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 459597262A4EAFAF00F297CA /* GoogleService-Info.plist */; };
 		4595D3712A7113D600106278 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4595D3702A7113D600106278 /* FacebookLogin */; };
@@ -76,6 +81,12 @@
 		4528543C2AA710C30069A57A /* SuccessCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCase.swift; sourceTree = "<group>"; };
 		45420B442A7CD785006C5C8C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		45526D472A68422D000843DD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		456A2E642AB046CF00DA85C1 /* IntValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntValueFormatter.swift; sourceTree = "<group>"; };
+		456A2E662AB046E300DA85C1 /* PriceCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCategory.swift; sourceTree = "<group>"; };
+		456A2E682AB04F6300DA85C1 /* CardGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGestureHandler.swift; sourceTree = "<group>"; };
+		456A2E6A2AB04F9600DA85C1 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFilterService.swift; sourceTree = "<group>"; };
+		456A2E702AB0587400DA85C1 /* EbayCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbayCountry.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457972EF2A42F9030099D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457972F12A42F9030099D024 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +103,6 @@
 		457973262A432C760099D024 /* CardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModel.swift; sourceTree = "<group>"; };
 		457973282A432D240099D024 /* SearchCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardViewController.swift; sourceTree = "<group>"; };
 		4579732A2A4339430099D024 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		4582D8732A4B0B0500AE6084 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		459597262A4EAFAF00F297CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		459942DC2A4D707F00BC4AF3 /* CardsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsSession.swift; sourceTree = "<group>"; };
@@ -198,6 +208,7 @@
 				4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */,
 				451699072AA23DE20022C44B /* CardItem.swift */,
 				45F433C42AA5D596003BDB0E /* CardPricingService.swift */,
+				456A2E6A2AB04F9600DA85C1 /* ImageService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -244,9 +255,10 @@
 			isa = PBXGroup;
 			children = (
 				457973282A432D240099D024 /* SearchCardViewController.swift */,
-				4582D8732A4B0B0500AE6084 /* ScanViewController.swift */,
 				45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */,
 				45526D472A68422D000843DD /* ResultViewController.swift */,
+				456A2E682AB04F6300DA85C1 /* CardGestureHandler.swift */,
+				456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -258,6 +270,9 @@
 				4528543C2AA710C30069A57A /* SuccessCase.swift */,
 				45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */,
 				45420B442A7CD785006C5C8C /* Extension.swift */,
+				456A2E642AB046CF00DA85C1 /* IntValueFormatter.swift */,
+				456A2E662AB046E300DA85C1 /* PriceCategory.swift */,
+				456A2E702AB0587400DA85C1 /* EbayCountry.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -469,17 +484,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				456A2E6D2AB0506F00DA85C1 /* ColorFilterService.swift in Sources */,
 				4582D87C2A4B6FC600AE6084 /* ResponseModel.swift in Sources */,
 				45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */,
+				456A2E712AB0587400DA85C1 /* EbayCountry.swift in Sources */,
 				457973292A432D240099D024 /* SearchCardViewController.swift in Sources */,
+				456A2E672AB046E300DA85C1 /* PriceCategory.swift in Sources */,
 				45526D482A68422D000843DD /* ResultViewController.swift in Sources */,
 				4528543D2AA710C30069A57A /* SuccessCase.swift in Sources */,
 				45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */,
+				456A2E692AB04F6300DA85C1 /* CardGestureHandler.swift in Sources */,
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
-				4582D8742A4B0B0500AE6084 /* ScanViewController.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
+				456A2E652AB046CF00DA85C1 /* IntValueFormatter.swift in Sources */,
 				45420B452A7CD785006C5C8C /* Extension.swift in Sources */,
+				456A2E6B2AB04F9600DA85C1 /* ImageService.swift in Sources */,
 				4579732B2A4339430099D024 /* Card.swift in Sources */,
 				45F433C72AA5E1BC003BDB0E /* UIViewController+Alerts.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
