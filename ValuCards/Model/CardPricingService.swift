@@ -7,9 +7,8 @@
 
 import Foundation
 
-/// Service to calculate different pricing metrics from a collection of card items.
+// Service to calculate different pricing metrics from a collection of card items.
 struct CardPricingService {
-
     private func prices(from cards: [ItemSummary]) -> [Double] {
         return cards.compactMap { Double($0.price.value) }
     }

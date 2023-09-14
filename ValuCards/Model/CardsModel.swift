@@ -18,7 +18,7 @@ class CardsModel {
     private let session : CardsProviderProtocol
     
     // The eBay API key
-    static let apiKey = "v^1.1#i^1#f^0#p^1#r^0#I^3#t^H4sIAAAAAAAAAOVYa2wUVRTebbclFSsqKoigy1QjWGfmzuxzxu6abZfK0nd3adoaIPO42w7deThzt9sNEJuaQCHEKD6RhNaoTYoxQaMREkSlKolKQowPiPpLeZiABFAJ/ABndpeyrQSQbmIT989mzj333O/7zjn33hnQX1r2yPql68+V22cUDfeD/iK7nZoJykpLKm8rLppXYgN5Dvbh/gf7HQPFx6sMTk5obCs0NFUxoLNPTigGmzEGsKSusCpnSAarcDI0WCSw0VBDPUsTgNV0FamCmsCckXAAowDH+OMexu3384Kb8ZlW5XLMmBrAPAwPGBdDuzyiP86IgjluGEkYUQzEKSiA0YB24YDBKTpG0SztYWk/4Qe+TszZBnVDUhXThQBYMAOXzczV87BeGypnGFBHZhAsGAnVRptCkfCSxlgVmRcrmNMhijiUNCY+1agidLZxiSS89jJGxpuNJgUBGgZGBrMrTAzKhi6DuQn4GandPOXmedEn+AXK4xGZgkhZq+oyh66Nw7JIIh7PuLJQQRJKX09RUw1+NRRQ7qnRDBEJO62/liSXkOIS1APYkupQR6i5GQvWqzqnKHAZbqldw+ki3twaxj2MFzC03+fGGc4DOS/lzi2UjZaTedJKNaoiSpZohrNRRdXQRA0na0PlaWM6NSlNeiiOLET5fu6chj6G6bSSms1iEnUrVl6hbArhzDxePwPjsxHSJT6J4HiEyQMZiQIYp2mSiE0ezNRirnz6jADWjZDGkmQqlSJSLkLVu0gaAIpsb6iPCt1Q5jDT1+r1rL90/Qm4lKEiQHOmIbEorZlY+sxaNQEoXVjQ7fPTwJ/TfSKs4GTrPwx5nMmJHVGoDhEo3gsEFxXnGZ5z+X2F6JBgrkhJCwfkuTQuc3oPRFqCEyAumHWWlKEuiazLE6dd/jjERS8Tx91MPI7zHtGLU3EIAYQ8LzD+/1Oj3GipR6GgQ1SQWi9YnS/tIUMxTWoJe2rlKOqt1ZLpdDsj9q1u57SIV2pnWio7lje2V7fXNwRutBuuSr4mIZnKxMz1CyGA1esFFEE1EBSnRC8qqBpsVhOSkJ5eCXbpYjOno3QUJhKmYUokQ5oWKcxeXTB6/3KbuDnehTuj/qPz6aqsDKtkpxcra75hBuA0ibBOIEJQZdLqdZUzrx+WeVUG9ZR4S+bNdVqxNklm2Upi9spJZOgSRq9A6NBQk7p52yaarBtYTO2BinmeIV1NJKDeRk25n2U5iTg+AadbYxegwCVumh22lJdxe2jKQ0+Nl5A5SldNty2pEFux44mbvFaTE1/yg7bMjxqw7wMD9r1FdjuoAg9RFWBhafFyR/Gt8wwJQULi4oQhdSnmu6sOiR6Y1jhJL5ptOweObRNOLB3d1HMx9dTRx9bZ8r8xDK8Ac8e/MpQVUzPzPjmA+VdGSqhZc8ppF2AomqJpM+edoOLKqIO6x3FX6Q73os2BDdT8ysG/Bt948dWKrvUrQPm4k91eYnMM2G2NP793y+1Hz75bHDm0ZvElIn1y7FJd5X7x86G1A9s7wuXDdee/QTPxH7+7cOd85e3ze5p3V/RUnZpdFWs92wXnfPCybQyl7hh8murY8NZFvvuXkYNjxFFpNzN677c0s3bZ3DNkh7y8273Mcejgqvi2Syt7XxgFz7yzgF2x07eEHAl3NqTqVt5/5KPapt/PzN61eO+aB4gD63ZVjKETW9u8jk2vz6s+Fnxu4acff7Gx7rVFe05f2D4YfOXxNz88OVJ8jtyItQ49XAn2ff38WO8nLWUHvk8cPv3Tl8/2Hppxd+wr+bOh0aHDw/tPoZ1HFq9d8Nuv9428NKtlS2jvjvePb/3hD/6grebJ0S1/zjj1aDaXfwNR3WPl/REAAA=="
+    static let apiKey = "v^1.1#i^1#r^0#I^3#p^1#f^0#t^H4sIAAAAAAAAAOVYb2wTZRhv1w5CxgYiwYlEy4GJYfT6Xntt7861ptsY6xzboGMOVObbu7fj6PXuvHvLVv5lTNwHkOiIoAE/TNAE4xCDX/xDQAjGDxr5IxHiB4mASuKISQeiaIx3bRndJICsiUvsl+ae93mf9/f7Pc/zvu8d6J4waV5vXe+1UuvEov5u0F1ktVIlYNKE4ooyW9HMYgvIc7D2d8/ttvfYLlXqMCGp3BKkq4qsI0dXQpJ1LmMMEElN5hSoizonwwTSOcxzkdCiBs5NAk7VFKzwikQ4wjUBgmV5DwACS0EGIDYWM6zyjZgtSoBA3hjFu2kP6xfcvij0G+O6nkRhWcdQxgHCDdweJ2CdFN1CuTmK5jwM6WeZ5YSjFWm6qMiGCwmIYAYul5mr5WG9PVSo60jDRhAiGA7VRppC4ZoFjS2VrrxYwZwOEQxxUh/5VK0IyNEKpSS6/TJ6xpuLJHke6TrhCmZXGBmUC90Acw/wM1JDSmB8PoqBwCN4Ec8WRMpaRUtAfHscpkUUnLGMK4dkLOLUnRQ11IiuQjzOPTUaIcI1DvNvcRJKYkxEWoBYUBVaFmpuJoINigZlGdU7TbWroSY4m5fUOL2sD7Buxk87WehF0EfRuYWy0XIyj1qpWpEF0RRNdzQquAoZqNFobUCeNoZTk9ykhWLYRJTvRw9rSC83k5rNYhKvlM28ooQhhCPzeOcMDM/GWBOjSYyGI4weyEhk5FpVRYEYPZipxVz5dOkBYiXGKudydXZ2kp0eUtE6XG4AKFfbooYIvxIlIGH4mr2e9RfvPMEpZqjwyJipixxOqQaWLqNWDQByBxGk/YwbMDndR8IKjrb+w5DH2TWyIwrVITSICh4I/QxkGF/UhwrRIcFckbpMHCgKU84E1OIIqxLkkZM36iyZQJoocB5vzO1hYsgp+NiYkzb2QmfUK/icVAwhgFA0yrPM/6lR7rbUI4jXEC5IrReszuvirlCLKi6u8dYmInh1rZpMpdpYoWtVG1TDPrGNXVyxbGljW1Vbw6LA3XbDLclXS6KhTIuxfiEEMHu9gCIoOkbCmOhFeEVFzYok8qnxlWCPJjRDDaciSJIMw5hIhlQ1XJi9umD0/uU2cW+8C3dG/Ufn0y1Z6WbJji9W5nzdCABVkTRPIJJXEi6z1xVoXD9Mc3sG9Zh4i8bNdVyxNkhm2YpC9spJZuiS+mqe1JCuJDXjtk02mTewFiWOZOM8w5oiSUhrpcbcz4lEEsOohMZbYxegwEU4zg5bysfSPtbj84+NF585StvH25ZUiK3YvvAer9WukS/5QUvmR/VYj4Ie66EiqxVUgkepOWD2BNtSu23yTF3EiBRhjNTFDtl4d9UQGUcpFYpa0f2Wa+CnXfxg3Tub4391Pv/j4+st+d8Y+p8F5cNfGSbZqJK8Tw5g1s2RYmrKA6VuD2ApmnJTtIdZDubcHLVTM+zTp3XsL3mpTK3alijzTN99btqpMz8fAqXDTlZrscXeY7XU75SmfdWnTnn1zwPp9ODWwfQ8sb381/Khqx+vC79WGQ6VHntzR+vnJ488tK1k22/17JWD34Uu4+3R169GYzsrTrXPfuvC5XhlcOA5Yc+By0dWVJZvmUW+sKJ669564slv6BL6WO8g9+LFyQcvfH9xcMNaHzP0w8Dbel/o5ejG3rMnQvT89Nr59/1StiEyMGMTt+fSu9bt6870r+hKR23nahjb+UdmXPEPPfPE+afx1489bNslXJy4a+9n7eV9U9enP1i47uzWgb74+1NPrzn6yeFv7ZuKTn9xWFqzb/PmB19BQxt37L/w3oc7T8ytSKtM9+G60yfL4PGNVz7ad9zxlPfsHxXXv3xj9/VPf9+bTaXlb/HLn1n9EQAA"
     
     // API headers containing the authorization
     let headers: HTTPHeaders = ["Authorization": "Bearer \(CardsModel.apiKey)"]
@@ -28,32 +28,32 @@ class CardsModel {
         self.session = session
     }
     
-    // MARK: - searchCards method
-        // Searches for cards based on name and country, then triggers the completion handler with the results
+    // MARK: - SearchCards method
+    // Searches for cards based on name and country, then triggers the completion handler with the results
     func searchCards(withName name: String, inCountry country: EbayCountry, completion: @escaping (Result<ItemSearchResult, ErrorCase>) -> Void) {
         
         // Convert spaces in the name to '+' for URL encoding
         let searchQuery = name.split(separator: " ").joined(separator: "+")
-       
+        
         // Construct the URL components
         var components = URLComponents(string: "https://api.ebay.com/buy/browse/v1/item_summary/search")
-            components?.queryItems = [
-                URLQueryItem(name: "q", value: searchQuery),
-                URLQueryItem(name: "limit", value: "200"),
-                URLQueryItem(name: "category_ids", value: "2536")
-            ]
-
+        components?.queryItems = [
+            URLQueryItem(name: "q", value: searchQuery),
+            URLQueryItem(name: "limit", value: "200"),
+            URLQueryItem(name: "category_ids", value: "2536")
+        ]
+        
         // Add headers specific to the search query
-            let headers: HTTPHeaders = [
-                "Authorization": "Bearer \(CardsModel.apiKey)",
-                "X-EBAY-C-MARKETPLACE-ID": country.rawValue
-            ]
-
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(CardsModel.apiKey)",
+            "X-EBAY-C-MARKETPLACE-ID": country.rawValue
+        ]
+        
         // Ensure the URL is valid
         guard let url = components?.url else {
             completion(.failure(.invalidURL))
-                return
-            }
+            return
+        }
         
         // Cancel the previous task if it exists
         task?.cancel()

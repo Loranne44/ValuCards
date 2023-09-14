@@ -10,7 +10,6 @@ import UIKit
 
 /// Service to download images from given URLs.
 class ImageService {
-    
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let imageUrl = URL(string: urlString) else {
             completion(nil)

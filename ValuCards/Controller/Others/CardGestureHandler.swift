@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 class CardGestureHandler {
-    
     private let maxRotationAngle: CGFloat = CGFloat.pi / 3
-
+    
     func getTransformForTranslation(_ translation: CGPoint) -> CGAffineTransform {
         let translationTransform = CGAffineTransform(translationX: translation.x, y: translation.y)
         let translationPercent = translation.x / (UIScreen.main.bounds.width / 2)

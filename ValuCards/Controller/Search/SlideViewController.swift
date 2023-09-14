@@ -8,10 +8,11 @@
 import UIKit
 
 class SlideViewController: UIViewController {
-    
     // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var containerDescription: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var containerCheckOrCancel: UIView!
     
     // Data models and services
     var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)] = []
@@ -30,20 +31,30 @@ class SlideViewController: UIViewController {
         super.viewDidLoad()
         // Initial setup
         setupImageView()
+        setupContainerDescription()
+        setupContainerCheckOrCancel()
         setupGestureRecognizers()
         prepareDataModel()
         updateImageAndTitle()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        resetColorFilter()
+    }
+    
     // Setting up the image view properties
     private func setupImageView() {
-        imageView.layer.cornerRadius = 40
-        imageView.layer.masksToBounds = true
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        imageView.layer.shadowOpacity = 0.8
-        imageView.layer.shadowRadius = 9.0
-        imageView.isUserInteractionEnabled = true
+        ViewHelper.setupImageView(imageView: imageView)
+        
+    }
+    
+    private func setupContainerDescription() {
+        ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .both)
+    }
+    
+    private func setupContainerCheckOrCancel() {
+        ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .both)
     }
     
     // Adding gesture recognizers to the image view
@@ -90,8 +101,8 @@ class SlideViewController: UIViewController {
     private func fetchCardDetails(for title: String) {
         guard let country = selectedCountry else {
             self.showAlert(for: .paysNonSelectionnée)
-               return
-           }
+            return
+        }
         CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
             switch result {
             case let .success(card):
@@ -131,6 +142,12 @@ class SlideViewController: UIViewController {
             }
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        ViewHelper.updateShadowForImageView(imageView: imageView)
+    }
+    
     @IBAction func nextImageButton(_ sender: UIButton) {
         slideResponseModel.showNextImage()
         updateImageAndTitle()
@@ -151,17 +168,13 @@ class SlideViewController: UIViewController {
     private func applyColorFilter() {
         let translationPoint = CGPoint(x: imageView.transform.tx, y: imageView.transform.ty)
         let color = colorFilterService.filterColorForTranslation(translationPoint)
-
-        let colorFilter = UIView(frame: imageView.bounds)
-        colorFilter.backgroundColor = color
-        imageView.addSubview(colorFilter)
+        imageView.backgroundColor = color
+        
     }
     
     // Resetting the color filter
     private func resetColorFilter() {
-        for subview in imageView.subviews {
-            subview.removeFromSuperview()
-        }
+        imageView.backgroundColor = UIColor.clear
     }
     
     // Navigating to the result view controller with the card details

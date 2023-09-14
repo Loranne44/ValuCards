@@ -9,7 +9,6 @@ import UIKit
 import DGCharts
 
 class ResultViewController: UIViewController {
-    
     // MARK: - Properties
     var averagePrice: Double?
     var lowestPrice: Double?
@@ -30,7 +29,8 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var numberCardsSaleLabel: UILabel!
     @IBOutlet weak var priceChartView: BarChartView!
     @IBOutlet weak var titleCards: UILabel!
-    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerChart: UIView!
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
@@ -56,7 +56,7 @@ class ResultViewController: UIViewController {
         categorizeData()
         setupChart()
     }
-
+    
     // MARK: - UI Configuration
     private func setupViews() {
         imageView.image = image
@@ -64,7 +64,16 @@ class ResultViewController: UIViewController {
         
         let currencySymbol = currency?.currencySymbol() ?? ""
         configurePriceLabels(with: currencySymbol)
+        applyShadowAndRoundedCorners(to: containerView, shadowPosition: .both)
+        applyShadowAndRoundedCorners(to: containerChart, shadowPosition: .top)
+        containerChart.alpha = 0.7
+        containerView.alpha = 0.7
     }
+    
+    private func applyShadowAndRoundedCorners(to view: UIView, shadowPosition: ViewHelper.ShadowPosition) {
+        ViewHelper.applyShadowAndRoundedCorners(to: view, shadowPosition: shadowPosition)
+    }
+    
     
     private func configurePriceLabels(with symbol: String) {
         averagePriceLabel.text = formatPrice(averagePrice)
@@ -96,33 +105,33 @@ class ResultViewController: UIViewController {
             }
         }
     }
- 
+    
     private func setupChart() {
         var dataEntries: [BarChartDataEntry] = []
-
+        
         for (index, category) in priceCategories.enumerated() {
             let value = Double(counts[category.label] ?? 0)
             let entry = BarChartDataEntry(x: Double(index), y: value)
             dataEntries.append(entry)
         }
-
+        
         let xAxisLabels = dataEntries.map { priceCategories[Int($0.x)].label }
-
+        
         priceChartView.clear()
-
+        
         let dataSet = BarChartDataSet(entries: dataEntries, label: "Number of cards for sale")
         dataSet.colors = [chartColor]
-
+        
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 0
         dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
-
+        
         let data = BarChartData(dataSet: dataSet)
         priceChartView.data = data
-
+        
         configureChartAxis(with: xAxisLabels)
     }
-
+    
     private func configureChartAxis(with xAxisLabels: [String]) {
         priceChartView.xAxis.labelFont = .systemFont(ofSize: 10)
         priceChartView.xAxis.axisMinimum = 0.0
@@ -134,7 +143,7 @@ class ResultViewController: UIViewController {
         priceChartView.xAxis.drawGridLinesEnabled = false
         priceChartView.leftAxis.enabled = false
         priceChartView.rightAxis.enabled = false
-
+        
         let legend = priceChartView.legend
         legend.enabled = true
         legend.horizontalAlignment = .center
@@ -143,16 +152,16 @@ class ResultViewController: UIViewController {
         legend.drawInside = false
         legend.yOffset = 5
         legend.font = .systemFont(ofSize: 10)
-
+        
         priceChartView.marker = nil
-
+        
         let dataSet = priceChartView.data?.dataSets.first as? BarChartDataSet
         dataSet?.valueFont = .systemFont(ofSize: 15)
         dataSet?.valueTextColor = .black
         dataSet?.valueFormatter = IntValueFormatter()
-
+        
         priceChartView.notifyDataSetChanged()
         priceChartView.setNeedsDisplay()
     }
-
+    
 }

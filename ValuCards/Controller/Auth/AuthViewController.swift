@@ -35,6 +35,7 @@ class AuthViewController: UIViewController {
             setupViewsFor(pageType: currentPageType)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,10 +77,8 @@ class AuthViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         alertController.addAction(sendAction)
         alertController.addAction(cancelAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -97,22 +96,18 @@ class AuthViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
-        
         signInWithFirebase(email: email, password: password)
-        
     }
     
     @IBAction func signUpButton(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
-        
         signUpWithFirebase(email: email, password: password)
     }
     
     @IBAction func facebookAuthButton(_ sender: UIButton) {
         authenticateWithFacebook()
-        
     }
     
     // Facebook authentication method

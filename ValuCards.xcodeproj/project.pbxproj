@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450282182AB32EE600C1D38E /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450282172AB32EE600C1D38E /* ViewHelper.swift */; };
 		4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB32A6FAD73004498FD /* Alamofire */; };
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		450282172AB32EE600C1D38E /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		451699072AA23DE20022C44B /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
 		4528543C2AA710C30069A57A /* SuccessCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCase.swift; sourceTree = "<group>"; };
 		45420B442A7CD785006C5C8C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -149,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		450282192AB32F1700C1D38E /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				450282172AB32EE600C1D38E /* ViewHelper.swift */,
+				456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */,
+				456A2E682AB04F6300DA85C1 /* CardGestureHandler.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		457972E32A42F9030099D024 = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +236,7 @@
 		457973212A42F9220099D024 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				450282192AB32F1700C1D38E /* Others */,
 				4582D8752A4B0B1A00AE6084 /* Auth */,
 				4582D8762A4B0B2400AE6084 /* Search */,
 			);
@@ -257,8 +270,6 @@
 				457973282A432D240099D024 /* SearchCardViewController.swift */,
 				45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */,
 				45526D472A68422D000843DD /* ResultViewController.swift */,
-				456A2E682AB04F6300DA85C1 /* CardGestureHandler.swift */,
-				456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -487,6 +498,7 @@
 				456A2E6D2AB0506F00DA85C1 /* ColorFilterService.swift in Sources */,
 				4582D87C2A4B6FC600AE6084 /* ResponseModel.swift in Sources */,
 				45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */,
+				450282182AB32EE600C1D38E /* ViewHelper.swift in Sources */,
 				456A2E712AB0587400DA85C1 /* EbayCountry.swift in Sources */,
 				457973292A432D240099D024 /* SearchCardViewController.swift in Sources */,
 				456A2E672AB046E300DA85C1 /* PriceCategory.swift in Sources */,

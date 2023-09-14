@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 
 class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    
     // MARK: - Outlets
     @IBOutlet weak var CardNameTextField: UITextField!
     @IBOutlet weak var SearchManuelCardButton: UIButton!
@@ -28,7 +27,6 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
            let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
             countryPickerView.selectRow(index, inComponent: 0, animated: false)
         }
-        
     }
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
