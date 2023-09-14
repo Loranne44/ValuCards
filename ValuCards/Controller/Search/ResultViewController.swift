@@ -64,7 +64,7 @@ class ResultViewController: UIViewController {
         
         let currencySymbol = currency?.currencySymbol() ?? ""
         configurePriceLabels(with: currencySymbol)
-        applyShadowAndRoundedCorners(to: containerView, shadowPosition: .both)
+        applyShadowAndRoundedCorners(to: containerView, shadowPosition: .bottom)
         applyShadowAndRoundedCorners(to: containerChart, shadowPosition: .top)
         containerChart.alpha = 0.7
         containerView.alpha = 0.7
@@ -119,6 +119,7 @@ class ResultViewController: UIViewController {
         
         priceChartView.clear()
         
+        // Quantity
         let dataSet = BarChartDataSet(entries: dataEntries, label: "Number of cards for sale")
         dataSet.colors = [chartColor]
         
@@ -150,7 +151,7 @@ class ResultViewController: UIViewController {
         legend.verticalAlignment = .bottom
         legend.orientation = .horizontal
         legend.drawInside = false
-        legend.yOffset = 5
+        legend.yOffset = 0
         legend.font = .systemFont(ofSize: 10)
         
         priceChartView.marker = nil

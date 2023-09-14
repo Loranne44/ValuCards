@@ -50,11 +50,11 @@ class SlideViewController: UIViewController {
     }
     
     private func setupContainerDescription() {
-        ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .both)
+       ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
     }
     
     private func setupContainerCheckOrCancel() {
-        ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .both)
+    ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .top)
     }
     
     // Adding gesture recognizers to the image view
