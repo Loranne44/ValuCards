@@ -42,6 +42,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         let selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
         
         // Initiate card search
+        // Afficher que les résultats avec une image
         CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else {
@@ -50,10 +51,12 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
                 
                 switch result {
                 case let .success(card):
-                    let imagesAndTitlesAndPrices = card.itemSummaries.flatMap { summary in
-                        summary.thumbnailImages.map { image in
-                            (imageName: image.imageUrl, title: summary.title, price: summary.price)
-                        }
+                    let imagesAndTitlesAndPrices = card.itemSummaries
+                        .filter ({ summary in
+                            summary.thumbnailImages?.first != nil
+                        })
+                        .map { summary in
+                        return (imageName:  summary.thumbnailImages!.first!.imageUrl, title: summary.title, price: summary.price)
                     }
                     
                     self.imagesAndTitlesAndPricesToSend = imagesAndTitlesAndPrices
@@ -116,12 +119,16 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
 }
 
-// UsersPreference -> stockage basique pour Mettre les US __OK
+
 
 // Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
 // Le back en blanc avec une classe
-// inscription/Connexion 
+// inscription/Connexion Google/facebook / Apple
 // Tests
 // Changer les logos
-// Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis
+// Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
 // Dark mode ??
+
+// Mémoriser l'utilisateur connecté
+
+// Décaler l'appel réseau qui affiche le graphique dans le slide et non le search ?

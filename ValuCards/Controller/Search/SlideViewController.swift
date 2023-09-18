@@ -27,9 +27,9 @@ class SlideViewController: UIViewController {
     private let colorFilterService = ColorFilterService()
     private var initialPanPoint: CGPoint = CGPoint.zero
     
+    // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Initial setup
         setupImageView()
         setupContainerDescription()
         setupContainerCheckOrCancel()
@@ -43,40 +43,42 @@ class SlideViewController: UIViewController {
         resetColorFilter()
     }
     
-    // Setting up the image view properties
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        ViewHelper.updateShadowForImageView(imageView: imageView)
+    }
+    
     private func setupImageView() {
         ViewHelper.setupImageView(imageView: imageView)
-        
     }
     
     private func setupContainerDescription() {
-       ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
+        ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
     }
     
     private func setupContainerCheckOrCancel() {
-    ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .top)
+        ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .top)
     }
     
-    // Adding gesture recognizers to the image view
     private func setupGestureRecognizers() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         imageView.addGestureRecognizer(panGesture)
     }
     
-    // Preparing the data model for the slides
+    // MARK: - Data Preparation
     private func prepareDataModel() {
         let cardItems = imagesAndTitlesAndPrices.map { CardItem(imageName: $0.imageName, title: $0.title, price: $0.price) }
         slideResponseModel = ResponseModel(cardItems: cardItems)
         totalCardCount = slideResponseModel.cardItems.count
     }
     
-    // Handling pan gestures on the image view
+    // MARK: - Gesture Handling
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began:
             initialPanPoint = gesture.translation(in: imageView)
         case .changed:
-            performCardAction(with: gesture.translation(in: imageView))
+            updateCardTransform(with: gesture.translation(in: imageView))
             applyColorFilter()
         case .ended, .cancelled:
             imageView.alpha = 1.0
@@ -97,12 +99,25 @@ class SlideViewController: UIViewController {
         }
     }
     
-    // Fetching card details based on the title
+    // MARK: - Actions
+    @IBAction func nextImageButton(_ sender: UIButton) {
+        slideResponseModel.showNextImage()
+        updateImageAndTitle()
+    }
+    
+    @IBAction func validateImageButton(_ sender: UIButton) {
+        fetchCardDetails(for: slideResponseModel.getCurrentTitle())
+        
+    }
+    
+    // MARK: - Private Helper Methods
     private func fetchCardDetails(for title: String) {
         guard let country = selectedCountry else {
             self.showAlert(for: .paysNonSelectionnée)
             return
         }
+        
+        //Viewdidload du prochain controller
         CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
             switch result {
             case let .success(card):
@@ -120,13 +135,13 @@ class SlideViewController: UIViewController {
                         cards: card.itemSummaries
                     )
                 }
-            case .failure(_):
+            case .failure(let error):
+                print(error)
                 self?.showAlert(for: .cardSearchError)
             }
         }
     }
     
-    // Updating the image and title for the card
     func updateImageAndTitle() {
         let imageUrlString = slideResponseModel.getCurrentImageName()
         var title = slideResponseModel.getCurrentTitle()
@@ -143,28 +158,11 @@ class SlideViewController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        ViewHelper.updateShadowForImageView(imageView: imageView)
-    }
-    
-    @IBAction func nextImageButton(_ sender: UIButton) {
-        slideResponseModel.showNextImage()
-        updateImageAndTitle()
-    }
-    
-    @IBAction func validateImageButton(_ sender: UIButton) {
-        fetchCardDetails(for: slideResponseModel.getCurrentTitle())
-        
-    }
-    
-    // Handling the card actions when panning
-    private func performCardAction(with translation: CGPoint) {
+    private func updateCardTransform(with translation: CGPoint) {
         imageView.transform = cardGestureHandler.getTransformForTranslation(translation)
         imageView.alpha = cardGestureHandler.getAlphaForTranslation(translation)
     }
     
-    // Applying color filter based on translation
     private func applyColorFilter() {
         let translationPoint = CGPoint(x: imageView.transform.tx, y: imageView.transform.ty)
         let color = colorFilterService.filterColorForTranslation(translationPoint)
@@ -172,12 +170,10 @@ class SlideViewController: UIViewController {
         
     }
     
-    // Resetting the color filter
     private func resetColorFilter() {
         imageView.backgroundColor = UIColor.clear
     }
     
-    // Navigating to the result view controller with the card details
     private func navigateToResultViewController(with averagePrice: Double?, lowest: Double?, highest: Double?, currency: String, numberCardsSale: Int, cards: [ValuCards.ItemSummary]) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let resultViewController = storyboard.instantiateViewController(withIdentifier: "Result") as? ResultViewController {

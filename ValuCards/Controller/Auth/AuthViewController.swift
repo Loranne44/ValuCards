@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import FirebaseCore
 import FirebaseAuth
 import FacebookLogin
+import GoogleSignIn
+import AuthenticationServices
 
 class AuthViewController: UIViewController {
+    
     static let searchCardsSegue = "SearchCards"
     
     // MARK: - Outlets
@@ -36,8 +40,15 @@ class AuthViewController: UIViewController {
         }
     }
     
+    // Add this property to store nonce for Apple Sign In
+    private var currentNonce: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
+        }
         
         // Setup UI elements
         signUpButton.layer.cornerRadius = 15
@@ -48,6 +59,7 @@ class AuthViewController: UIViewController {
         
         passwordTextField.isSecureTextEntry = true
         setupViewsFor(pageType: .signIn)
+        
     }
     
     // Method to setup views based on the current page type
@@ -68,7 +80,7 @@ class AuthViewController: UIViewController {
         let sendAction = UIAlertAction(title: "Send", style: .default) { (_) in
             guard let email = alertController.textFields?.first?.text else { return }
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-                if let error = error {
+                if error != nil {
                     self.showAlert(for: .invalidEmail)
                 } else {
                     self.showAlert(for: .passwordResetSent)
@@ -81,6 +93,7 @@ class AuthViewController: UIViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     
     
     @IBAction func segmentedContolChanged(_ sender: UISegmentedControl) {
@@ -114,7 +127,7 @@ class AuthViewController: UIViewController {
     private func signInWithFirebase(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (_, error) in
             guard let self = self else { return }
-            if let error = error {
+            if error != nil {
                 self.showAlert(for: .loginError)
             } else {
                 self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
@@ -125,7 +138,7 @@ class AuthViewController: UIViewController {
     private func signUpWithFirebase(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (_, error) in
             guard let self = self else { return }
-            if let error = error {
+            if error != nil {
                 self.showAlert(for: .loginError)
             } else {
                 self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
@@ -136,15 +149,63 @@ class AuthViewController: UIViewController {
     private func authenticateWithFacebook() {
         let loginManager = LoginManager()
         loginManager.logOut()
-        loginManager.logIn(permissions: ["email"], from: self) { [weak self] (_, error) in
+        loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
             guard let self = self else { return }
-            if let error = error {
+            if error != nil {
                 self.showAlert(for: .loginError)
                 return
+            }
+            
+            // Après un login Facebook réussi, récupérez le jeton d'accès
+            guard let accessToken = AccessToken.current else {
+                self.showAlert(for: .loginError)
+                return
+            }
+            
+            // Échangez ce jeton d'accès contre un identifiant Firebase
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
+                guard let self = self else { return }
+                if error != nil {
+                    self.showAlert(for: .loginError)
+                    return
+                }
+                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
+            }
+        }
+    }
+    
+    @IBAction func googleAuthButton(_ sender: UIButton) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                // Handle the error
+                self.showAlert(for: .loginError)
+                return
+            }
+            
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                // Handle the error
+                self.showAlert(for: .loginError)
+                return
+            }
+            
+            let accessToken = user.accessToken.tokenString
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            
+            Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
+                guard let self = self else { return }
+                if error != nil {
+                    self.showAlert(for: .loginError)
+                    return
+                }
+                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
             }
         }
     }
 }
-// PAgeViewController
-
-

@@ -16,6 +16,14 @@ extension String {
             return "€"
         case "GBP":
             return "£"
+        case "CHF":
+            return "CHF"
+        case "JPY":
+            return "¥"
+        case "CAD":
+            return "CA$"
+        case "AUD":
+            return "A$"
         default:
             return self
         }

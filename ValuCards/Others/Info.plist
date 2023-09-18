@@ -2,61 +2,63 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string></string>
-		</dict>
-	</array>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>This app wants to take pictures</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app wants to use your photos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app wants to use your photos</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
-		</dict>
-        <key>CFBundleURLTypes</key>
-        <array>
-          <dict>
-          <key>CFBundleURLSchemes</key>
-          <array>
-            <string>fbAPP-ID</string>
-          </array>
-          </dict>
-        </array>
-        <key>FacebookAppID</key>
-        <string>641132091415334</string>
-        <key>FacebookClientToken</key>
-        <string>6d4e2d49a62883ee3ee819f9e2cebaf4</string>
-        <key>FacebookDisplayName</key>
-        <string>ValuCards</string>
-        <key>LSApplicationQueriesSchemes</key>
-        <array>
-          <string>fbapi</string>
-          <string>fb-messenger-share-api</string>
-        </array>
-	</dict>
+    <key>CFBundleIdentifier</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string></string>
+        </dict>
+    </array>
+    <key>FirebaseAutomaticScreenReportingEnabled</key>
+    <false/>
+    <key>NSCameraUsageDescription</key>
+    <string>This app wants to take pictures</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>This app wants to use your photos</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app wants to use your photos</string>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneConfigurationName</key>
+                    <string>Default Configuration</string>
+                    <key>UISceneDelegateClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+                    <key>UISceneStoryboardFile</key>
+                    <string>Main</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb1576348359440046</string>
+            </array>
+        </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+    </array>
+    <key>FacebookAppID</key>
+    <string>1576348359440046</string>
+    <key>FacebookDisplayName</key>
+    <string>ValuCards</string>
+    <key>FacebookClientToken</key>
+    <string>46555ab29b2c5d3a0570865d461aeaa8</string>
+    <key>FacebookAutoLogAppEventsEnabled</key>
+    <true/>
+    <key>FacebookAdvertiserIDCollectionEnabled</key>
+    <true/>
 </dict>
 </plist>
-
-
