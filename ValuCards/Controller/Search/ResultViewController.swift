@@ -20,7 +20,7 @@ class ResultViewController: UIViewController {
     var cardName: String?
     var selectedCountry: EbayCountry?
     let pricingService = CardPricingService()
-
+    
     // MARK: - Outlets
     @IBOutlet weak var titleCardLabel: UILabel!
     @IBOutlet weak var containerAveragePrice: UIView!
@@ -36,14 +36,13 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var currencyHighestLabel: UILabel!
     @IBOutlet weak var cardsSaleLabel: UILabel!
     @IBOutlet weak var containerCharts: UIView!
-    @IBOutlet weak var PieChartView: PieChartView!
+    @IBOutlet weak var pieChartView: PieChartView!
     
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
     
     // MARK: - Constants
-    //   private let chartColor = NSUIColor.systemYellow
     private let priceCategories: [PriceCategory] = [
         .init(range: 0...9, label: "0-9"),
         .init(range: 10...24, label: "10-24"),
@@ -100,7 +99,7 @@ class ResultViewController: UIViewController {
         if let currencySymbol = currency?.currencySymbol() {
             currencyAverageLabel.text = currencySymbol
             averagePriceLabel.text = formatPrice(averagePrice)
-            }
+        }
         
         applyShadowAndRoundedCorners(to: containerAveragePrice, shadowPosition: .bottom)
         applyShadowAndRoundedCorners(to: containerCharts, shadowPosition: .top)
@@ -118,10 +117,13 @@ class ResultViewController: UIViewController {
         averagePriceLabel.text = formatPrice(averagePrice)
         lowestPriceLabel.text = formatPrice(lowestPrice)
         highetsPriceLabel.text = formatPrice(highestPrice)
+        averagePriceLabel2.text = formatPrice(averagePrice)
+        
         cardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
         
         currencyLowestLabel.text = symbol
         currencyAverageLabel.text = symbol
+        currencyAveragePriceLabel2.text = symbol
         currencyHighestLabel.text = symbol
     }
     
@@ -144,77 +146,71 @@ class ResultViewController: UIViewController {
             }
         }
     }
-    
     private func setupChart() {
         var dataEntries: [PieChartDataEntry] = []
         
+        let totalCards = cards.count
         for category in priceCategories {
-            let value = Double(counts[category.label] ?? 0)
-            let entry = PieChartDataEntry(value: value, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
+            let count = Double(counts[category.label] ?? 0)
+            let percentageValue = (count / Double(totalCards)) * 100
+            
+            let entry = PieChartDataEntry(value: percentageValue, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
             dataEntries.append(entry)
         }
         
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
         dataSet.colors = [
             NSUIColor.systemYellow,
-            NSUIColor.systemBlue,
+            NSUIColor.systemCyan,
             NSUIColor.systemRed,
-            NSUIColor.systemGreen,
+            NSUIColor.systemPink,
             NSUIColor.systemOrange,
             NSUIColor.systemPurple,
-            NSUIColor.systemTeal
+            NSUIColor.systemIndigo
         ]
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 1
+        formatter.maximumFractionDigits = 0
         formatter.multiplier = 1.0
         formatter.percentSymbol = "%"
         dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
         
+        pieChartView.usePercentValuesEnabled = true
+        pieChartView.drawEntryLabelsEnabled = false
+        dataSet.xValuePosition = .outsideSlice
+        dataSet.yValuePosition = .outsideSlice
+        dataSet.valueLinePart1Length = 0.2
+        dataSet.valueLinePart2Length = 0.4
+        dataSet.valueLineColor = .white
+        dataSet.valueLineWidth = 1.0
+        dataSet.valueLinePart1OffsetPercentage = 0.8
+        
         let data = PieChartData(dataSet: dataSet)
-        PieChartView.data = data
+        pieChartView.data = data
         
+        let centerTextAttributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 14),  // Taille de la police et gras
+            .foregroundColor: UIColor.black        // Couleur du texte
+        ]
+
         let currencySymbol = currency?.currencySymbol() ?? ""
-        PieChartView.centerText = "Break-down by\nprice \(currencySymbol)\(formatPrice(averagePrice))"
-
-
-        PieChartView.legend.enabled = false
+        let centerString = "Break-down by\nprice \(currencySymbol)\(formatPrice(averagePrice))"
+        pieChartView.centerAttributedText = NSAttributedString(string: centerString, attributes: centerTextAttributes)
         
-        PieChartView.notifyDataSetChanged()
-        PieChartView.setNeedsDisplay()
-    }
-    
-    
-    private func configureChartAxis(with xAxisLabels: [String]) {
-        PieChartView.xAxis.labelFont = .systemFont(ofSize: 10)
-        PieChartView.xAxis.axisMinimum = 0.0
-        PieChartView.xAxis.axisMaximum = Double(priceCategories.count - 1)
-        PieChartView.xAxis.labelPosition = .bottom
-        PieChartView.xAxis.setLabelCount(priceCategories.count, force: true)
-        PieChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
-        PieChartView.xAxis.granularity = 1
-        PieChartView.xAxis.drawGridLinesEnabled = false
-        //priceChartView.leftAxis.enabled = false
-        // priceChartView.rightAxis.enabled = false
+        pieChartView.legend.enabled = true
+        pieChartView.legend.orientation = .vertical
+        pieChartView.legend.horizontalAlignment = .right
+        pieChartView.legend.verticalAlignment = .center
         
-        let legend = PieChartView.legend
-        legend.enabled = true
-        legend.horizontalAlignment = .center
-        legend.verticalAlignment = .bottom
-        legend.orientation = .horizontal
-        legend.drawInside = false
-        legend.yOffset = 0
-        legend.font = .systemFont(ofSize: 10)
-        
-        PieChartView.marker = nil
-        
-        let dataSet = PieChartView.data?.dataSets.first as? BarChartDataSet
-        dataSet?.valueFont = .systemFont(ofSize: 15)
-        dataSet?.valueTextColor = .black
-        dataSet?.valueFormatter = IntValueFormatter()
-        
-        PieChartView.notifyDataSetChanged()
-        PieChartView.setNeedsDisplay()
+        pieChartView.notifyDataSetChanged()
+        pieChartView.setNeedsDisplay()
     }
 }
+
+
+
+// Cacher quand on swipe vers le haut
+// https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
+// https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
+// Loader avant d'afficher la bonne vue

@@ -322,19 +322,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJn-ZS-Ogq" userLabel="View Charts">
-                                                <rect key="frame" x="20" y="888.33333333333337" width="353" height="396.66666666666663"/>
+                                                <rect key="frame" x="10" y="900.33333333333337" width="373" height="389.66666666666663"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJH-dP-bLs" customClass="BarChartView" customModule="DGCharts">
-                                                        <rect key="frame" x="20" y="20" width="313" height="356.66666666666669"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJH-dP-bLs" customClass="PieChartView" customModule="DGCharts">
+                                                        <rect key="frame" x="10" y="10" width="353" height="369.66666666666669"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.92941176889999999" green="0.69411766529999996" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="aJH-dP-bLs" secondAttribute="bottom" constant="20" id="ADV-mb-Oox"/>
-                                                    <constraint firstAttribute="trailing" secondItem="aJH-dP-bLs" secondAttribute="trailing" constant="20" id="Ad0-xc-wL0"/>
-                                                    <constraint firstItem="aJH-dP-bLs" firstAttribute="leading" secondItem="lJn-ZS-Ogq" secondAttribute="leading" constant="20" id="KmS-ga-8Wu"/>
-                                                    <constraint firstItem="aJH-dP-bLs" firstAttribute="top" secondItem="lJn-ZS-Ogq" secondAttribute="top" constant="20" id="tYY-uV-7PL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="aJH-dP-bLs" secondAttribute="bottom" constant="10" id="ADV-mb-Oox"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aJH-dP-bLs" secondAttribute="trailing" constant="10" id="Ad0-xc-wL0"/>
+                                                    <constraint firstItem="aJH-dP-bLs" firstAttribute="leading" secondItem="lJn-ZS-Ogq" secondAttribute="leading" constant="10" id="KmS-ga-8Wu"/>
+                                                    <constraint firstItem="aJH-dP-bLs" firstAttribute="top" secondItem="lJn-ZS-Ogq" secondAttribute="top" constant="10" id="tYY-uV-7PL"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRR-ju-q1h" userLabel="View price">
@@ -463,7 +463,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Average price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDO-z9-fYS">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Average price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDO-z9-fYS">
                                                                 <rect key="frame" x="0.0" y="46" width="92.333333333333329" height="17.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -481,29 +481,29 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="1QM-sB-rF3">
-                                                <rect key="frame" x="52" y="182.33333333333334" width="302" height="446.66666666666663"/>
+                                                <rect key="frame" x="20" y="182.33333333333334" width="353" height="446.66666666666663"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.92941176889999999" green="0.69411766529999996" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstItem="lJn-ZS-Ogq" firstAttribute="top" secondItem="HRR-ju-q1h" secondAttribute="bottom" constant="38" id="0xU-ES-a22"/>
-                                            <constraint firstAttribute="bottom" secondItem="lJn-ZS-Ogq" secondAttribute="bottom" constant="15" id="4YZ-NW-noW"/>
-                                            <constraint firstAttribute="trailing" secondItem="lJn-ZS-Ogq" secondAttribute="trailing" constant="20" id="6gi-fS-rnC"/>
+                                            <constraint firstItem="lJn-ZS-Ogq" firstAttribute="top" secondItem="HRR-ju-q1h" secondAttribute="bottom" constant="50" id="0xU-ES-a22"/>
+                                            <constraint firstAttribute="bottom" secondItem="lJn-ZS-Ogq" secondAttribute="bottom" constant="10" id="4YZ-NW-noW"/>
+                                            <constraint firstAttribute="trailing" secondItem="lJn-ZS-Ogq" secondAttribute="trailing" constant="10" id="6gi-fS-rnC"/>
                                             <constraint firstItem="Ele-nD-ffY" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="20" id="8I5-JF-YsX"/>
                                             <constraint firstAttribute="trailing" secondItem="iGf-eV-nYC" secondAttribute="trailing" id="CCw-mp-8i2"/>
                                             <constraint firstItem="HRR-ju-q1h" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="20" id="DxQ-SV-9eZ"/>
                                             <constraint firstItem="1QM-sB-rF3" firstAttribute="top" secondItem="OS8-FZ-YyH" secondAttribute="bottom" constant="15" id="Egx-GH-9H5"/>
-                                            <constraint firstItem="1QM-sB-rF3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="52" id="JQB-Me-iZM"/>
+                                            <constraint firstItem="1QM-sB-rF3" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="20" id="JQB-Me-iZM"/>
                                             <constraint firstAttribute="height" constant="1300" id="LOM-kQ-icq"/>
                                             <constraint firstItem="Ele-nD-ffY" firstAttribute="top" secondItem="VHH-CU-Bra" secondAttribute="top" constant="30" id="RjT-aF-ejU"/>
                                             <constraint firstAttribute="trailing" secondItem="Ele-nD-ffY" secondAttribute="trailing" constant="20" id="UWE-JN-V5N"/>
                                             <constraint firstItem="HRR-ju-q1h" firstAttribute="top" secondItem="1QM-sB-rF3" secondAttribute="bottom" constant="56" id="WRy-Fc-oJz"/>
                                             <constraint firstAttribute="bottom" secondItem="iGf-eV-nYC" secondAttribute="bottom" id="X9e-OK-Nn7"/>
-                                            <constraint firstItem="lJn-ZS-Ogq" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="20" id="d71-X7-Ang"/>
+                                            <constraint firstItem="lJn-ZS-Ogq" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="10" id="d71-X7-Ang"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="OS8-FZ-YyH" secondAttribute="trailing" constant="140" id="hXC-Yh-aci"/>
                                             <constraint firstItem="HRR-ju-q1h" firstAttribute="top" secondItem="VHH-CU-Bra" secondAttribute="top" constant="685" id="hji-j5-3Ef"/>
                                             <constraint firstItem="OS8-FZ-YyH" firstAttribute="top" secondItem="Ele-nD-ffY" secondAttribute="bottom" constant="15" id="k9l-a3-jJb"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1QM-sB-rF3" secondAttribute="trailing" constant="39" id="m08-x9-f8A"/>
+                                            <constraint firstAttribute="trailing" secondItem="1QM-sB-rF3" secondAttribute="trailing" constant="20" id="m08-x9-f8A"/>
                                             <constraint firstItem="iGf-eV-nYC" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" id="rqf-0I-rpU"/>
                                             <constraint firstItem="iGf-eV-nYC" firstAttribute="top" secondItem="VHH-CU-Bra" secondAttribute="top" id="sNs-wt-atM"/>
                                             <constraint firstAttribute="trailing" secondItem="HRR-ju-q1h" secondAttribute="trailing" constant="20" id="thE-2Y-rFe"/>
@@ -532,7 +532,6 @@
                     </view>
                     <size key="freeformSize" width="393" height="1400"/>
                     <connections>
-                        <outlet property="PieChartView" destination="aJH-dP-bLs" id="dEj-g9-tKs"/>
                         <outlet property="averagePriceLabel" destination="3uS-ob-T8Z" id="1jb-qH-5Sz"/>
                         <outlet property="averagePriceLabel2" destination="QsC-cc-6K2" id="QyA-Hj-eDr"/>
                         <outlet property="cardImageView" destination="1QM-sB-rF3" id="V1h-ec-stc"/>
@@ -546,6 +545,7 @@
                         <outlet property="currencyLowestLabel" destination="8uk-8t-O8b" id="nqp-Fo-kgH"/>
                         <outlet property="highetsPriceLabel" destination="TKH-qM-Y0o" id="dDt-YI-edl"/>
                         <outlet property="lowestPriceLabel" destination="uXr-Cz-Dsg" id="rAD-BS-YK6"/>
+                        <outlet property="pieChartView" destination="aJH-dP-bLs" id="6Iv-ps-nK8"/>
                         <outlet property="titleCardLabel" destination="Ele-nD-ffY" id="wHW-ll-NU5"/>
                     </connections>
                 </viewController>
