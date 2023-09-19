@@ -11,5 +11,4 @@ import Foundation
 struct CardItem {
     let imageName: String
     let title: String
-    let price: Price
 }

@@ -15,7 +15,7 @@ class SlideViewController: UIViewController {
     @IBOutlet weak var containerCheckOrCancel: UIView!
     
     // Data models and services
-    var imagesAndTitlesAndPrices: [(imageName: String, title: String, price: Price)] = []
+    var imagesAndTitles: [(imageName: String, title: String)] = []
     var slideResponseModel: ResponseModel!
     let pricingService = CardPricingService()
     var totalCardCount: Int?
@@ -49,7 +49,7 @@ class SlideViewController: UIViewController {
     }
     
     private func setupImageView() {
-        ViewHelper.setupImageView(imageView: imageView)
+        ViewHelper.setupImageView(cardImageView: imageView)
     }
     
     private func setupContainerDescription() {
@@ -67,7 +67,7 @@ class SlideViewController: UIViewController {
     
     // MARK: - Data Preparation
     private func prepareDataModel() {
-        let cardItems = imagesAndTitlesAndPrices.map { CardItem(imageName: $0.imageName, title: $0.title, price: $0.price) }
+        let cardItems = imagesAndTitles.map { CardItem(imageName: $0.imageName, title: $0.title) }
         slideResponseModel = ResponseModel(cardItems: cardItems)
         totalCardCount = slideResponseModel.cardItems.count
     }
@@ -88,7 +88,7 @@ class SlideViewController: UIViewController {
             
             let translationX = gesture.translation(in: imageView).x
             if translationX > 0 {
-                fetchCardDetails(for: slideResponseModel.getCurrentTitle())
+                navigateToResultViewController(with: slideResponseModel.getCurrentTitle(), image: imageView.image)
             } else {
                 slideResponseModel.showNextImage()
                 updateImageAndTitle()
@@ -106,40 +106,7 @@ class SlideViewController: UIViewController {
     }
     
     @IBAction func validateImageButton(_ sender: UIButton) {
-        fetchCardDetails(for: slideResponseModel.getCurrentTitle())
-        
-    }
-    
-    // MARK: - Private Helper Methods
-    private func fetchCardDetails(for title: String) {
-        guard let country = selectedCountry else {
-            self.showAlert(for: .paysNonSelectionnée)
-            return
-        }
-        
-        //Viewdidload du prochain controller
-        CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
-            switch result {
-            case let .success(card):
-                let averagePrice = self?.pricingService.getAveragePrice(from: card.itemSummaries)
-                let lowestPrice = self?.pricingService.getLowestPrice(from: card.itemSummaries)
-                let highestPrice = self?.pricingService.getHighestPrice(from: card.itemSummaries)
-                let searchedCardCount = card.itemSummaries.count
-                if let currency = card.itemSummaries.first?.price.currency {
-                    self?.navigateToResultViewController(
-                        with: averagePrice,
-                        lowest: lowestPrice,
-                        highest: highestPrice,
-                        currency: currency,
-                        numberCardsSale: searchedCardCount,
-                        cards: card.itemSummaries
-                    )
-                }
-            case .failure(let error):
-                print(error)
-                self?.showAlert(for: .cardSearchError)
-            }
-        }
+        navigateToResultViewController(with: slideResponseModel.getCurrentTitle(), image: imageView.image)
     }
     
     func updateImageAndTitle() {
@@ -174,17 +141,12 @@ class SlideViewController: UIViewController {
         imageView.backgroundColor = UIColor.clear
     }
     
-    private func navigateToResultViewController(with averagePrice: Double?, lowest: Double?, highest: Double?, currency: String, numberCardsSale: Int, cards: [ValuCards.ItemSummary]) {
+    private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let resultViewController = storyboard.instantiateViewController(withIdentifier: "Result") as? ResultViewController {
-            resultViewController.averagePrice = averagePrice
-            resultViewController.lowestPrice = lowest
-            resultViewController.highestPrice = highest
-            resultViewController.currency = currency
-            resultViewController.image = imageView.image
-            resultViewController.cardTitle = slideResponseModel.getCurrentTitle()
-            resultViewController.cards = cards
-            resultViewController.numberCardsSale = numberCardsSale
+            resultViewController.cardTitle = cardTitle
+            resultViewController.image = image
+            resultViewController.selectedCountry = self.selectedCountry
             navigationController?.pushViewController(resultViewController, animated: true)
         }
     }

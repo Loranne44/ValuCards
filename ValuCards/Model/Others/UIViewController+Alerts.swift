@@ -19,6 +19,7 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    /*
     func showSuccessPopUp(for success: SuccessCase, segueIdentifier: String? = nil) {
         let alert = UIAlertController(title: nil, message: success.message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
@@ -28,5 +29,5 @@ extension UIViewController {
         })
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
-    }
+    }*/
 }

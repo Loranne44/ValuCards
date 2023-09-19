@@ -33,9 +33,4 @@ class ResponseModel {
         guard !cardItems.isEmpty else { return "" }
         return cardItems[currentImageIndex].title
     }
-    
-    func getCurrentPrice() -> Price {
-        guard !cardItems.isEmpty else { return Price(value: "", currency: "") }
-        return cardItems[currentImageIndex].price
-    }
 }

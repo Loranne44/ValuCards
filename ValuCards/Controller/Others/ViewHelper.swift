@@ -14,7 +14,7 @@ struct ViewHelper {
     private static let shadowRadius: CGFloat = 9.0
     private static let shadowOffset = CGSize(width: 0, height: 0)
     
-    static func setupImageView(imageView: UIImageView) {
+    static func setupImageView(cardImageView: UIImageView) {
 /*        imageView.layer.cornerRadius = cornerRadius
         imageView.layer.masksToBounds = true
         imageView.layer.shadowColor = UIColor(hex: "#7090B0").cgColor

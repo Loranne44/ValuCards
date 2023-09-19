@@ -14,7 +14,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var SearchManuelCardButton: UIButton!
     @IBOutlet weak var countryPickerView: UIPickerView!
     
-    var imagesAndTitlesAndPricesToSend: [(imageName: String, title: String, price: Price)] = []
+    var imagesAndTitlesToSend: [(imageName: String, title: String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,6 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         let selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
         
         // Initiate card search
-        // Afficher que les résultats avec une image
         CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else {
@@ -51,15 +50,13 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
                 
                 switch result {
                 case let .success(card):
-                    let imagesAndTitlesAndPrices = card.itemSummaries
-                        .filter ({ summary in
-                            summary.thumbnailImages?.first != nil
-                        })
-                        .map { summary in
-                        return (imageName:  summary.thumbnailImages!.first!.imageUrl, title: summary.title, price: summary.price)
-                    }
+                    let imagesAndTitles = card.itemSummaries
+                        .compactMap { summary -> (imageName: String, title: String)? in
+                            guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
+                            return (imageName: imageUrl, title: summary.title)
+                        }
                     
-                    self.imagesAndTitlesAndPricesToSend = imagesAndTitlesAndPrices
+                    self.imagesAndTitlesToSend = imagesAndTitles
                     self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
                 case let .failure(error):
                     switch error {
@@ -72,7 +69,6 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
             }
         }
     }
-    
     
     // MARK: - UIPickerView DataSource & Delegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -97,7 +93,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {
-            slideViewController.imagesAndTitlesAndPrices = imagesAndTitlesAndPricesToSend
+            slideViewController.imagesAndTitles = imagesAndTitlesToSend
             slideViewController.selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
         }
     }

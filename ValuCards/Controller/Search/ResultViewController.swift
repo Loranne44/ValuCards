@@ -17,29 +17,35 @@ class ResultViewController: UIViewController {
     var image: UIImage?
     var cardTitle: String?
     var numberCardsSale: Int?
-    
+    var cardName: String?
+    var selectedCountry: EbayCountry?
+    let pricingService = CardPricingService()
+
     // MARK: - Outlets
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var inconePriceTrendLowest: UILabel!
-    @IBOutlet weak var iconePriceTrendAverage: UILabel!
-    @IBOutlet weak var iconePriceTrendHighest: UILabel!
-    @IBOutlet weak var lowestPriceLabel: UILabel!
+    @IBOutlet weak var titleCardLabel: UILabel!
+    @IBOutlet weak var containerAveragePrice: UIView!
     @IBOutlet weak var averagePriceLabel: UILabel!
-    @IBOutlet weak var highestPriceLabel: UILabel!
-    @IBOutlet weak var numberCardsSaleLabel: UILabel!
-    @IBOutlet weak var priceChartView: BarChartView!
-    @IBOutlet weak var titleCards: UILabel!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var containerChart: UIView!
+    @IBOutlet weak var currencyAverageLabel: UILabel!
+    @IBOutlet weak var cardImageView: UIImageView!
+    @IBOutlet weak var containerPrice: UIView!
+    @IBOutlet weak var lowestPriceLabel: UILabel!
+    @IBOutlet weak var currencyLowestLabel: UILabel!
+    @IBOutlet weak var averagePriceLabel2: UILabel!
+    @IBOutlet weak var currencyAveragePriceLabel2: UILabel!
+    @IBOutlet weak var highetsPriceLabel: UILabel!
+    @IBOutlet weak var currencyHighestLabel: UILabel!
+    @IBOutlet weak var cardsSaleLabel: UILabel!
+    @IBOutlet weak var containerCharts: UIView!
+    @IBOutlet weak var PieChartView: PieChartView!
+    
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
     
     // MARK: - Constants
-    private let chartColor = NSUIColor.systemYellow
+    //   private let chartColor = NSUIColor.systemYellow
     private let priceCategories: [PriceCategory] = [
-        .init(range: 1...4, label: "<5"),
-        .init(range: 5...9, label: "5-9"),
+        .init(range: 0...9, label: "0-9"),
         .init(range: 10...24, label: "10-24"),
         .init(range: 25...49, label: "25-49"),
         .init(range: 50...99, label: "50-99"),
@@ -52,38 +58,71 @@ class ResultViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        categorizeData()
-        setupChart()
+        fetchCardDetails()
+    }
+    
+    private func fetchCardDetails() {
+        guard let title = cardTitle, let country = selectedCountry else {
+            self.showAlert(for: .paysNonSelectionnée)
+            return
+        }
+        
+        CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
+            switch result {
+            case let .success(card):
+                let averagePrice = self?.pricingService.getAveragePrice(from: card.itemSummaries)
+                let lowestPrice = self?.pricingService.getLowestPrice(from: card.itemSummaries)
+                let highestPrice = self?.pricingService.getHighestPrice(from: card.itemSummaries)
+                self?.averagePrice = averagePrice
+                self?.lowestPrice = lowestPrice
+                self?.highestPrice = highestPrice
+                self?.currency = card.itemSummaries.first?.price.currency
+                self?.cards = card.itemSummaries
+                self?.numberCardsSale = card.itemSummaries.count
+                self?.setupViews()
+                self?.categorizeData()
+                self?.setupChart()
+            case .failure(let error):
+                print(error)
+                self?.showAlert(for: .cardSearchError)
+            }
+        }
     }
     
     // MARK: - UI Configuration
     private func setupViews() {
-        imageView.image = image
-        titleCards.text = cardTitle ?? "Résultats"
+        cardImageView.image = image
+        titleCardLabel.text = cardTitle ?? ""
         
         let currencySymbol = currency?.currencySymbol() ?? ""
         configurePriceLabels(with: currencySymbol)
-        applyShadowAndRoundedCorners(to: containerView, shadowPosition: .bottom)
-        applyShadowAndRoundedCorners(to: containerChart, shadowPosition: .top)
-        containerChart.alpha = 0.7
-        containerView.alpha = 0.7
+        
+        if let currencySymbol = currency?.currencySymbol() {
+            currencyAverageLabel.text = currencySymbol
+            averagePriceLabel.text = formatPrice(averagePrice)
+            }
+        
+        applyShadowAndRoundedCorners(to: containerAveragePrice, shadowPosition: .bottom)
+        applyShadowAndRoundedCorners(to: containerCharts, shadowPosition: .top)
+        applyShadowAndRoundedCorners(to: containerPrice, shadowPosition: .top)
+        containerCharts.alpha = 0.7
+        containerPrice.alpha = 0.7
+        containerAveragePrice.alpha = 0.7
     }
     
     private func applyShadowAndRoundedCorners(to view: UIView, shadowPosition: ViewHelper.ShadowPosition) {
         ViewHelper.applyShadowAndRoundedCorners(to: view, shadowPosition: shadowPosition)
     }
     
-    
     private func configurePriceLabels(with symbol: String) {
         averagePriceLabel.text = formatPrice(averagePrice)
         lowestPriceLabel.text = formatPrice(lowestPrice)
-        highestPriceLabel.text = formatPrice(highestPrice)
-        numberCardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
+        highetsPriceLabel.text = formatPrice(highestPrice)
+        cardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
         
-        inconePriceTrendLowest.text = symbol
-        iconePriceTrendAverage.text = symbol
-        iconePriceTrendHighest.text = symbol
+        currencyLowestLabel.text = symbol
+        currencyAverageLabel.text = symbol
+        currencyHighestLabel.text = symbol
     }
     
     // MARK: - Data Helpers
@@ -107,45 +146,59 @@ class ResultViewController: UIViewController {
     }
     
     private func setupChart() {
-        var dataEntries: [BarChartDataEntry] = []
+        var dataEntries: [PieChartDataEntry] = []
         
-        for (index, category) in priceCategories.enumerated() {
+        for category in priceCategories {
             let value = Double(counts[category.label] ?? 0)
-            let entry = BarChartDataEntry(x: Double(index), y: value)
+            let entry = PieChartDataEntry(value: value, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
             dataEntries.append(entry)
         }
         
-        let xAxisLabels = dataEntries.map { priceCategories[Int($0.x)].label }
+        let dataSet = PieChartDataSet(entries: dataEntries, label: "")
+        dataSet.colors = [
+            NSUIColor.systemYellow,
+            NSUIColor.systemBlue,
+            NSUIColor.systemRed,
+            NSUIColor.systemGreen,
+            NSUIColor.systemOrange,
+            NSUIColor.systemPurple,
+            NSUIColor.systemTeal
+        ]
         
-        priceChartView.clear()
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 1
+        formatter.multiplier = 1.0
+        formatter.percentSymbol = "%"
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
         
-        // Quantity
-        let dataSet = BarChartDataSet(entries: dataEntries, label: "Number of cards for sale")
-        dataSet.colors = [chartColor]
+        let data = PieChartData(dataSet: dataSet)
+        PieChartView.data = data
         
-        let numberFormatter = NumberFormatter()
-        numberFormatter.maximumFractionDigits = 0
-        dataSet.valueFormatter = DefaultValueFormatter(formatter: numberFormatter)
+        let currencySymbol = currency?.currencySymbol() ?? ""
+        PieChartView.centerText = "Break-down by\nprice \(currencySymbol)\(formatPrice(averagePrice))"
+
+
+        PieChartView.legend.enabled = false
         
-        let data = BarChartData(dataSet: dataSet)
-        priceChartView.data = data
-        
-        configureChartAxis(with: xAxisLabels)
+        PieChartView.notifyDataSetChanged()
+        PieChartView.setNeedsDisplay()
     }
     
+    
     private func configureChartAxis(with xAxisLabels: [String]) {
-        priceChartView.xAxis.labelFont = .systemFont(ofSize: 10)
-        priceChartView.xAxis.axisMinimum = 0.0
-        priceChartView.xAxis.axisMaximum = Double(priceCategories.count - 1)
-        priceChartView.xAxis.labelPosition = .bottom
-        priceChartView.xAxis.setLabelCount(priceCategories.count, force: true)
-        priceChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
-        priceChartView.xAxis.granularity = 1
-        priceChartView.xAxis.drawGridLinesEnabled = false
-        priceChartView.leftAxis.enabled = false
-        priceChartView.rightAxis.enabled = false
+        PieChartView.xAxis.labelFont = .systemFont(ofSize: 10)
+        PieChartView.xAxis.axisMinimum = 0.0
+        PieChartView.xAxis.axisMaximum = Double(priceCategories.count - 1)
+        PieChartView.xAxis.labelPosition = .bottom
+        PieChartView.xAxis.setLabelCount(priceCategories.count, force: true)
+        PieChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisLabels)
+        PieChartView.xAxis.granularity = 1
+        PieChartView.xAxis.drawGridLinesEnabled = false
+        //priceChartView.leftAxis.enabled = false
+        // priceChartView.rightAxis.enabled = false
         
-        let legend = priceChartView.legend
+        let legend = PieChartView.legend
         legend.enabled = true
         legend.horizontalAlignment = .center
         legend.verticalAlignment = .bottom
@@ -154,15 +207,14 @@ class ResultViewController: UIViewController {
         legend.yOffset = 0
         legend.font = .systemFont(ofSize: 10)
         
-        priceChartView.marker = nil
+        PieChartView.marker = nil
         
-        let dataSet = priceChartView.data?.dataSets.first as? BarChartDataSet
+        let dataSet = PieChartView.data?.dataSets.first as? BarChartDataSet
         dataSet?.valueFont = .systemFont(ofSize: 15)
         dataSet?.valueTextColor = .black
         dataSet?.valueFormatter = IntValueFormatter()
         
-        priceChartView.notifyDataSetChanged()
-        priceChartView.setNeedsDisplay()
+        PieChartView.notifyDataSetChanged()
+        PieChartView.setNeedsDisplay()
     }
-    
 }
