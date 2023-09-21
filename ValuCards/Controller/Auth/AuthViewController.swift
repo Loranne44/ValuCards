@@ -40,26 +40,28 @@ class AuthViewController: UIViewController {
         }
     }
     
-    // Add this property to store nonce for Apple Sign In
-    private var currentNonce: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigateIfLoggedIn()
+        setupUIElements()
+    }
+    
+    // If user is logged in, navigate to search cards
+    private func navigateIfLoggedIn() {
         if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
+            }
         }
-        
-        // Setup UI elements
-        signUpButton.layer.cornerRadius = 15
-        signInButton.layer.cornerRadius = 15
-        googleButton.layer.cornerRadius = 15
-        appleButton.layer.cornerRadius = 15
-        facebookButton.layer.cornerRadius = 15
-        
-        passwordTextField.isSecureTextEntry = true
-        setupViewsFor(pageType: .signIn)
-        
+    }
+    
+    private func setupUIElements() {
+        [signUpButton, signInButton, googleButton, appleButton, facebookButton].forEach {
+                   $0?.layer.cornerRadius = 15
+               }
+               
+               passwordTextField.isSecureTextEntry = true
+               setupViewsFor(pageType: .signIn)
     }
     
     // Method to setup views based on the current page type
@@ -97,11 +99,7 @@ class AuthViewController: UIViewController {
     
     
     @IBAction func segmentedContolChanged(_ sender: UISegmentedControl) {
-        if sender.titleForSegment(at: sender.selectedSegmentIndex) == "Sign In" {
-            currentPageType = .signIn
-        } else {
-            currentPageType = .signUp
-        }
+        currentPageType = sender.selectedSegmentIndex == 0 ? .signIn : .signUp
     }
     
     // Firebase authentication methods
@@ -126,56 +124,55 @@ class AuthViewController: UIViewController {
     // Facebook authentication method
     private func signInWithFirebase(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (_, error) in
-            guard let self = self else { return }
-            if error != nil {
-                self.showAlert(for: .loginError)
-            } else {
-                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
-            }
-        }
+                   if let error = error {
+                       self?.showAlert(for: .loginError)
+                       print("Error during sign in: \(error.localizedDescription)")
+                       return
+                   }
+                   self?.navigateIfLoggedIn()
+               }
     }
     
     private func signUpWithFirebase(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (_, error) in
-            guard let self = self else { return }
-            if error != nil {
-                self.showAlert(for: .loginError)
-            } else {
-                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
-            }
-        }
+                    if let error = error {
+                        self?.showAlert(for: .loginError)
+                        print("Error during sign up: \(error.localizedDescription)")
+                        return
+                    }
+                    self?.navigateIfLoggedIn()
+                }
     }
     
+    // MARK: - Facebook Authentication Method
     private func authenticateWithFacebook() {
         let loginManager = LoginManager()
-        loginManager.logOut()
-        loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
-            guard let self = self else { return }
-            if error != nil {
-                self.showAlert(for: .loginError)
-                return
-            }
-            
-            // Après un login Facebook réussi, récupérez le jeton d'accès
-            guard let accessToken = AccessToken.current else {
-                self.showAlert(for: .loginError)
-                return
-            }
-            
-            // Échangez ce jeton d'accès contre un identifiant Firebase
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-            
-            Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
-                guard let self = self else { return }
-                if error != nil {
-                    self.showAlert(for: .loginError)
-                    return
-                }
-                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
-            }
-        }
+               loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
+                   if let error = error {
+                       self?.showAlert(for: .loginError)
+                       print("Facebook login error: \(error.localizedDescription)")
+                       return
+                   }
+                   
+                   guard let accessToken = AccessToken.current else {
+                       self?.showAlert(for: .loginError)
+                       return
+                   }
+                   
+                   let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+                   
+                   Auth.auth().signIn(with: credential) { [weak self] (_, error) in
+                       if let error = error {
+                           self?.showAlert(for: .loginError)
+                           print("Error signing in with Facebook: \(error.localizedDescription)")
+                           return
+                       }
+                       self?.navigateIfLoggedIn()
+                   }
+               }
     }
     
+    // MARK: - Google Authentication Method
     @IBAction func googleAuthButton(_ sender: UIButton) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
@@ -183,13 +180,11 @@ class AuthViewController: UIViewController {
         
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
             guard error == nil else {
-                // Handle the error
                 self.showAlert(for: .loginError)
                 return
             }
             
             guard let user = result?.user, let idToken = user.idToken?.tokenString else {
-                // Handle the error
                 self.showAlert(for: .loginError)
                 return
             }
@@ -204,7 +199,7 @@ class AuthViewController: UIViewController {
                     self.showAlert(for: .loginError)
                     return
                 }
-                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
+                self.navigateIfLoggedIn()
             }
         }
     }

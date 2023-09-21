@@ -1,5 +1,5 @@
 //
-//  CardsScannViewController.swift
+//  SearchCardViewController.swift
 //  ValuCards
 //
 //  Created by Loranne Joncheray on 21/06/2023.
@@ -7,20 +7,28 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
     // MARK: - Outlets
-    @IBOutlet weak var CardNameTextField: UITextField!
-    @IBOutlet weak var SearchManuelCardButton: UIButton!
+    @IBOutlet weak var cardNameTextField: UITextField!
+    @IBOutlet weak var searchManuelCardButton: UIButton!
     @IBOutlet weak var countryPickerView: UIPickerView!
     
     var imagesAndTitlesToSend: [(imageName: String, title: String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SearchManuelCardButton.layer.cornerRadius = 15
+        
+        searchManuelCardButton.layer.cornerRadius = 15
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
+        
+        // Navigation settings
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         // Set the saved country from previous user choice
         if let savedCountry = getSavedCountryChoice(),
@@ -29,19 +37,27 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
+    @IBAction func didTapLogoutButton(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError {
+            print("Erreur lors de la déconnexion: \(signOutError)")
+        }
+    }
+    
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
         search()
     }
     
     func search() {
-        guard let name = CardNameTextField.text, !name.isEmpty else {
+        guard let name = cardNameTextField.text, !name.isEmpty else {
             self.showAlert(for: .cardNameMissing)
             return
         }
         
         let selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
         
-        // Initiate card search
         CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else {
@@ -98,13 +114,12 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
-    // Save the country choice for the user in UserDefaults
+    // Save and Retrieve user's country choice
     func saveCountryChoice(country: EbayCountry) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(country.rawValue, forKey: "selectedEbayCountry")
     }
     
-    // Retrieve saved country choice from UserDefaults
     func getSavedCountryChoice() -> EbayCountry? {
         let userDefaults = UserDefaults.standard
         if let savedCountryRawValue = userDefaults.string(forKey: "selectedEbayCountry"),

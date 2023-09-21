@@ -644,11 +644,18 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manuel" id="uDv-Ko-dAi"/>
-                    <navigationItem key="navigationItem" id="xDF-QK-h4M"/>
+                    <navigationItem key="navigationItem" id="xDF-QK-h4M">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="stop" id="Znd-bs-GsJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="didTapLogoutButton:" destination="KU1-UU-09i" id="Pi0-bH-lPV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="CardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
-                        <outlet property="SearchManuelCardButton" destination="aDo-3M-M4W" id="zWZ-BH-ZuS"/>
+                        <outlet property="cardNameTextField" destination="AIM-QS-Np2" id="1jk-By-ywf"/>
                         <outlet property="countryPickerView" destination="xSR-8Y-hnC" id="FA7-wh-iVH"/>
+                        <outlet property="searchManuelCardButton" destination="aDo-3M-M4W" id="zWZ-BH-ZuS"/>
                         <segue destination="6jJ-fF-VEh" kind="show" identifier="SlideViewControllerSegue" id="MV3-4h-dWc"/>
                     </connections>
                 </viewController>
