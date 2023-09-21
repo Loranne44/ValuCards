@@ -146,61 +146,48 @@ class ResultViewController: UIViewController {
             }
         }
     }
+    
     private func setupChart() {
         var dataEntries: [PieChartDataEntry] = []
         
         let totalCards = cards.count
         for category in priceCategories {
             let count = Double(counts[category.label] ?? 0)
-            let percentageValue = (count / Double(totalCards)) * 100
+            let percentageValue = (count / Double(totalCards)) * 1000
             
             let entry = PieChartDataEntry(value: percentageValue, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
             dataEntries.append(entry)
         }
         
+        let chartDescription = Description()
+        chartDescription.text = "Percentage of cards on sale"
+        chartDescription.font = UIFont.boldSystemFont(ofSize: 12)
+        chartDescription.textColor = UIColor.white
+        chartDescription.position = CGPoint(x: pieChartView.bounds.midX, y: pieChartView.bounds.minY + 5)
+        pieChartView.chartDescription = chartDescription
+        
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
         dataSet.colors = [
-            NSUIColor.systemYellow,
             NSUIColor.systemCyan,
             NSUIColor.systemRed,
+            NSUIColor.systemYellow,
             NSUIColor.systemPink,
             NSUIColor.systemOrange,
             NSUIColor.systemPurple,
             NSUIColor.systemIndigo
         ]
         
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 0
-        formatter.multiplier = 1.0
-        formatter.percentSymbol = "%"
-        dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
-        
         pieChartView.usePercentValuesEnabled = true
         pieChartView.drawEntryLabelsEnabled = false
-        dataSet.xValuePosition = .outsideSlice
-        dataSet.yValuePosition = .outsideSlice
-        dataSet.valueLinePart1Length = 0.2
-        dataSet.valueLinePart2Length = 0.4
-        dataSet.valueLineColor = .white
-        dataSet.valueLineWidth = 1.0
-        dataSet.valueLinePart1OffsetPercentage = 0.8
+        dataSet.xValuePosition = .insideSlice
+        dataSet.yValuePosition = .insideSlice
         
         let data = PieChartData(dataSet: dataSet)
         pieChartView.data = data
         
-        let centerTextAttributes: [NSAttributedString.Key : Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 14),  // Taille de la police et gras
-            .foregroundColor: UIColor.black        // Couleur du texte
-        ]
-
-        let currencySymbol = currency?.currencySymbol() ?? ""
-        let centerString = "Break-down by\nprice \(currencySymbol)\(formatPrice(averagePrice))"
-        pieChartView.centerAttributedText = NSAttributedString(string: centerString, attributes: centerTextAttributes)
-        
         pieChartView.legend.enabled = true
         pieChartView.legend.orientation = .vertical
-        pieChartView.legend.horizontalAlignment = .right
+        pieChartView.legend.horizontalAlignment = .center
         pieChartView.legend.verticalAlignment = .center
         
         pieChartView.notifyDataSetChanged()
@@ -214,3 +201,4 @@ class ResultViewController: UIViewController {
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
 // Loader avant d'afficher la bonne vue
+

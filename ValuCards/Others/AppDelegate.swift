@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase
         FirebaseApp.configure()
         
-  //      let fbInitResult = ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        let fbInitResult = ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
