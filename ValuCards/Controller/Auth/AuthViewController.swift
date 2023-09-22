@@ -27,13 +27,11 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     
-    // Enum to differentiate between sign in and sign up page
     private enum PageType {
         case signIn
         case signUp
     }
     
-    // Current displayed page
     private var currentPageType: PageType = .signIn {
         didSet {
             setupViewsFor(pageType: currentPageType)
@@ -46,7 +44,7 @@ class AuthViewController: UIViewController {
         setupUIElements()
     }
     
-    // If user is logged in, navigate to search cards
+    // MARK: - Setup Methods __ANCIEN OK
     private func navigateIfLoggedIn() {
         if Auth.auth().currentUser != nil {
             DispatchQueue.main.async {
@@ -57,61 +55,39 @@ class AuthViewController: UIViewController {
     
     private func setupUIElements() {
         [signUpButton, signInButton, googleButton, appleButton, facebookButton].forEach {
-                   $0?.layer.cornerRadius = 15
-               }
-               
-               passwordTextField.isSecureTextEntry = true
-               setupViewsFor(pageType: .signIn)
+            $0?.layer.cornerRadius = 15
+        }
+        passwordTextField.isSecureTextEntry = true
+        setupViewsFor(pageType: .signIn)
     }
     
-    // Method to setup views based on the current page type
     private func setupViewsFor(pageType: PageType) {
         signInButton.isHidden = pageType == .signUp
         signUpButton.isHidden = pageType == .signIn
         forgetPasswordButton.isHidden = pageType == .signUp
     }
     
+    // MARK: - IBActions
     @IBAction func forgetPasswordButtonTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "Forgot Password", message: "Enter your email address to receive a password reset link", preferredStyle: .alert)
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Email Address"
-            textField.keyboardType = .emailAddress
-        }
-        
-        let sendAction = UIAlertAction(title: "Send", style: .default) { (_) in
-            guard let email = alertController.textFields?.first?.text else { return }
-            Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-                if error != nil {
-                    self.showAlert(for: .invalidEmail)
-                } else {
-                    self.showAlert(for: .passwordResetSent)
-                }
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(sendAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
+        presentForgotPasswordAlert()
     }
-    
-    
     
     @IBAction func segmentedContolChanged(_ sender: UISegmentedControl) {
         currentPageType = sender.selectedSegmentIndex == 0 ? .signIn : .signUp
     }
     
     // Firebase authentication methods
-    @IBAction func signInButton(_ sender: UIButton) {
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
+            showAlert(for: .loginError)
             return
         }
         signInWithFirebase(email: email, password: password)
     }
     
-    @IBAction func signUpButton(_ sender: UIButton) {
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
+            showAlert(for: .registrationError)
             return
         }
         signUpWithFirebase(email: email, password: password)
@@ -121,55 +97,64 @@ class AuthViewController: UIViewController {
         authenticateWithFacebook()
     }
     
-    // Facebook authentication method
+    // MARK: - Firebase Authentication Methods
     private func signInWithFirebase(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (_, error) in
-                   if let error = error {
-                       self?.showAlert(for: .loginError)
-                       print("Error during sign in: \(error.localizedDescription)")
-                       return
-                   }
-                   self?.navigateIfLoggedIn()
-               }
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self?.showAlert(for: .firebaseLoginError)
+                    return
+                }
+                self?.navigateIfLoggedIn()
+            }
+        }
     }
     
     private func signUpWithFirebase(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (_, error) in
-                    if let error = error {
-                        self?.showAlert(for: .loginError)
-                        print("Error during sign up: \(error.localizedDescription)")
-                        return
-                    }
-                    self?.navigateIfLoggedIn()
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self?.showAlert(for: .registrationError)
+                    return
                 }
+                self?.navigateIfLoggedIn()
+            }
+        }
+    }
+    
+    // MARK: - Firebase Helper Methods
+    // Helper method for Firebase sign in with a given credential
+    private func signInWithFirebaseCredential(_ credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { [weak self] (_, error) in
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self?.showAlert(for: .loginError)
+                    return
+                }
+                self?.navigateIfLoggedIn()
+            }
+        }
     }
     
     // MARK: - Facebook Authentication Method
     private func authenticateWithFacebook() {
         let loginManager = LoginManager()
-               loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
-                   if let error = error {
-                       self?.showAlert(for: .loginError)
-                       print("Facebook login error: \(error.localizedDescription)")
-                       return
-                   }
-                   
-                   guard let accessToken = AccessToken.current else {
-                       self?.showAlert(for: .loginError)
-                       return
-                   }
-                   
-                   let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-                   
-                   Auth.auth().signIn(with: credential) { [weak self] (_, error) in
-                       if let error = error {
-                           self?.showAlert(for: .loginError)
-                           print("Error signing in with Facebook: \(error.localizedDescription)")
-                           return
-                       }
-                       self?.navigateIfLoggedIn()
-                   }
-               }
+        loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self?.showAlert(for: .facebookLoginError)
+                    return
+                }
+                
+                guard let accessToken = AccessToken.current else {
+                    self?.showAlert(for: .facebookLoginError)
+                    return
+                }
+                
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+                self?.signInWithFirebaseCredential(credential)
+            }
+        }
     }
     
     // MARK: - Google Authentication Method
@@ -202,5 +187,32 @@ class AuthViewController: UIViewController {
                 self.navigateIfLoggedIn()
             }
         }
+    }
+    
+    private func presentForgotPasswordAlert() {
+        let alertController = UIAlertController(title: "Forgot Password", message: "Enter your email address to receive a password reset link", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Email Address"
+            textField.keyboardType = .emailAddress
+        }
+        
+        let sendAction = UIAlertAction(title: "Send", style: .default) { [weak self] (_) in
+            guard let email = alertController.textFields?.first?.text else { return }
+            Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+                DispatchQueue.main.async {
+                    if error != nil {
+                        self?.showAlert(for: .invalidEmail)
+                    } else {
+                        self?.showAlert(for: .passwordResetSent)
+                    }
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -36,8 +36,16 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var currencyHighestLabel: UILabel!
     @IBOutlet weak var cardsSaleLabel: UILabel!
     @IBOutlet weak var containerCharts: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
@@ -57,8 +65,36 @@ class ResultViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //       self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //       self.navigationController?.navigationBar.isTranslucent = true
+        //       self.navigationController?.view.backgroundColor = .clear
+        //         self.navigationController?.navigationBar.backgroundColor = .clear
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        navigationItem.backBarButtonItem = backBarButton
+        fetchCardDetails()
+        setupBackgroundImageView()
         fetchCardDetails()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    
+    private func setupBackgroundImageView() {
+        self.view.addSubview(backgroundImageView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        
+        self.view.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = UIColor.clear
+    }
+    
     
     private func fetchCardDetails() {
         guard let title = cardTitle, let country = selectedCountry else {
@@ -200,5 +236,15 @@ class ResultViewController: UIViewController {
 // Cacher quand on swipe vers le haut
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
-// Loader avant d'afficher la bonne vue
 
+// Loader avant d'afficher la bonne vue
+// Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
+// Le back en blanc avec une classe __ OK
+// inscription/Connexion Google/facebook / Apple
+// Tests
+// Changer les logos
+// Mémoriser l'utilisateur connecté __OK
+// Décaler l'appel réseau qui affiche le graphique dans le slide et non le search ? __OK
+
+// Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
+// Dark mode ??

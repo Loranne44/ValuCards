@@ -20,6 +20,8 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButton
         
         searchManuelCardButton.layer.cornerRadius = 15
         countryPickerView.dataSource = self
@@ -40,11 +42,19 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBAction func didTapLogoutButton(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
-            self.navigationController?.popToRootViewController(animated: true)
+            if let viewControllers = self.navigationController?.viewControllers {
+                for controller in viewControllers {
+                    if let authVC = controller as? AuthViewController {
+                        self.navigationController?.popToViewController(authVC, animated: true)
+                        break
+                    }
+                }
+            }
         } catch let signOutError {
             print("Erreur lors de la déconnexion: \(signOutError)")
         }
     }
+    
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
         search()
@@ -131,15 +141,5 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
 }
 
 
-
-// Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
-// Le back en blanc avec une classe
-// inscription/Connexion Google/facebook / Apple
-// Tests
-// Changer les logos
-// Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
-// Dark mode ??
-
-// Mémoriser l'utilisateur connecté
-
-// Décaler l'appel réseau qui affiche le graphique dans le slide et non le search ?
+// Navigation controller -> Search / Slide / Result
+// tout seul Auth

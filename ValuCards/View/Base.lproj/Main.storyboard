@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJn-R6-s92" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2964" y="-377"/>
+            <point key="canvasLocation" x="-2215" y="-377"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="e7I-lI-4z2">
@@ -70,7 +70,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signInButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="txf-Mg-VpN"/>
+                                            <action selector="signInButtonTapped:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="txf-Mg-VpN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBg-29-8uj">
@@ -82,7 +82,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signUpButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="3KS-g7-IFC"/>
+                                            <action selector="signUpButtonTapped:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="3KS-g7-IFC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -185,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u86-rw-Sz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2167.1755725190837" y="-377.46478873239437"/>
+            <point key="canvasLocation" x="-3538" y="-220"/>
         </scene>
         <!--Slide View Controller-->
         <scene sceneID="uGe-6G-gg7">
@@ -303,11 +303,11 @@
             <objects>
                 <viewController storyboardIdentifier="Result" id="Tjs-GL-KR5" customClass="ResultViewController" customModule="ValuCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pY2-4e-f0r">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJn-7D-T3a">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="1400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="1300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHH-CU-Bra" userLabel="View principale">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1300"/>
@@ -483,6 +483,13 @@
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="1QM-sB-rF3">
                                                 <rect key="frame" x="20" y="182.33333333333334" width="353" height="446.66666666666663"/>
                                             </imageView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="z5p-BG-34H">
+                                                <rect key="frame" x="151.66666666666666" y="605" width="90" height="90"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="I7W-Np-kIf"/>
+                                                    <constraint firstAttribute="width" constant="90" id="or1-Qc-VeX"/>
+                                                </constraints>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.92941176889999999" green="0.69411766529999996" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -498,7 +505,9 @@
                                             <constraint firstItem="Ele-nD-ffY" firstAttribute="top" secondItem="VHH-CU-Bra" secondAttribute="top" constant="30" id="RjT-aF-ejU"/>
                                             <constraint firstAttribute="trailing" secondItem="Ele-nD-ffY" secondAttribute="trailing" constant="20" id="UWE-JN-V5N"/>
                                             <constraint firstItem="HRR-ju-q1h" firstAttribute="top" secondItem="1QM-sB-rF3" secondAttribute="bottom" constant="56" id="WRy-Fc-oJz"/>
+                                            <constraint firstItem="z5p-BG-34H" firstAttribute="centerX" secondItem="VHH-CU-Bra" secondAttribute="centerX" id="WSo-dq-7pb"/>
                                             <constraint firstAttribute="bottom" secondItem="iGf-eV-nYC" secondAttribute="bottom" id="X9e-OK-Nn7"/>
+                                            <constraint firstItem="z5p-BG-34H" firstAttribute="centerY" secondItem="VHH-CU-Bra" secondAttribute="centerY" id="Y9U-fm-OdH"/>
                                             <constraint firstItem="lJn-ZS-Ogq" firstAttribute="leading" secondItem="VHH-CU-Bra" secondAttribute="leading" constant="10" id="d71-X7-Ang"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="OS8-FZ-YyH" secondAttribute="trailing" constant="140" id="hXC-Yh-aci"/>
                                             <constraint firstItem="HRR-ju-q1h" firstAttribute="top" secondItem="VHH-CU-Bra" secondAttribute="top" constant="685" id="hji-j5-3Ef"/>
@@ -513,8 +522,8 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="VHH-CU-Bra" firstAttribute="top" secondItem="iJn-7D-T3a" secondAttribute="top" id="KRG-Fa-8Uz"/>
                                     <constraint firstAttribute="trailing" secondItem="VHH-CU-Bra" secondAttribute="trailing" id="PDI-0v-lFV"/>
+                                    <constraint firstItem="VHH-CU-Bra" firstAttribute="top" secondItem="iJn-7D-T3a" secondAttribute="top" id="VsM-x7-Saf"/>
                                     <constraint firstAttribute="bottom" secondItem="VHH-CU-Bra" secondAttribute="bottom" id="tcH-G2-NQF"/>
                                     <constraint firstItem="VHH-CU-Bra" firstAttribute="leading" secondItem="iJn-7D-T3a" secondAttribute="leading" id="zhp-TP-01a"/>
                                 </constraints>
@@ -530,8 +539,9 @@
                             <constraint firstAttribute="bottom" secondItem="iJn-7D-T3a" secondAttribute="bottom" id="tpm-6b-mB0"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="1400"/>
+                    <size key="freeformSize" width="393" height="1300"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="z5p-BG-34H" id="vnT-hv-Nj4"/>
                         <outlet property="averagePriceLabel" destination="3uS-ob-T8Z" id="1jb-qH-5Sz"/>
                         <outlet property="averagePriceLabel2" destination="QsC-cc-6K2" id="QyA-Hj-eDr"/>
                         <outlet property="cardImageView" destination="1QM-sB-rF3" id="V1h-ec-stc"/>
@@ -546,6 +556,7 @@
                         <outlet property="highetsPriceLabel" destination="TKH-qM-Y0o" id="dDt-YI-edl"/>
                         <outlet property="lowestPriceLabel" destination="uXr-Cz-Dsg" id="rAD-BS-YK6"/>
                         <outlet property="pieChartView" destination="aJH-dP-bLs" id="6Iv-ps-nK8"/>
+                        <outlet property="scrollView" destination="iJn-7D-T3a" id="ASg-4R-3iN"/>
                         <outlet property="titleCardLabel" destination="Ele-nD-ffY" id="wHW-ll-NU5"/>
                     </connections>
                 </viewController>
@@ -645,7 +656,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Manuel" id="uDv-Ko-dAi"/>
                     <navigationItem key="navigationItem" id="xDF-QK-h4M">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="stop" id="Znd-bs-GsJ">
+                        <barButtonItem key="rightBarButtonItem" image="logout" id="Znd-bs-GsJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="didTapLogoutButton:" destination="KU1-UU-09i" id="Pi0-bH-lPV"/>
@@ -675,6 +686,7 @@
         <image name="cancel 1" width="55" height="55"/>
         <image name="checked 1" width="55" height="55"/>
         <image name="defaultImage" width="679" height="945"/>
+        <image name="logout" width="24" height="26"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

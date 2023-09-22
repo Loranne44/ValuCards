@@ -18,10 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        // Ici gérer la navigation
+        // https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
+        //https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
+        
         // Firebase
         FirebaseApp.configure()
         
-        let fbInitResult = ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        let fbInitResult = ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }

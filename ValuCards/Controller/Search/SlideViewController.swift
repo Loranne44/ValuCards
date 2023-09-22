@@ -30,6 +30,12 @@ class SlideViewController: UIViewController {
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backBarButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
+        navigationItem.backBarButtonItem = backBarButton
+        
         setupImageView()
         setupContainerDescription()
         setupContainerCheckOrCancel()
