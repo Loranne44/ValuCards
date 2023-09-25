@@ -40,18 +40,9 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigateIfLoggedIn()
         setupUIElements()
     }
     
-    // MARK: - Setup Methods __ANCIEN OK
-    private func navigateIfLoggedIn() {
-        if Auth.auth().currentUser != nil {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: nil)
-            }
-        }
-    }
     
     private func setupUIElements() {
         [signUpButton, signInButton, googleButton, appleButton, facebookButton].forEach {
@@ -105,7 +96,7 @@ class AuthViewController: UIViewController {
                     self?.showAlert(for: .firebaseLoginError)
                     return
                 }
-                self?.navigateIfLoggedIn()
+                self?.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: self)
             }
         }
     }
@@ -117,7 +108,7 @@ class AuthViewController: UIViewController {
                     self?.showAlert(for: .registrationError)
                     return
                 }
-                self?.navigateIfLoggedIn()
+                self?.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: self)
             }
         }
     }
@@ -131,7 +122,7 @@ class AuthViewController: UIViewController {
                     self?.showAlert(for: .loginError)
                     return
                 }
-                self?.navigateIfLoggedIn()
+                self?.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: self)
             }
         }
     }
@@ -184,7 +175,7 @@ class AuthViewController: UIViewController {
                     self.showAlert(for: .loginError)
                     return
                 }
-                self.navigateIfLoggedIn()
+                self.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: self)
             }
         }
     }

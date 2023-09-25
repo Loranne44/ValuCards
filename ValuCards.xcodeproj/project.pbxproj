@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		450282182AB32EE600C1D38E /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450282172AB32EE600C1D38E /* ViewHelper.swift */; };
+		450E40F22AC175F4008B225F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450E40F12AC175F4008B225F /* LoadingViewController.swift */; };
+		450E40F82AC180EF008B225F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 450E40F72AC180EF008B225F /* SDWebImage */; };
+		450E40FA2AC1862D008B225F /* gifloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 450E40F92AC1862D008B225F /* gifloader.gif */; };
 		4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB32A6FAD73004498FD /* Alamofire */; };
 		4514BEBA2A6FADAA004498FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB92A6FADAA004498FD /* FirebaseAnalytics */; };
 		4514BEBC2A6FADAA004498FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEBB2A6FADAA004498FD /* FirebaseAuth */; };
@@ -82,6 +85,8 @@
 
 /* Begin PBXFileReference section */
 		450282172AB32EE600C1D38E /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		450E40F12AC175F4008B225F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		450E40F92AC1862D008B225F /* gifloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gifloader.gif; sourceTree = "<group>"; };
 		451699072AA23DE20022C44B /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
 		4528543C2AA710C30069A57A /* SuccessCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCase.swift; sourceTree = "<group>"; };
 		452CBD962AB48438009C71D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -133,6 +138,7 @@
 				45B5B3B32AAB044800A0E169 /* DGCharts in Frameworks */,
 				452CBDAC2AB8569B009C71D1 /* FacebookLogin in Frameworks */,
 				4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */,
+				450E40F82AC180EF008B225F /* SDWebImage in Frameworks */,
 				452CBD932AB47C2F009C71D1 /* GoogleSignIn in Frameworks */,
 				452CBDAA2AB8569B009C71D1 /* FacebookCore in Frameworks */,
 			);
@@ -253,6 +259,7 @@
 		457973222A42F92A0099D024 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				450E40F92AC1862D008B225F /* gifloader.gif */,
 				457972EF2A42F9030099D024 /* AppDelegate.swift */,
 				457972F12A42F9030099D024 /* SceneDelegate.swift */,
 				457972FD2A42F9040099D024 /* Info.plist */,
@@ -275,6 +282,7 @@
 			children = (
 				457973282A432D240099D024 /* SearchCardViewController.swift */,
 				45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */,
+				450E40F12AC175F4008B225F /* LoadingViewController.swift */,
 				45526D472A68422D000843DD /* ResultViewController.swift */,
 			);
 			path = Search;
@@ -332,6 +340,7 @@
 				452CBD942AB47C2F009C71D1 /* GoogleSignInSwift */,
 				452CBDA92AB8569B009C71D1 /* FacebookCore */,
 				452CBDAB2AB8569B009C71D1 /* FacebookLogin */,
+				450E40F72AC180EF008B225F /* SDWebImage */,
 			);
 			productName = ValuCards;
 			productReference = 457972EC2A42F9030099D024 /* ValuCards.app */;
@@ -413,6 +422,7 @@
 				45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */,
 				452CBD912AB47C2F009C71D1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				452CBDA82AB8569B009C71D1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				450E40F62AC180EF008B225F /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 457972ED2A42F9030099D024 /* Products */;
 			projectDirPath = "";
@@ -433,6 +443,7 @@
 				457972FC2A42F9040099D024 /* LaunchScreen.storyboard in Resources */,
 				452CBD972AB48438009C71D1 /* GoogleService-Info.plist in Resources */,
 				457972F92A42F9040099D024 /* Assets.xcassets in Resources */,
+				450E40FA2AC1862D008B225F /* gifloader.gif in Resources */,
 				457972F72A42F9030099D024 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +527,7 @@
 				4528543D2AA710C30069A57A /* SuccessCase.swift in Sources */,
 				45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */,
 				456A2E692AB04F6300DA85C1 /* CardGestureHandler.swift in Sources */,
+				450E40F22AC175F4008B225F /* LoadingViewController.swift in Sources */,
 				459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */,
 				457972F42A42F9030099D024 /* AuthViewController.swift in Sources */,
 				457972F02A42F9030099D024 /* AppDelegate.swift in Sources */,
@@ -871,6 +883,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		450E40F62AC180EF008B225F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -914,6 +934,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		450E40F72AC180EF008B225F /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 450E40F62AC180EF008B225F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		4514BEB32A6FAD73004498FD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4514BEB22A6FAD73004498FD /* XCRemoteSwiftPackageReference "Alamofire" */;

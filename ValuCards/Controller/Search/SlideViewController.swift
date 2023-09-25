@@ -149,11 +149,18 @@ class SlideViewController: UIViewController {
     
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let resultViewController = storyboard.instantiateViewController(withIdentifier: "Result") as? ResultViewController {
+        if let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController {
+            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as! LoadingViewController 
+            loadingVC.modalPresentationStyle = .overFullScreen
+            self.present(loadingVC, animated: true, completion: nil)
+            
             resultViewController.cardTitle = cardTitle
             resultViewController.image = image
             resultViewController.selectedCountry = self.selectedCountry
-            navigationController?.pushViewController(resultViewController, animated: true)
+            resultViewController.loadingViewController = loadingVC
+            
+            navigationController?.pushViewController(resultViewController, animated: false)
         }
     }
 }
+

@@ -27,11 +27,6 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
         
-        // Navigation settings
-        self.navigationItem.leftBarButtonItem = nil
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
         // Set the saved country from previous user choice
         if let savedCountry = getSavedCountryChoice(),
            let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
@@ -39,22 +34,21 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
-    @IBAction func didTapLogoutButton(_ sender: UIBarButtonItem) {
+    @IBAction func didTapLogoutBotton(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
-            if let viewControllers = self.navigationController?.viewControllers {
-                for controller in viewControllers {
-                    if let authVC = controller as? AuthViewController {
-                        self.navigationController?.popToViewController(authVC, animated: true)
-                        break
-                    }
-                }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
+                let navController = UINavigationController(rootViewController: authVC)
+                self.view.window?.rootViewController = navController
+                self.view.window?.makeKeyAndVisible()
             }
+            
         } catch let signOutError {
             print("Erreur lors de la déconnexion: \(signOutError)")
         }
     }
-    
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
         search()

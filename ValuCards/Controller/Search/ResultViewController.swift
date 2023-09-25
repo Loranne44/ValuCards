@@ -20,6 +20,7 @@ class ResultViewController: UIViewController {
     var cardName: String?
     var selectedCountry: EbayCountry?
     let pricingService = CardPricingService()
+    var loadingViewController: LoadingViewController?
     
     // MARK: - Outlets
     @IBOutlet weak var titleCardLabel: UILabel!
@@ -37,15 +38,14 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var cardsSaleLabel: UILabel!
     @IBOutlet weak var containerCharts: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pieChartView: PieChartView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var pieChartView: PieChartView!    
     
-    let backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+     let backgroundImageView: UIImageView = {
+     let imageView = UIImageView()
+     imageView.contentMode = .scaleAspectFill
+     imageView.clipsToBounds = true
+     return imageView
+     }()
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
@@ -65,37 +65,22 @@ class ResultViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //       self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //        self.navigationController?.navigationBar.shadowImage = UIImage()
-        //       self.navigationController?.navigationBar.isTranslucent = true
-        //       self.navigationController?.view.backgroundColor = .clear
-        //         self.navigationController?.navigationBar.backgroundColor = .clear
+      
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         navigationItem.backBarButtonItem = backBarButton
         fetchCardDetails()
         setupBackgroundImageView()
-        fetchCardDetails()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    
-    private func setupBackgroundImageView() {
-        self.view.addSubview(backgroundImageView)
-        self.view.sendSubviewToBack(backgroundImageView)
-        
-        self.view.backgroundColor = UIColor.clear
-        scrollView.backgroundColor = UIColor.clear
-    }
-    
-    
+     private func setupBackgroundImageView() {
+     self.view.addSubview(backgroundImageView)
+     self.view.sendSubviewToBack(backgroundImageView)
+     
+     self.view.backgroundColor = UIColor.clear
+     scrollView.backgroundColor = UIColor.clear
+     }
+     
     private func fetchCardDetails() {
         guard let title = cardTitle, let country = selectedCountry else {
             self.showAlert(for: .paysNonSelectionnée)
@@ -117,9 +102,12 @@ class ResultViewController: UIViewController {
                 self?.setupViews()
                 self?.categorizeData()
                 self?.setupChart()
+                self?.loadingViewController?.dismiss(animated: true, completion: nil)
+
             case .failure(let error):
                 print(error)
                 self?.showAlert(for: .cardSearchError)
+                self?.loadingViewController?.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -156,6 +144,12 @@ class ResultViewController: UIViewController {
         averagePriceLabel2.text = formatPrice(averagePrice)
         
         cardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
+        
+        if let numberCardsSale = numberCardsSale {
+                cardsSaleLabel.text = "Based on \(numberCardsSale) " + (numberCardsSale == 1 ? "card in sale" : "cards in sale")
+            } else {
+                cardsSaleLabel.text = "N/A"
+            }
         
         currencyLowestLabel.text = symbol
         currencyAverageLabel.text = symbol
@@ -194,13 +188,6 @@ class ResultViewController: UIViewController {
             let entry = PieChartDataEntry(value: percentageValue, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
             dataEntries.append(entry)
         }
-        
-        let chartDescription = Description()
-        chartDescription.text = "Percentage of cards on sale"
-        chartDescription.font = UIFont.boldSystemFont(ofSize: 12)
-        chartDescription.textColor = UIColor.white
-        chartDescription.position = CGPoint(x: pieChartView.bounds.midX, y: pieChartView.bounds.minY + 5)
-        pieChartView.chartDescription = chartDescription
         
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
         dataSet.colors = [

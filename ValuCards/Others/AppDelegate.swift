@@ -15,24 +15,40 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+
+    // MARK: - UIApplication Lifecycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Set global appearance for UINavigationBar
         UINavigationBar.appearance().tintColor = UIColor.white
         
-        // Ici gérer la navigation
-        // https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
-        //https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
-        
-        // Firebase
+        // Configure Firebase
         FirebaseApp.configure()
         
-//        let fbInitResult = ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        // Initial navigation setup based on authentication state
+        setupInitialViewController()
         
         return true
     }
     
-    
+    // MARK: - Initial View Controller Setup
+    private func setupInitialViewController() {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if Auth.auth().currentUser == nil {
+                if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
+                    window?.rootViewController = authVC
+                    window?.makeKeyAndVisible()
+                }
+            } else {
+                if let searchNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController {
+                    window?.rootViewController = searchNavigationController
+                    window?.makeKeyAndVisible()
+                }
+            }
+    }
+
+    // MARK: - URL Handling for External Authentication
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let handledByFacebook = ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         
@@ -42,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: UISceneSession Lifecycle
-    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -52,3 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
     }
 }
+
+// https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
+//https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
