@@ -16,18 +16,38 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var searchManuelCardButton: UIButton!
     @IBOutlet weak var countryPickerView: UIPickerView!
     
+    // MARK: - Properties
     var imagesAndTitlesToSend: [(imageName: String, title: String)] = []
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetup()
+    }
+    
+    // MARK: - Initial Setup
+    private func initialSetup() {
+        setupNavigationBar()
+        setupSearchButton()
+        setupCountryPicker()
+        setSavedCountry()
+    }
+    
+    private func setupNavigationBar() {
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backBarButton
-        
+    }
+    
+    private func setupSearchButton() {
         searchManuelCardButton.layer.cornerRadius = 15
+    }
+    
+    private func setupCountryPicker() {
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
-        
-        // Set the saved country from previous user choice
+    }
+    
+    private func setSavedCountry() {
         if let savedCountry = getSavedCountryChoice(),
            let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
             countryPickerView.selectRow(index, inComponent: 0, animated: false)
@@ -54,6 +74,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         search()
     }
     
+    // MARK: - Search Logic
     func search() {
         guard let name = cardNameTextField.text, !name.isEmpty else {
             self.showAlert(for: .cardNameMissing)
@@ -90,26 +111,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
-    // MARK: - UIPickerView DataSource & Delegate
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return EbayCountry.allCases.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return EbayCountry.allCases[row].displayName
-    }
-    
-    // Save user's country choice upon selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCountry = EbayCountry.allCases[row]
-        saveCountryChoice(country: selectedCountry)
-    }
-    
-    // Pass data to the next view before the segue happens
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {
@@ -118,7 +120,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
-    // Save and Retrieve user's country choice
+    // MARK: - User Defaults
     func saveCountryChoice(country: EbayCountry) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(country.rawValue, forKey: "selectedEbayCountry")
@@ -132,8 +134,22 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
         return nil
     }
+    
+    // MARK: - UIPickerView DataSource & Delegate
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return EbayCountry.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return EbayCountry.allCases[row].displayName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedCountry = EbayCountry.allCases[row]
+        saveCountryChoice(country: selectedCountry)
+    }
 }
-
-
-// Navigation controller -> Search / Slide / Result
-// tout seul Auth

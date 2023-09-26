@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// Enum representing different eBay country codes.
 enum EbayCountry: String, CaseIterable {
+    // MARK: - Country Codes
     case US = "EBAY_US"
     case CH = "EBAY_CH"
     case GB = "EBAY_GB"
@@ -18,9 +18,9 @@ enum EbayCountry: String, CaseIterable {
     case FR = "EBAY_FR"
     case AU = "EBAY_AU"
     case ES = "EBAY_ES"
-
-    /// A human-readable string for each eBay country.
-var displayName: String {
+    
+    // MARK: - Display Names
+    var displayName: String {
         switch self {
         case .US: return "United States"
         case .CH: return "Switzerland"

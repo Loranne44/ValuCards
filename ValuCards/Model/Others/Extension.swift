@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Currency Symbol Conversion
 extension String {
     func currencySymbol() -> String {
         switch self {

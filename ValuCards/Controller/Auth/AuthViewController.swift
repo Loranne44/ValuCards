@@ -38,12 +38,13 @@ class AuthViewController: UIViewController {
         }
     }
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
     }
     
-    
+    // MARK: - UI Setup
     private func setupUIElements() {
         [signUpButton, signInButton, googleButton, appleButton, facebookButton].forEach {
             $0?.layer.cornerRadius = 15
@@ -114,7 +115,6 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: - Firebase Helper Methods
-    // Helper method for Firebase sign in with a given credential
     private func signInWithFirebaseCredential(_ credential: AuthCredential) {
         Auth.auth().signIn(with: credential) { [weak self] (_, error) in
             DispatchQueue.main.async {

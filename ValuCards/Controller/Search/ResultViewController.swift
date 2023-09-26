@@ -9,6 +9,7 @@ import UIKit
 import DGCharts
 
 class ResultViewController: UIViewController {
+    
     // MARK: - Properties
     var averagePrice: Double?
     var lowestPrice: Double?
@@ -38,14 +39,14 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var cardsSaleLabel: UILabel!
     @IBOutlet weak var containerCharts: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pieChartView: PieChartView!    
+    @IBOutlet weak var pieChartView: PieChartView!
     
-     let backgroundImageView: UIImageView = {
-     let imageView = UIImageView()
-     imageView.contentMode = .scaleAspectFill
-     imageView.clipsToBounds = true
-     return imageView
-     }()
+    let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
     // MARK: - Data
     var cards: [ValuCards.ItemSummary] = []
@@ -65,52 +66,57 @@ class ResultViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         navigationItem.backBarButtonItem = backBarButton
-        fetchCardDetails()
         setupBackgroundImageView()
+        
+        fetchCardDetails {
+            self.setupViews()
+            self.categorizeData()
+            self.setupChart()
+            self.loadingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
-     private func setupBackgroundImageView() {
-     self.view.addSubview(backgroundImageView)
-     self.view.sendSubviewToBack(backgroundImageView)
-     
-     self.view.backgroundColor = UIColor.clear
-     scrollView.backgroundColor = UIColor.clear
-     }
-     
-    private func fetchCardDetails() {
+    // MARK: - Initialization Methods
+    private func setupBackgroundImageView() {
+        self.view.addSubview(backgroundImageView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        
+        self.view.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = UIColor.clear
+    }
+    
+    // MARK: - Data Fetching
+    func fetchCardDetails(completion: @escaping () -> Void) {
         guard let title = cardTitle, let country = selectedCountry else {
             self.showAlert(for: .paysNonSelectionnée)
+            completion() // Added completion here to ensure it gets called even if there is an error
             return
         }
         
         CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case let .success(card):
-                let averagePrice = self?.pricingService.getAveragePrice(from: card.itemSummaries)
-                let lowestPrice = self?.pricingService.getLowestPrice(from: card.itemSummaries)
-                let highestPrice = self?.pricingService.getHighestPrice(from: card.itemSummaries)
-                self?.averagePrice = averagePrice
-                self?.lowestPrice = lowestPrice
-                self?.highestPrice = highestPrice
-                self?.currency = card.itemSummaries.first?.price.currency
-                self?.cards = card.itemSummaries
-                self?.numberCardsSale = card.itemSummaries.count
-                self?.setupViews()
-                self?.categorizeData()
-                self?.setupChart()
-                self?.loadingViewController?.dismiss(animated: true, completion: nil)
-
+                self.averagePrice = self.pricingService.getAveragePrice(from: card.itemSummaries)
+                self.lowestPrice = self.pricingService.getLowestPrice(from: card.itemSummaries)
+                self.highestPrice = self.pricingService.getHighestPrice(from: card.itemSummaries)
+                self.currency = card.itemSummaries.first?.price.currency
+                self.cards = card.itemSummaries
+                self.numberCardsSale = card.itemSummaries.count
+                
             case .failure(let error):
                 print(error)
-                self?.showAlert(for: .cardSearchError)
-                self?.loadingViewController?.dismiss(animated: true, completion: nil)
+                self.showAlert(for: .cardSearchError)
+                self.loadingViewController?.dismiss(animated: true, completion: nil)
             }
+            completion()
         }
     }
+    
     
     // MARK: - UI Configuration
     private func setupViews() {
@@ -146,10 +152,10 @@ class ResultViewController: UIViewController {
         cardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
         
         if let numberCardsSale = numberCardsSale {
-                cardsSaleLabel.text = "Based on \(numberCardsSale) " + (numberCardsSale == 1 ? "card in sale" : "cards in sale")
-            } else {
-                cardsSaleLabel.text = "N/A"
-            }
+            cardsSaleLabel.text = "Based on \(numberCardsSale) " + (numberCardsSale == 1 ? "card in sale" : "cards in sales")
+        } else {
+            cardsSaleLabel.text = "N/A"
+        }
         
         currencyLowestLabel.text = symbol
         currencyAverageLabel.text = symbol
@@ -157,7 +163,7 @@ class ResultViewController: UIViewController {
         currencyHighestLabel.text = symbol
     }
     
-    // MARK: - Data Helpers
+    // MARK: - Data Manipulation
     private func formatPrice(_ price: Double?) -> String {
         guard let price = price else { return "NB" }
         return String(format: "%.2f", price)
@@ -177,6 +183,7 @@ class ResultViewController: UIViewController {
         }
     }
     
+    // MARK: - Chart Setup
     private func setupChart() {
         var dataEntries: [PieChartDataEntry] = []
         
@@ -194,7 +201,7 @@ class ResultViewController: UIViewController {
             NSUIColor.systemCyan,
             NSUIColor.systemRed,
             NSUIColor.systemYellow,
-            NSUIColor.systemPink,
+            NSUIColor.systemMint,
             NSUIColor.systemOrange,
             NSUIColor.systemPurple,
             NSUIColor.systemIndigo
@@ -220,11 +227,11 @@ class ResultViewController: UIViewController {
 
 
 
-// Cacher quand on swipe vers le haut
+// Cacher quand on swipe vers le haut __OK
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
 // https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
 
-// Loader avant d'afficher la bonne vue
+// Loader avant d'afficher la bonne vue __OK
 // Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
 // Le back en blanc avec une classe __ OK
 // inscription/Connexion Google/facebook / Apple
@@ -235,3 +242,11 @@ class ResultViewController: UIViewController {
 
 // Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
 // Dark mode ??
+
+
+// https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
+//https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
+
+
+
+// créer un appel api searchByImage qui prends en parametre l'image renvoyer lors du swipe ou validation boutton de l'utilisateur. Fait une recherche via cette image et donne les caractéristiques de prix lors du result ViewController

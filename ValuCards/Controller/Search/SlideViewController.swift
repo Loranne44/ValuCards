@@ -14,7 +14,7 @@ class SlideViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var containerCheckOrCancel: UIView!
     
-    // Data models and services
+    // MARK: - Properties
     var imagesAndTitles: [(imageName: String, title: String)] = []
     var slideResponseModel: ResponseModel!
     let pricingService = CardPricingService()
@@ -36,7 +36,7 @@ class SlideViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
         navigationItem.backBarButtonItem = backBarButton
         
-        setupImageView()
+        //        setupImageView()
         setupContainerDescription()
         setupContainerCheckOrCancel()
         setupGestureRecognizers()
@@ -49,15 +49,7 @@ class SlideViewController: UIViewController {
         resetColorFilter()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        ViewHelper.updateShadowForImageView(imageView: imageView)
-    }
-    
-    private func setupImageView() {
-        ViewHelper.setupImageView(cardImageView: imageView)
-    }
-    
+    // MARK: - Setup Methods
     private func setupContainerDescription() {
         ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
     }
@@ -73,6 +65,7 @@ class SlideViewController: UIViewController {
     
     // MARK: - Data Preparation
     private func prepareDataModel() {
+        // Process the raw data and initialize the model used in this view controller
         let cardItems = imagesAndTitles.map { CardItem(imageName: $0.imageName, title: $0.title) }
         slideResponseModel = ResponseModel(cardItems: cardItems)
         totalCardCount = slideResponseModel.cardItems.count
@@ -80,6 +73,7 @@ class SlideViewController: UIViewController {
     
     // MARK: - Gesture Handling
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+        // Handle user’s pan gesture and update the UI accordingly
         switch gesture.state {
         case .began:
             initialPanPoint = gesture.translation(in: imageView)
@@ -147,10 +141,11 @@ class SlideViewController: UIViewController {
         imageView.backgroundColor = UIColor.clear
     }
     
+    // MARK: - Navigation
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController {
-            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as! LoadingViewController 
+            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as! LoadingViewController
             loadingVC.modalPresentationStyle = .overFullScreen
             self.present(loadingVC, animated: true, completion: nil)
             
@@ -159,8 +154,12 @@ class SlideViewController: UIViewController {
             resultViewController.selectedCountry = self.selectedCountry
             resultViewController.loadingViewController = loadingVC
             
-            navigationController?.pushViewController(resultViewController, animated: false)
+            // Load data then navigate to ResultViewController
+            resultViewController.fetchCardDetails { [weak self] in
+                self?.navigationController?.pushViewController(resultViewController, animated: false)
+            }
         }
     }
+
 }
 

@@ -7,11 +7,12 @@
 
 import Foundation
 
-/// Represents a price category with a defined range and a label.
+// MARK: - Properties
 class PriceCategory {
     var range: ClosedRange<Int>
     var label: String
-
+    
+// MARK: - Initialization
     init(range: ClosedRange<Int>, label: String) {
         self.range = range
         self.label = label

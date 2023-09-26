@@ -8,7 +8,7 @@
 import Foundation
 import DGCharts
 
-/// Formatter to convert a Double value to its Integer representation for chart values.
+// MARK: - Value Formatting
 class IntValueFormatter: ValueFormatter {
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         return String(Int(value))

@@ -9,10 +9,13 @@ import Foundation
 
 // Service to calculate different pricing metrics from a collection of card items.
 struct CardPricingService {
+    
+    // MARK: - Private Helper Methods
     private func prices(from cards: [ItemSummary]) -> [Double] {
         return cards.compactMap { Double($0.price.value) }
     }
     
+    // MARK: - Pricing Metrics
     func getAveragePrice(from cards: [ItemSummary]) -> Double {
         let prices = self.prices(from: cards)
         let sum = prices.reduce(0, +)

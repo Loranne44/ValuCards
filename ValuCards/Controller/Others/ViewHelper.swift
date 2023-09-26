@@ -9,72 +9,38 @@ import Foundation
 import UIKit
 
 struct ViewHelper {
+    
+    // MARK: - Properties
     private static let cornerRadius: CGFloat = 40
     private static let shadowOpacity: Float = 0.8
     private static let shadowRadius: CGFloat = 9.0
     private static let shadowOffset = CGSize(width: 0, height: 0)
     
-    static func setupImageView(cardImageView: UIImageView) {
-/*        imageView.layer.cornerRadius = cornerRadius
-        imageView.layer.masksToBounds = true
-        imageView.layer.shadowColor = UIColor(hex: "#7090B0").cgColor
-        imageView.layer.shadowOffset = shadowOffset
-        imageView.layer.shadowOpacity = shadowOpacity
-        imageView.layer.shadowRadius = shadowRadius
-        imageView.isUserInteractionEnabled = true*/
-    }
-
-    
-    static func updateShadowForImageView(imageView: UIImageView) {
-        /*      // Utilisation de vos constantes pour assurer la cohérence
-        let shadowSize = cornerRadius / 2.0
-        let shadowPathTop = UIBezierPath(rect: CGRect(x: 0, y: -shadowSize, width: imageView.frame.width, height: shadowSize))
-        let shadowPathBottom = UIBezierPath(rect: CGRect(x: 0, y: imageView.frame.height, width: imageView.frame.width, height: shadowSize))
-        let combinedShadowPath = UIBezierPath()
-        combinedShadowPath.append(shadowPathTop)
-        combinedShadowPath.append(shadowPathBottom)
-        
-        imageView.layer.shadowPath = combinedShadowPath.cgPath*/
-    }
-    
+    // MARK: - Helper Functions
     static func applyShadowAndRoundedCorners(to view: UIView, shadowPosition: ShadowPosition) {
-           // Applying the corner radius and masksToBounds
-           view.layer.cornerRadius = cornerRadius
-           view.layer.masksToBounds = false // Set to false because we are going to apply a shadow
-           view.layer.shadowColor = UIColor(hex: "#7090B0").cgColor
-           view.layer.shadowOffset = shadowOffset
-           view.layer.shadowOpacity = shadowOpacity
-           view.layer.shadowRadius = shadowRadius
-           
-           // If specific shadow positions are required, they can be set using the UIBezierPath
-           switch shadowPosition {
-               /// En haut
-           case .top:
-               let shadowSize = 2.20
-               let shadowPathTop = UIBezierPath(rect: CGRect(x: 5, y: -shadowSize, width: view.frame.width, height: shadowSize))
-               view.layer.shadowPath = shadowPathTop.cgPath
-               /// En bas
-           case .bottom:
-                   let shadowSize = 2.20
-                   let shadowPathBottom = UIBezierPath(rect: CGRect(x: 4, y: view.frame.height, width: view.frame.width, height: shadowSize))
-                   view.layer.shadowPath = shadowPathBottom.cgPath
-               /// En haut et en bas
-         /*  case .both:
-               let shadowSize = 2.20
-               let shadowPathTop = UIBezierPath(rect: CGRect(x: 0, y: -shadowSize, width: view.frame.width, height: shadowSize))
-               let shadowPathBottom = UIBezierPath(rect: CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: shadowSize))
-               let combinedShadowPath = UIBezierPath()
-               combinedShadowPath.append(shadowPathTop)
-               combinedShadowPath.append(shadowPathBottom)
-               
-               view.layer.shadowPath = combinedShadowPath.cgPath*/
-           }
-       }
+        view.layer.cornerRadius = cornerRadius
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor(hex: "#7090B0").cgColor
+        view.layer.shadowOffset = shadowOffset
+        view.layer.shadowOpacity = shadowOpacity
+        view.layer.shadowRadius = shadowRadius
+        
+        switch shadowPosition {
+        case .top:
+            let shadowSize = 2.20
+            let shadowPathTop = UIBezierPath(rect: CGRect(x: 5, y: -shadowSize, width: view.frame.width, height: shadowSize))
+            view.layer.shadowPath = shadowPathTop.cgPath
+        case .bottom:
+            let shadowSize = 2.20
+            let shadowPathBottom = UIBezierPath(rect: CGRect(x: 4, y: view.frame.height, width: view.frame.width, height: shadowSize))
+            view.layer.shadowPath = shadowPathBottom.cgPath
+        }
+    }
     
+    // MARK: - ShadowPosition Enumeration
     enum ShadowPosition {
         case top
         case bottom
-    //    case both
     }
 }
 

@@ -9,13 +9,16 @@ import Foundation
 
 /// Model to manage and represent a collection of card items.
 class ResponseModel {
+    // MARK: - Properties
     var cardItems: [CardItem]
     var currentImageIndex = 0
     
+    // MARK: - Initialization
     init(cardItems: [CardItem]) {
         self.cardItems = cardItems
     }
     
+    // MARK: - Image Navigation Methods
     func showNextImage() {
         currentImageIndex = (currentImageIndex + 1) % cardItems.count
     }
