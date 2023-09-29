@@ -224,10 +224,8 @@
 		4579731F2A42F9180099D024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45B1CED32AC2DDE9001C63D0 /* API */,
 				45A7D7C42AA9A8130051C706 /* Others */,
-				4579732A2A4339430099D024 /* Card.swift */,
-				457973262A432C760099D024 /* CardsModel.swift */,
-				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
 				4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */,
 				451699072AA23DE20022C44B /* CardItem.swift */,
 				45F433C42AA5D596003BDB0E /* CardPricingService.swift */,
@@ -297,6 +295,16 @@
 				456A2E702AB0587400DA85C1 /* EbayCountry.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		45B1CED32AC2DDE9001C63D0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				457973262A432C760099D024 /* CardsModel.swift */,
+				459942DC2A4D707F00BC4AF3 /* CardsSession.swift */,
+				4579732A2A4339430099D024 /* Card.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		9937E0E347CD8C2874AA3658 /* Frameworks */ = {

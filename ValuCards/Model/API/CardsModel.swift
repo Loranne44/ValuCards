@@ -17,7 +17,7 @@ class CardsModel {
     private let session : CardsProviderProtocol
     
     // MARK: - API Key & Headers
-    static let apiKey = "v^1.1#i^1#f^0#p^1#I^3#r^0#t^H4sIAAAAAAAAAOVYbWwURRi+65dp6mFIVZAPU5ZKKrh7s7e3d7fb3oVrS+FIP7lSShMps7uz7dK73XV3j/YialOUmBLCR/xKDKakBIOoPzQh4Yd8KZgIPxQ1qNGkP4wV0GKNgomKzt4d5VoJIL3EJt6fy7zzzjvP88z7zswO6C8qXrpt1barLuc9eUP9oD/P6aRLQHFR4bJZ+XnzCh0gy8E51F/eXzCQ/32VCeMxnV+DTF1TTVTWF4+pJp8yBomEofIaNBWTV2Ecmbwl8tFwQz3voQCvG5qliVqMKIvUBgmvLAFa9jAsIwQgLcjYql6P2aoFCUlg/X5G9MgcIwi0GMD9pplAEdW0oGoFCQ/wMCTgSI+vFfh5JsADlvIBbwdR1oYMU9FU7EIBIpSCy6fGGllYbw0VmiYyLByECEXCddGmcKR2RWNrlTsrViijQ9SCVsKc3KrRJFTWBmMJdOtpzJQ3H02IIjJNwh1KzzA5KB++DuYu4Kek5gSBob2QZgDtF2gJ5UTKOs2IQ+vWOGyLIpFyypVHqqVYydspitUQNiHRyrQacYhIbZn915KAMUVWkBEkVlSH14ebm4lQvWZAVUWrSVvtGmhIZPOaWpLlfIDzBPxekoMsgj7am5koHS0j85SZajRVUmzRzLJGzapGGDWaqo0nSxvs1KQ2GWHZshFl+3EZDVku0GEvanoVE1a3aq8rimMhylLN26/AxGjLMhQhYaGJCFM7UhIFCajrikRM7UzlYiZ9+swg0W1ZOu929/b2Ur0MpRldbg8AtLu9oT4qdqM4JLCvXetpf+X2A0glRUXEuYX9eSupYyx9OFcxALWLCHn9AQ8IZHSfDCs01foPQxZn9+SKyFWF4P1FCniB4AsAP5QYkIsKCWWS1G3jQAJMknFo9CBLj0ERkSLOs0QcGYrEMyzeBgMyIiUfJ5NeTpZJgZV8JC0jBBASBJEL/J8K5U5TPYpEA1k5yfWc5fmqHne4VVdaatm6eNTaXKcnksl2Turb1A71iE9p51qWrV/b2F7dXt8QvNNquCn5mpiClWnF8+dCALvWcyiCZlpImha9qKjpqFmLKWJyZi0wY0jN0LCSURSLYcO0SIZ1PZKbvTpn9P7lNnF3vHN3Rv1H59NNWZl2ys4sVvZ4EweAukLZJxAlanG3XesaxNcP29yZQj0t3gq+uc4o1phkmq0ipa+cVIouZW4WKQOZWsLAt22qyb6BtWo9SMXnmWVosRgy2uhp13M8nrCgEEMzrbBzkOAKnGGHLe3jWD/NBALstHiJqaO0c6ZtSbnYigtW3uW12j35Iz/kSP3oAedJMOA8mud0girwCL0YLCrKX1uQf+88U7EQpUCZMpUuFX+7GojqQUkdKkZeqeMqGH1V/GHVwcGea71PfFf5lCP7jWHocTB34pWhOJ8uyXpyAAtu9BTS981xeRhM3gf8TACwHWDxjd4C+sGC+y9dfedc+YaDg9t/L64gPaXXui+OrgSuCSens9BRMOB0RJ6nfiF37PtxzPmeXPFAtxsMFswnW4c7KjyPmSsKO+rOL527seey46ExYWtob7w/uPVU4/BsM3560Uezdo0bH3c+5yBXxy5sWDf8zb4j1sKH97Q9+tnFDbM/OXR4e8vB4d1nj19xv39stOprY9+JRv+ll1y7R45vHN9f8kr1h8+6lrw90n3ytwOnxCvN8wVu/KcLX1QuO1PUrrkGo/MqFr9V/rmjoTN64FN277Hz/PKlT56RXt71jBI8PbZwdOyFBSfmfiW7zpf+ybNb2NfP7Pq2dPnRusrLOz8o3/9H29NvrnNvWTJ/ZOTdi3O2Hi75uWvnr3tfzK/c8cZZz8Kh8WRdeYN07q/Xdtd/eWjWkfRa/g0vuTAW/REAAA=="
+    static let apiKey = "v^1.1#i^1#r^0#I^3#p^1#f^0#t^H4sIAAAAAAAAAOVYbWwURRjutdeSplQMNaAEwrEVfgC3N7u3d9dd6ZnrtbVXrx9wbW2bNDC3O1u2vdtddud6vR/EpmqjgECINRgUqoJI4geJHzFqIAgxkQjRH2ppIJooSkxjxB8QAT9m70q5VgJIL7GJ9+cy77zzzvM8874zswMGiopXDtUNXS61zckfGQAD+TYbUwKKiwpX3VOQv6gwD2Q52EYGHhywDxZcWGPCeEwX1iFT11QTOfrjMdUU0sZKKmGoggZNxRRUGEemgEUhEmgICywNBN3QsCZqMcoRqq6koFtCPh/Lsh6Z51jEEqt6PWaLRvoBwwE3ywEmikBU9pJ+00ygkGpiqOJKigWs2wl4J8u3AK/gYQWWpRnG00k52pBhKppKXGhA+dNwhfRYIwvrraFC00QGJkEofyhQG2kKhKprGlvWuLJi+Sd0iGCIE+bUVlCTkKMNxhLo1tOYaW8hkhBFZJqUy5+ZYWpQIXAdzF3AT0sty94KDwc5H8P7iNZMTqSs1Yw4xLfGYVkUySmnXQWkYgWnbqcoUSPag0Q80WokIULVDutvbQLGFFlBRiVVUxXoCDQ3U/6wZkBVRfVOS+0gNCRn87pqp4f3Ap6t8HFOHnoQ9DLcxESZaBMyT5spqKmSYolmOho1XIUIajRdGy5LG+LUpDYZARlbiLL9KiY1BJ3WomZWMYE3qta6ojgRwpFu3n4FJkdjbCjRBEaTEaZ3pCUiZaPrikRN70zn4kT69JuV1EaMdcHlSiaTdNJNa0a3iwWAcbU3hCPiRhSHFPG1aj3jr9x+gFNJUxERGWkqAk7pBEs/yVUCQO2m/JyvggUVE7pPheWfbv2HIYuza2pF5KpCJBHKAHlFyEmcJDFiLirEP5GkLgsHisKUMw6NXoT1GBSRUyR5logjQ5EEt0dm3RUyckpeXnZyvCw7ox7J62RkhABC0ajIV/yfCuVOUz2CRAPhnOR6zvK8rtcVaNGVtdWe2ngE99XqiVSqnZf6e9qhHvIq7fzaVR2tje1V7eGGyjuthpuSD8YUokwLmT8XAli1nkMRNBMjaUb0IqKmo2Ytpoip2bXAbkNqhgZORVAsRgwzIhnQ9VBu9uqc0fuX28Td8c7dGfUfnU83ZWVaKTu7WFnjTRIA6gptnUC0qMVdVq1rkFw/LPP6NOoZ8VbIzXVWsSYkM2wVKXPlpNN0abNPpA1kagmD3LbpJusG1qL1IpWcZ9jQYjFktDEzrud4PIFhNIZmW2HnIMEVOMsOW8bLe3gfcHPsjHiJ6aN0/WzbknKxFdsfuctrtWvqR74/L/1jBm2fgEHbkXybDawBy5lysKyooNVeMHeRqWBEK1CmTaVbJd+uBqJ7UUqHipFflncZ/LRHHK87tKX3z+SmHx/anJf9xjDSBe6ffGUoLmBKsp4cwOIbPYXMvIWlrJuQ54HXw7JsJyi/0WtnFtjvO9W7fd2Gut2nz3+8aWjF+IZffeuLO0DppJPNVphnH7Tl1Xz+whtfntjy3qXlXccbpKNzXd+MHr16dbjsjzPNZ7mx0Z1nTw9fPLe7fEew5MxTO1rBh/vDo1/IwrFasNm+5KDv2jPzR5KPvh37653HQo8v2GK8/NyS6J7WBSWrV+wKe06X9nYfW5p8af9H3wZWbz3GL5tnH3/20tDYwLbN56/81lG29/cTQ/Xuw6vGjp+bV6/1lA1X7X+x761xse1C1y947wdV28KfFr1SQHVtOLjLvn3hAz+vLNo6XH2x59ThUNPV0tFl0tL53z/5VefDRvDp4L07Xt35+r7X3j8UeV4/CI4cuOwS4yevtQyU/3Clrq80+O6bSS58ci43Z9/imu8SXx+4opQ9oX/WfoYei2fW8m8xXJh9/REAAA=="
     
     let headers: HTTPHeaders = ["Authorization": "Bearer \(CardsModel.apiKey)"]
     
@@ -26,7 +26,7 @@ class CardsModel {
         self.session = session
     }
     
-    // MARK: - SearchCards method
+    // MARK: - SearchCards method by name
     func searchCards(withName name: String, inCountry country: EbayCountry, completion: @escaping (Result<ItemSearchResult, ErrorCase>) -> Void) {
         
         // Convert spaces in the name to '+' for URL encoding
@@ -57,8 +57,7 @@ class CardsModel {
             case let .success(data):
                 do {
                     let responseJSON = try JSONDecoder().decode(ItemSearchResult.self, from: data)
-                    
-                    // Check if the response is empty and return appropriate results
+                    print(responseJSON)
                     if responseJSON.itemSummaries.isEmpty {
                         completion(.failure(.noCardsFound))
                     } else {
@@ -74,3 +73,11 @@ class CardsModel {
         }
     }
 }
+
+// ethernatos Vmax 340
+
+// Vérifier pourquoi appel réseau deuxième fois il y a une erreur
+// Comment élargir les retour possible lors du deuxieme appel réseau
+
+
+// API habituelle  -> API ITEM ()-> API habituelle

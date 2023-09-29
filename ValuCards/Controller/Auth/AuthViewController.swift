@@ -98,6 +98,7 @@ class AuthViewController: UIViewController {
                     return
                 }
                 self?.performSegue(withIdentifier: AuthViewController.searchCardsSegue, sender: self)
+                // NavigationController et non AuthViewController
             }
         }
     }

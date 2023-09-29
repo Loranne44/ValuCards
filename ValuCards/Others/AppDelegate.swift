@@ -67,3 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
     }
 }
+
+
+// Premier pint d'entrée :
+// Identification , si connecté
+

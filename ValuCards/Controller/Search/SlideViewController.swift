@@ -15,6 +15,7 @@ class SlideViewController: UIViewController {
     @IBOutlet weak var containerCheckOrCancel: UIView!
     
     // MARK: - Properties
+        let colorOverlay = UIView()
     var imagesAndTitles: [(imageName: String, title: String)] = []
     var slideResponseModel: ResponseModel!
     let pricingService = CardPricingService()
@@ -36,12 +37,12 @@ class SlideViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
         navigationItem.backBarButtonItem = backBarButton
         
-        //        setupImageView()
         setupContainerDescription()
         setupContainerCheckOrCancel()
         setupGestureRecognizers()
         prepareDataModel()
         updateImageAndTitle()
+        setupColorOverlay()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +51,18 @@ class SlideViewController: UIViewController {
     }
     
     // MARK: - Setup Methods
+    private func setupColorOverlay() {
+            colorOverlay.translatesAutoresizingMaskIntoConstraints = false
+            imageView.addSubview(colorOverlay)
+            NSLayoutConstraint.activate([
+                colorOverlay.topAnchor.constraint(equalTo: imageView.topAnchor),
+                colorOverlay.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+                colorOverlay.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+                colorOverlay.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
+            ])
+            colorOverlay.backgroundColor = .clear
+        }
+    
     private func setupContainerDescription() {
         ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
     }
@@ -82,7 +95,7 @@ class SlideViewController: UIViewController {
             applyColorFilter()
         case .ended, .cancelled:
             imageView.alpha = 1.0
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.6) {
                 self.imageView.transform = .identity
             }
             
@@ -132,14 +145,13 @@ class SlideViewController: UIViewController {
     
     private func applyColorFilter() {
         let translationPoint = CGPoint(x: imageView.transform.tx, y: imageView.transform.ty)
-        let color = colorFilterService.filterColorForTranslation(translationPoint)
-        imageView.backgroundColor = color
-        
-    }
+              let color = colorFilterService.filterColorForTranslation(translationPoint)
+              colorOverlay.backgroundColor = color
+          }
     
     private func resetColorFilter() {
-        imageView.backgroundColor = UIColor.clear
-    }
+           colorOverlay.backgroundColor = .clear
+       }
     
     // MARK: - Navigation
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {

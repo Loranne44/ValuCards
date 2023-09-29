@@ -250,3 +250,14 @@ class ResultViewController: UIViewController {
 
 
 // créer un appel api searchByImage qui prends en parametre l'image renvoyer lors du swipe ou validation boutton de l'utilisateur. Fait une recherche via cette image et donne les caractéristiques de prix lors du result ViewController
+
+
+
+/*
+ "localizedAspects": [
+     {
+       "type": "STRING",
+       "name": "Card Name / Card Number",
+       "value": "Raichu - 026/165 Holo Rare"
+     },
+ */
