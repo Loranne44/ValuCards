@@ -52,48 +52,31 @@ class ResultViewController: UIViewController {
     var cards: [ValuCards.ItemSummary] = []
     
     // MARK: - Constants
-    private let priceCategories: [PriceCategory] = [
-        .init(range: 0...9, label: "0-9"),
-        .init(range: 10...24, label: "10-24"),
-        .init(range: 25...49, label: "25-49"),
-        .init(range: 50...99, label: "50-99"),
-        .init(range: 100...199, label: "100-199"),
-        .init(range: 200...299, label: "200-299"),
-        .init(range: 300...Int.max, label: "300+")
-    ]
-    private var counts: [String: Int] = [:]
+    let chartManager = ChartManager()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        navigationItem.backBarButtonItem = backBarButton
+        setupBackButton()
         setupBackgroundImageView()
-        
         fetchCardDetails {
             self.setupViews()
-            self.categorizeData()
-            self.setupChart()
+            self.chartManager.setupPieChartView(pieChartView: self.pieChartView, cards: self.cards, currency: self.currency)
             self.loadingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
     // MARK: - Initialization Methods
     private func setupBackgroundImageView() {
-        self.view.addSubview(backgroundImageView)
-        self.view.sendSubviewToBack(backgroundImageView)
-        
-        self.view.backgroundColor = UIColor.clear
-        scrollView.backgroundColor = UIColor.clear
+        self.setupBackgroundImageView(for: backgroundImageView, with: scrollView)
     }
     
     // MARK: - Data Fetching
     func fetchCardDetails(completion: @escaping () -> Void) {
         guard let title = cardTitle, let country = selectedCountry else {
-            self.showAlert(for: .paysNonSelectionnée)
-            completion() // Added completion here to ensure it gets called even if there is an error
+            self.showAlert(for: .countryNotSelected)
+            completion()
             return
         }
         
@@ -101,12 +84,21 @@ class ResultViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case let .success(card):
-                self.averagePrice = self.pricingService.getAveragePrice(from: card.itemSummaries)
-                self.lowestPrice = self.pricingService.getLowestPrice(from: card.itemSummaries)
-                self.highestPrice = self.pricingService.getHighestPrice(from: card.itemSummaries)
-                self.currency = card.itemSummaries.first?.price.currency
-                self.cards = card.itemSummaries
-                self.numberCardsSale = card.itemSummaries.count
+                var filteredCards = card.itemSummaries
+                
+                filteredCards.sort(by: { $0.price.value < $1.price.value })
+                
+                if filteredCards.count > 2 {
+                    filteredCards.removeFirst()
+                    filteredCards.removeLast()
+                }
+                
+                self.averagePrice = self.pricingService.getAveragePrice(from: filteredCards)
+                self.lowestPrice = self.pricingService.getLowestPrice(from: filteredCards)
+                self.highestPrice = self.pricingService.getHighestPrice(from: filteredCards)
+                self.currency = filteredCards.first?.price.currency
+                self.cards = filteredCards
+                self.numberCardsSale = filteredCards.count
                 
             case .failure(let error):
                 print(error)
@@ -116,7 +108,6 @@ class ResultViewController: UIViewController {
             completion()
         }
     }
-    
     
     // MARK: - UI Configuration
     private func setupViews() {
@@ -128,7 +119,7 @@ class ResultViewController: UIViewController {
         
         if let currencySymbol = currency?.currencySymbol() {
             currencyAverageLabel.text = currencySymbol
-            averagePriceLabel.text = formatPrice(averagePrice)
+            averagePriceLabel.text = NumberFormatter.formatPrice(averagePrice)
         }
         
         applyShadowAndRoundedCorners(to: containerAveragePrice, shadowPosition: .bottom)
@@ -144,10 +135,10 @@ class ResultViewController: UIViewController {
     }
     
     private func configurePriceLabels(with symbol: String) {
-        averagePriceLabel.text = formatPrice(averagePrice)
-        lowestPriceLabel.text = formatPrice(lowestPrice)
-        highetsPriceLabel.text = formatPrice(highestPrice)
-        averagePriceLabel2.text = formatPrice(averagePrice)
+        averagePriceLabel.text = NumberFormatter.formatPrice(averagePrice)
+        lowestPriceLabel.text = NumberFormatter.formatPrice(lowestPrice)
+        highetsPriceLabel.text = NumberFormatter.formatPrice(highestPrice)
+        averagePriceLabel2.text = NumberFormatter.formatPrice(averagePrice)
         
         cardsSaleLabel.text = numberCardsSale.map { "\($0)" } ?? "N/A"
         
@@ -162,74 +153,13 @@ class ResultViewController: UIViewController {
         currencyAveragePriceLabel2.text = symbol
         currencyHighestLabel.text = symbol
     }
-    
-    // MARK: - Data Manipulation
-    private func formatPrice(_ price: Double?) -> String {
-        guard let price = price else { return "NB" }
-        return String(format: "%.2f", price)
-    }
-    
-    private func categorizeData() {
-        for card in cards {
-            if let priceValueDouble = Double(card.price.value) {
-                let priceValue = Int(priceValueDouble)
-                for category in priceCategories {
-                    if category.range.contains(priceValue) {
-                        counts[category.label, default: 0] += 1
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
-    // MARK: - Chart Setup
-    private func setupChart() {
-        var dataEntries: [PieChartDataEntry] = []
-        
-        let totalCards = cards.count
-        for category in priceCategories {
-            let count = Double(counts[category.label] ?? 0)
-            let percentageValue = (count / Double(totalCards)) * 1000
-            
-            let entry = PieChartDataEntry(value: percentageValue, label: "\(category.label) \(currency?.currencySymbol() ?? "")")
-            dataEntries.append(entry)
-        }
-        
-        let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-        dataSet.colors = [
-            NSUIColor.systemCyan,
-            NSUIColor.systemRed,
-            NSUIColor.systemYellow,
-            NSUIColor.systemMint,
-            NSUIColor.systemOrange,
-            NSUIColor.systemPurple,
-            NSUIColor.systemIndigo
-        ]
-        
-        pieChartView.usePercentValuesEnabled = true
-        pieChartView.drawEntryLabelsEnabled = false
-        dataSet.xValuePosition = .insideSlice
-        dataSet.yValuePosition = .insideSlice
-        
-        let data = PieChartData(dataSet: dataSet)
-        pieChartView.data = data
-        
-        pieChartView.legend.enabled = true
-        pieChartView.legend.orientation = .vertical
-        pieChartView.legend.horizontalAlignment = .center
-        pieChartView.legend.verticalAlignment = .center
-        
-        pieChartView.notifyDataSetChanged()
-        pieChartView.setNeedsDisplay()
-    }
 }
 
 
 
 // Cacher quand on swipe vers le haut __OK
-// https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
-// https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
+//https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
+//https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
 
 // Loader avant d'afficher la bonne vue __OK
 // Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
@@ -243,21 +173,7 @@ class ResultViewController: UIViewController {
 // Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
 // Dark mode ??
 
-
-// https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
+//https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
 //https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
 
-
-
 // créer un appel api searchByImage qui prends en parametre l'image renvoyer lors du swipe ou validation boutton de l'utilisateur. Fait une recherche via cette image et donne les caractéristiques de prix lors du result ViewController
-
-
-
-/*
- "localizedAspects": [
-     {
-       "type": "STRING",
-       "name": "Card Name / Card Number",
-       "value": "Raichu - 026/165 Holo Rare"
-     },
- */

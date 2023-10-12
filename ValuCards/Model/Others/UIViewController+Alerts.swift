@@ -18,4 +18,18 @@ extension UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func setupBackButton() {
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        navigationItem.backBarButtonItem = backBarButton
+    }
+    
+    func setupBackgroundImageView(for imageView: UIImageView, with scrollView: UIScrollView) {
+        self.view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+        
+        self.view.backgroundColor = UIColor.clear
+        scrollView.backgroundColor = UIColor.clear
+    }
 }

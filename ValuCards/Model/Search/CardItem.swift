@@ -2,7 +2,7 @@
 //  CardItem.swift
 //  ValuCards
 //
-//  Created by Loranne Joncheray on 01/09/2023.
+//  Created by Loranne Joncheray on 12/10/2023.
 //
 
 import Foundation

@@ -56,18 +56,15 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     @IBAction func didTapLogoutBotton(_ sender: UIButton) {
         do {
-            
             try Auth.auth().signOut()
-            print(Auth.auth().currentUser!)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
                 let navController = UINavigationController(rootViewController: authVC)
                 self.view.window?.rootViewController = navController
                 self.view.window?.makeKeyAndVisible()
             }
-            
-        } catch let signOutError {
-            print("Erreur lors de la déconnexion: \(signOutError)")
+        } catch {
+            showAlert(for: .signOutError)
         }
     }
     

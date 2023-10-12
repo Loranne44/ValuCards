@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="abk-of-Y4q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dqb-Wz-MVo">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -91,35 +91,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gAn-MI-GNb">
-                                <rect key="frame" x="20" y="558" width="390" height="35"/>
+                                <rect key="frame" x="20" y="558" width="390" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OD-Dl-SE3" userLabel="Facebook">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="35"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="facebook"/>
-                                        <connections>
-                                            <action selector="facebookAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="s1Z-zI-hEj"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96O-x0-2RG" userLabel="Google">
-                                        <rect key="frame" x="130" y="0.0" width="130" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="google" title=""/>
                                         <connections>
                                             <action selector="googleAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="WQl-bp-B3x"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u95-4s-rSC" userLabel="Apple">
-                                        <rect key="frame" x="260" y="0.0" width="130" height="35"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="apple"/>
-                                        <connections>
-                                            <action selector="appleAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="w5h-gF-Fe7"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="wXt-Di-267"/>
+                                    <constraint firstAttribute="height" constant="30" id="wXt-Di-267"/>
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="VALUCARDS 3" translatesAutoresizingMaskIntoConstraints="NO" id="xZc-h9-BKU">
@@ -155,9 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="syF-UO-FhZ"/>
                     <connections>
-                        <outlet property="appleButton" destination="u95-4s-rSC" id="0aU-3P-ZES"/>
                         <outlet property="emailTextField" destination="Yg7-kC-cRU" id="rmw-NR-hJ0"/>
-                        <outlet property="facebookButton" destination="3OD-Dl-SE3" id="31v-Eb-Rxy"/>
                         <outlet property="forgetPasswordButton" destination="waU-fB-MgI" id="SB3-Q6-bgR"/>
                         <outlet property="googleButton" destination="96O-x0-2RG" id="3Ly-eA-7pi"/>
                         <outlet property="passwordTextField" destination="kv2-I0-W8y" id="Juu-il-p3X"/>
@@ -709,7 +691,7 @@
         <!--Manuel-->
         <scene sceneID="fXi-7u-H8S">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="abk-of-Y4q" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="abk-of-Y4q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Manuel" id="uDv-Ko-dAi"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oVc-Bt-Cya"/>
@@ -735,11 +717,9 @@
     <resources>
         <image name="Dance To Forget" width="910" height="1450"/>
         <image name="VALUCARDS 3" width="332" height="235"/>
-        <image name="apple" width="50" height="50"/>
         <image name="cancel 1" width="55" height="55"/>
         <image name="checked 1" width="55" height="55"/>
         <image name="defaultImage" width="679" height="945"/>
-        <image name="facebook" width="50" height="50"/>
         <image name="google" width="50" height="50"/>
         <image name="logout" width="24" height="26"/>
         <systemColor name="systemBackgroundColor">

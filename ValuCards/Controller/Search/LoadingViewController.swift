@@ -38,7 +38,7 @@ class LoadingViewController: UIViewController {
         if let url = Bundle.main.url(forResource: "gifloader", withExtension: "gif") {
             imageView.sd_setImage(with: url)
         } else {
-            print("Erreur: URL du GIF est nil")
+            showAlert(for: .gifLoadingError)
         }
     }
 }

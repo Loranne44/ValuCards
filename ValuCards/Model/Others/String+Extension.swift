@@ -1,8 +1,8 @@
 //
-//  Extension.swift
+//  String+Extension.swift
 //  ValuCards
 //
-//  Created by Loranne Joncheray on 04/08/2023.
+//  Created by Loranne Joncheray on 12/10/2023.
 //
 
 import Foundation
@@ -30,4 +30,3 @@ extension String {
         }
     }
 }
-

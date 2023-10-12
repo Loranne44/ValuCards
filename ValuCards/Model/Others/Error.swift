@@ -8,60 +8,66 @@
 import Foundation
 
 enum ErrorCase: Error {
+    case jsonDecodingError
     case invalidURL
-    case jsonDecodingError(error: Error)
-    case noCardsFound
-    case requestFailed(error: Error)
-    case generalNetworkError
     case serverError
+    case noCardsFound
+    case generalNetworkError
     case registrationError
+    case requestFailed
     case loginError
-    case facebookLoginError
     case firebaseLoginError
     case cardNameMissing
     case otherCardMissing
     case cardSearchError
-    case imageConnectionError
     case passwordResetSent
     case invalidEmail
-    case paysNonSelectionnée
+    case countryNotSelected
+    case resourceNotFound
+    case signOutError
+    case imageDownloadError
+    case gifLoadingError
     
     var message: String {
         switch self {
         case .invalidURL:
-            return "Error creating URL. Check the query string."
-        case .jsonDecodingError(let error):
-            return "JSON decoding error: \(error.localizedDescription)"
+            return "Invalid URL. Please check and try again"
+        case .jsonDecodingError:
+            return "Data processing error. Try again later"
         case .noCardsFound:
-            return "No cards matching your search were found. Try with a different card name or check the spelling."
-        case .requestFailed(let error):
-            return "Request failed: \(error.localizedDescription)"
-        case .generalNetworkError:
-            return "A network error occurred. Please try again."
-        case .serverError:
-            return "A server error occurred. Please try again later."
+            return "No matching cards found. Check spelling or try another name"
         case .registrationError:
-            return "Registration error"
+            return "Registration failed. Check your information"
         case .loginError:
-            return "Login error"
-        case .facebookLoginError:
-            return "Error logging in via Facebook"
+            return "Login failed. Check your credentials"
+        case .serverError:
+            return "Server issue. Please retry later"
+        case .generalNetworkError:
+            return "Network issue. Check your connection"
         case .firebaseLoginError:
-            return "Error logging in via Firebase"
+            return "Firebase login issue. Retry later"
+        case .requestFailed:
+            return "Request error. Please retry"
         case .cardNameMissing:
-            return "Please enter the name of the card you wish to search for."
+            return "Enter a card name to search"
         case .otherCardMissing:
-            return "Unable to find the requested card. Please check the name spelling or try a different search."
+            return "Card not found. Check spelling or try another"
         case .cardSearchError:
-            return "An error occurred while searching for the card. Please try again."
-        case .imageConnectionError:
-            return "Unable to download the image. Please check your connection and try again."
+            return "Failed to retrieve card details. Please try again"
         case .passwordResetSent:
-            return "A password reset link has been sent to your email address. Please check your inbox."
+            return "Password reset link sent. Check your email"
         case .invalidEmail:
-            return "Invalid or non-existent email."
-        case .paysNonSelectionnée:
-            return "Pays non sélectionné. Veuillez choisir un pays"
+            return "Invalid email. Please retry"
+        case .countryNotSelected:
+            return "Country not chosen. Please select one"
+        case .resourceNotFound:
+            return "Requested resource not found. Please check and try again"
+        case .signOutError:
+            return "There was an issue logging out. Please try again"
+        case .imageDownloadError:
+            return "Failed to download the card image. Using a default image instead"
+        case .gifLoadingError:
+            return "Failed to load the loading GIF. Please report this error"
         }
     }
 }

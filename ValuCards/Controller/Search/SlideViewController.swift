@@ -15,7 +15,7 @@ class SlideViewController: UIViewController {
     @IBOutlet weak var containerCheckOrCancel: UIView!
     
     // MARK: - Properties
-        let colorOverlay = UIView()
+    let colorOverlay = UIView()
     var imagesAndTitles: [(imageName: String, title: String)] = []
     var slideResponseModel: ResponseModel!
     let pricingService = CardPricingService()
@@ -32,11 +32,7 @@ class SlideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backBarButton = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
-        navigationItem.backBarButtonItem = backBarButton
-        
+        setupBackButton()        
         setupContainerDescription()
         setupContainerCheckOrCancel()
         setupGestureRecognizers()
@@ -52,16 +48,16 @@ class SlideViewController: UIViewController {
     
     // MARK: - Setup Methods
     private func setupColorOverlay() {
-            colorOverlay.translatesAutoresizingMaskIntoConstraints = false
-            imageView.addSubview(colorOverlay)
-            NSLayoutConstraint.activate([
-                colorOverlay.topAnchor.constraint(equalTo: imageView.topAnchor),
-                colorOverlay.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                colorOverlay.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-                colorOverlay.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
-            ])
-            colorOverlay.backgroundColor = .clear
-        }
+        colorOverlay.translatesAutoresizingMaskIntoConstraints = false
+        imageView.addSubview(colorOverlay)
+        NSLayoutConstraint.activate([
+            colorOverlay.topAnchor.constraint(equalTo: imageView.topAnchor),
+            colorOverlay.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+            colorOverlay.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            colorOverlay.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
+        ])
+        colorOverlay.backgroundColor = .clear
+    }
     
     private func setupContainerDescription() {
         ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
@@ -125,15 +121,20 @@ class SlideViewController: UIViewController {
     func updateImageAndTitle() {
         let imageUrlString = slideResponseModel.getCurrentImageName()
         var title = slideResponseModel.getCurrentTitle()
-        
+            
         if title.isEmpty {
             title = "NB"
         }
         titleLabel.text = title
-        
+            
         imageService.downloadImage(from: imageUrlString) { [weak self] image in
             DispatchQueue.main.async {
-                self?.imageView.image = image ?? UIImage(named: "defaultImage")
+                if let validImage = image {
+                    self?.imageView.image = validImage
+                } else {
+                    self?.imageView.image = UIImage(named: "defaultImage")
+                    self?.showAlert(for: .imageDownloadError)
+                }
             }
         }
     }
@@ -145,13 +146,13 @@ class SlideViewController: UIViewController {
     
     private func applyColorFilter() {
         let translationPoint = CGPoint(x: imageView.transform.tx, y: imageView.transform.ty)
-              let color = colorFilterService.filterColorForTranslation(translationPoint)
-              colorOverlay.backgroundColor = color
-          }
+        let color = colorFilterService.filterColorForTranslation(translationPoint)
+        colorOverlay.backgroundColor = color
+    }
     
     private func resetColorFilter() {
-           colorOverlay.backgroundColor = .clear
-       }
+        colorOverlay.backgroundColor = .clear
+    }
     
     // MARK: - Navigation
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
@@ -165,13 +166,14 @@ class SlideViewController: UIViewController {
             resultViewController.image = image
             resultViewController.selectedCountry = self.selectedCountry
             resultViewController.loadingViewController = loadingVC
+            self.navigationController?.pushViewController(resultViewController, animated: false)
             
-            // Load data then navigate to ResultViewController
-            resultViewController.fetchCardDetails { [weak self] in
-                self?.navigationController?.pushViewController(resultViewController, animated: false)
-            }
+            /*  // Load data then navigate to ResultViewController
+             resultViewController.fetchCardDetails { [weak self] in
+                 self?.navigationController?.pushViewController(resultViewController, animated: false)
+             }*/
         }
     }
-
+    
 }
 

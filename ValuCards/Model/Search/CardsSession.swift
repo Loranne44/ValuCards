@@ -26,18 +26,18 @@ class CardsProvider: CardsProviderProtocol {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
-            case .failure(let error):
+            case .failure(_):
                 if let statusCode = response.response?.statusCode {
                     switch statusCode {
                     case 404:
-                        completion(.failure(.noCardsFound))
+                        completion(.failure(.resourceNotFound))
                     case 500..<600:
                         completion(.failure(.serverError))
                     default:
                         completion(.failure(.generalNetworkError))
                     }
                 } else {
-                    completion(.failure(.requestFailed(error: error)))
+                    completion(.failure(.requestFailed))
                 }
             }
         }
