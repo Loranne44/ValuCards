@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - CardItem Data Model
 struct CardItem {
     let imageName: String
     let title: String

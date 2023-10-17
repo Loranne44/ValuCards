@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import FirebaseAuth
 
-class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SearchCardViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var cardNameTextField: UITextField!
@@ -48,24 +48,28 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     private func setSavedCountry() {
-        if let savedCountry = getSavedCountryChoice(),
-           let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
-            countryPickerView.selectRow(index, inComponent: 0, animated: false)
-        }
-    }
-    
-    @IBAction func didTapLogoutBotton(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
-                let navController = UINavigationController(rootViewController: authVC)
-                self.view.window?.rootViewController = navController
-                self.view.window?.makeKeyAndVisible()
+            if let savedCountry = CountryManager.shared.getSavedCountryChoice(),
+               let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
+                countryPickerView.selectRow(index, inComponent: 0, animated: false)
             }
-        } catch {
-            showAlert(for: .signOutError)
         }
+    
+    // MARK: - IBActions
+    @IBAction func didTapLogoutBotton(_ sender: UIButton) {
+        AuthenticationManager.shared.logout { [weak self] result in
+                    switch result {
+                    case .success:
+                        // Navigate to auth VC or perform other UI updates
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
+                            let navController = UINavigationController(rootViewController: authVC)
+                            self?.view.window?.rootViewController = navController
+                            self?.view.window?.makeKeyAndVisible()
+                        }
+                    case .failure:
+                        self?.showAlert(for: .signOutError)
+                    }
+                }
     }
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
@@ -74,40 +78,41 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     // MARK: - Search Logic
     func search() {
-        guard let name = cardNameTextField.text, !name.isEmpty else {
-            self.showAlert(for: .cardNameMissing)
-            return
-        }
-        
+            guard let name = cardNameTextField.text, !name.isEmpty else {
+                self.showAlert(for: .cardNameMissing)
+                return
+            }
+            
         let selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
-        
-        CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
-            DispatchQueue.main.async {
-                guard let self = self else {
-                    return
-                }
-                
-                switch result {
-                case let .success(card):
-                    let imagesAndTitles = card.itemSummaries
-                        .compactMap { summary -> (imageName: String, title: String)? in
-                            guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
-                            return (imageName: imageUrl, title: summary.title)
-                        }
+
+
+            CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
+                DispatchQueue.main.async {
+                    guard let self = self else {
+                        return
+                    }
                     
-                    self.imagesAndTitlesToSend = imagesAndTitles
-                    self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
-                case let .failure(error):
-                    switch error {
-                    case .noCardsFound:
-                        self.showAlert(for: .otherCardMissing)
-                    default:
-                        self.showAlert(for: .otherCardMissing)
+                    switch result {
+                    case let .success(card):
+                        let imagesAndTitles = card.itemSummaries
+                            .compactMap { summary -> (imageName: String, title: String)? in
+                                guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
+                                return (imageName: imageUrl, title: summary.title)
+                            }
+                        
+                        self.imagesAndTitlesToSend = imagesAndTitles
+                        self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
+                    case let .failure(error):
+                        switch error {
+                        case .noCardsFound:
+                            self.showAlert(for: .otherCardMissing)
+                        default:
+                            self.showAlert(for: .otherCardMissing)
+                        }
                     }
                 }
             }
         }
-    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -118,6 +123,7 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
+    /*
     // MARK: - User Defaults
     func saveCountryChoice(country: EbayCountry) {
         let userDefaults = UserDefaults.standard
@@ -131,16 +137,22 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
             return savedCountry
         }
         return nil
-    }
-    
-    // MARK: - UIPickerView DataSource & Delegate
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
+    }*/
+   
+}
+
+extension SearchCardViewController : UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return EbayCountry.allCases.count
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+}
+
+extension SearchCardViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return EbayCountry.allCases[row].displayName
@@ -148,6 +160,6 @@ class SearchCardViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCountry = EbayCountry.allCases[row]
-        saveCountryChoice(country: selectedCountry)
+        CountryManager.shared.saveCountryChoice(selectedCountry)
     }
 }

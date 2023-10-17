@@ -44,6 +44,8 @@ struct ViewHelper {
     }
 }
 
+
+// A mettre dans un fichier extension
 extension UIColor {
     convenience init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

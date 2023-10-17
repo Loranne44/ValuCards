@@ -10,19 +10,6 @@ import DGCharts
 
 class ResultViewController: UIViewController {
     
-    // MARK: - Properties
-    var averagePrice: Double?
-    var lowestPrice: Double?
-    var highestPrice: Double?
-    var currency: String?
-    var image: UIImage?
-    var cardTitle: String?
-    var numberCardsSale: Int?
-    var cardName: String?
-    var selectedCountry: EbayCountry?
-    let pricingService = CardPricingService()
-    var loadingViewController: LoadingViewController?
-    
     // MARK: - Outlets
     @IBOutlet weak var titleCardLabel: UILabel!
     @IBOutlet weak var containerAveragePrice: UIView!
@@ -41,18 +28,30 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pieChartView: PieChartView!
     
+    // MARK: - Properties
+    var averagePrice: Double?
+    var lowestPrice: Double?
+    var highestPrice: Double?
+    var currency: String?
+    var image: UIImage?
+    var cardTitle: String?
+    var numberCardsSale: Int?
+    var cardName: String?
+    var selectedCountry: EbayCountry?
+    var cards: [ValuCards.ItemSummary] = []
+    
+    // MARK: - Services and Constants
+    let pricingService = CardPricingService()
+    let chartManager = ChartManager()
+    var loadingViewController: LoadingViewController?
+    
+    // MARK: - UI Elements
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
-    
-    // MARK: - Data
-    var cards: [ValuCards.ItemSummary] = []
-    
-    // MARK: - Constants
-    let chartManager = ChartManager()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

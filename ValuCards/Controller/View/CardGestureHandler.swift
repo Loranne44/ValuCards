@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 
 class CardGestureHandler {
-    
-    // MARK: - Properties
     private let maxRotationAngle: CGFloat = CGFloat.pi / 3
     
-    // Calculates and returns the transform based on the translation.
+    /// Returns a transform (translation + rotation) based on the user's gesture translation.
     func getTransformForTranslation(_ translation: CGPoint) -> CGAffineTransform {
         let translationTransform = CGAffineTransform(translationX: translation.x, y: translation.y)
         let translationPercent = translation.x / (UIScreen.main.bounds.width / 2)
@@ -21,7 +19,7 @@ class CardGestureHandler {
         return translationTransform.concatenating(CGAffineTransform(rotationAngle: rotationAngle))
     }
     
-    // Calculates and returns the alpha value based on the translation.
+    /// Returns an alpha value (opacity) based on the user's gesture translation.
     func getAlphaForTranslation(_ translation: CGPoint) -> CGFloat {
         let translationPercent = translation.x / (UIScreen.main.bounds.width / 2)
         return 1.0 - min(abs(translationPercent) * 2, 1.0)

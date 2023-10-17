@@ -14,3 +14,5 @@ class ColorFilterService {
         return translation.x > 0 ? UIColor.green.withAlphaComponent(0.5) : UIColor.red.withAlphaComponent(0.5)
     }
 }
+
+// A vérifier si utilisé

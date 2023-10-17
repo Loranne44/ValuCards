@@ -8,25 +8,30 @@
 import Foundation
 
 enum ErrorCase: Error {
-    case jsonDecodingError
-    case invalidURL
-    case serverError
-    case noCardsFound
-    case generalNetworkError
-    case registrationError
-    case requestFailed
-    case loginError
-    case firebaseLoginError
-    case cardNameMissing
-    case otherCardMissing
-    case cardSearchError
-    case passwordResetSent
-    case invalidEmail
-    case countryNotSelected
-    case resourceNotFound
-    case signOutError
-    case imageDownloadError
-    case gifLoadingError
+    // Network related errors
+        case invalidURL
+        case serverError
+        case generalNetworkError
+        case requestFailed
+        case resourceNotFound
+        case jsonDecodingError
+        
+        // User related errors
+        case registrationError
+        case loginError
+        case firebaseLoginError
+        case passwordResetSent
+        case invalidEmail
+        case signOutError
+        
+        // App specific errors
+        case noCardsFound
+        case cardNameMissing
+        case otherCardMissing
+        case cardSearchError
+        case countryNotSelected
+        case imageDownloadError
+        case gifLoadingError
     
     var message: String {
         switch self {
@@ -71,3 +76,6 @@ enum ErrorCase: Error {
         }
     }
 }
+
+
+// Une des pistes d'amélioration : gérer la traduction

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - ImageService
 class ImageService {
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let imageUrl = URL(string: urlString) else {

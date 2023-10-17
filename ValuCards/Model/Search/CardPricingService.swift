@@ -7,7 +7,6 @@
 
 import Foundation
 
-// Service to calculate different pricing metrics from a collection of card items.
 struct CardPricingService {
     
     // MARK: - Private Helper Methods

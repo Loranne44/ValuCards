@@ -21,6 +21,7 @@ class ChartManager {
         .init(range: 300...Int.max, label: "300+")
     ]
     
+    /// Sets up a PieChartView using card data.
     func setupPieChartView(pieChartView: PieChartView, cards: [ValuCards.ItemSummary], currency: String?) {
         var counts: [String: Int] = [:]
         for card in cards {

@@ -8,6 +8,7 @@
 import UIKit
 
 class SlideViewController: UIViewController {
+    
     // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var containerDescription: UIView!
@@ -157,8 +158,8 @@ class SlideViewController: UIViewController {
     // MARK: - Navigation
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController {
-            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as! LoadingViewController
+        if let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController,
+           let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as? LoadingViewController {
             loadingVC.modalPresentationStyle = .overFullScreen
             self.present(loadingVC, animated: true, completion: nil)
             
