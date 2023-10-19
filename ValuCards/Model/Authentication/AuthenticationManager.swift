@@ -13,15 +13,12 @@ class AuthenticationManager: AuthenticationProtocol {
     static let shared = AuthenticationManager()
     
     func signInWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        // This should be implemented or can be left empty if not used.
     }
     
     func signUpWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        // This should be implemented or can be left empty if not used.
     }
     
     func signInWithGoogle(presentingController: UIViewController, completion: @escaping (Result<Void, Error>) -> Void) {
-        // This should be implemented or can be left empty if not used.
     }
     
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {

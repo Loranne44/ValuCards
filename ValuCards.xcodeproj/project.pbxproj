@@ -26,6 +26,11 @@
 		456A2E6B2AB04F9600DA85C1 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E6A2AB04F9600DA85C1 /* ImageService.swift */; };
 		456A2E6D2AB0506F00DA85C1 /* ColorFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */; };
 		456A2E712AB0587400DA85C1 /* EbayCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E702AB0587400DA85C1 /* EbayCountry.swift */; };
+		456B73AC2ADE90F4002329A3 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456B73AB2ADE90F4002329A3 /* AuthenticationTests.swift */; };
+		456B73AE2ADE922C002329A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 456B73AD2ADE922C002329A3 /* FirebaseAuth */; };
+		456B73B02ADE924D002329A3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 456B73AF2ADE924D002329A3 /* GoogleSignIn */; };
+		456B73B22ADE9253002329A3 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 456B73B12ADE9253002329A3 /* DGCharts */; };
+		456B73B42ADE926A002329A3 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 456B73B32ADE926A002329A3 /* SDWebImage */; };
 		457972F02A42F9030099D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972EF2A42F9030099D024 /* AppDelegate.swift */; };
 		457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F12A42F9030099D024 /* SceneDelegate.swift */; };
 		457972F42A42F9030099D024 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457972F32A42F9030099D024 /* AuthViewController.swift */; };
@@ -36,9 +41,6 @@
 		457973292A432D240099D024 /* SearchCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457973282A432D240099D024 /* SearchCardViewController.swift */; };
 		4579732B2A4339430099D024 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4579732A2A4339430099D024 /* Card.swift */; };
 		4582D87C2A4B6FC600AE6084 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582D87B2A4B6FC600AE6084 /* ResponseModel.swift */; };
-		4588EC2A2ADE6F4E00594693 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4588EC292ADE6F4E00594693 /* SDWebImage */; };
-		4588EC2C2ADE6F5E00594693 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 4588EC2B2ADE6F5E00594693 /* GoogleSignIn */; };
-		4588EC2E2ADE6F9F00594693 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4588EC2D2ADE6F9F00594693 /* FirebaseAuth */; };
 		459942DD2A4D707F00BC4AF3 /* CardsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DC2A4D707F00BC4AF3 /* CardsSession.swift */; };
 		459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459942DE2A4D7B6900BC4AF3 /* Error.swift */; };
 		45A7A1DE2AD7F66F00DB0CE7 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1DD2AD7F66F00DB0CE7 /* CardItem.swift */; };
@@ -49,7 +51,7 @@
 		45A7A1E92AD8493900DB0CE7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1E82AD8493900DB0CE7 /* AuthenticationManager.swift */; };
 		45A7A1EF2ADD515F00DB0CE7 /* AuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1EE2ADD515F00DB0CE7 /* AuthenticationProtocol.swift */; };
 		45A7A1F12ADD524400DB0CE7 /* AuthenticationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1F02ADD524400DB0CE7 /* AuthenticationMock.swift */; };
-		45A7A1F92ADD787A00DB0CE7 /* ValuCardsNewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1F82ADD787A00DB0CE7 /* ValuCardsNewTests.swift */; };
+		45A7A1F92ADD787A00DB0CE7 /* SearchCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1F82ADD787A00DB0CE7 /* SearchCardsTests.swift */; };
 		45A7A2002ADD78A600DB0CE7 /* MockCardsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1FF2ADD78A600DB0CE7 /* MockCardsProvider.swift */; };
 		45B5B3B32AAB044800A0E169 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45B5B3B22AAB044800A0E169 /* DGCharts */; };
 		45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */; };
@@ -93,6 +95,7 @@
 		456A2E6A2AB04F9600DA85C1 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		456A2E6C2AB0506F00DA85C1 /* ColorFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFilterService.swift; sourceTree = "<group>"; };
 		456A2E702AB0587400DA85C1 /* EbayCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EbayCountry.swift; sourceTree = "<group>"; };
+		456B73AB2ADE90F4002329A3 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		457972EC2A42F9030099D024 /* ValuCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValuCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457972EF2A42F9030099D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457972F12A42F9030099D024 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +119,7 @@
 		45A7A1EE2ADD515F00DB0CE7 /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
 		45A7A1F02ADD524400DB0CE7 /* AuthenticationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMock.swift; sourceTree = "<group>"; };
 		45A7A1F62ADD787900DB0CE7 /* ValuCardsNewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ValuCardsNewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		45A7A1F82ADD787A00DB0CE7 /* ValuCardsNewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuCardsNewTests.swift; sourceTree = "<group>"; };
+		45A7A1F82ADD787A00DB0CE7 /* SearchCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsTests.swift; sourceTree = "<group>"; };
 		45A7A1FF2ADD78A600DB0CE7 /* MockCardsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCardsProvider.swift; sourceTree = "<group>"; };
 		45B5B3A62AA9F1B100A0E169 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewController.swift; sourceTree = "<group>"; };
@@ -147,9 +150,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4588EC2A2ADE6F4E00594693 /* SDWebImage in Frameworks */,
-				4588EC2E2ADE6F9F00594693 /* FirebaseAuth in Frameworks */,
-				4588EC2C2ADE6F5E00594693 /* GoogleSignIn in Frameworks */,
+				456B73AE2ADE922C002329A3 /* FirebaseAuth in Frameworks */,
+				456B73B22ADE9253002329A3 /* DGCharts in Frameworks */,
+				456B73B42ADE926A002329A3 /* SDWebImage in Frameworks */,
+				456B73B02ADE924D002329A3 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +276,9 @@
 		45A7A1F72ADD787A00DB0CE7 /* ValuCardsNewTests */ = {
 			isa = PBXGroup;
 			children = (
-				45A7A1F82ADD787A00DB0CE7 /* ValuCardsNewTests.swift */,
 				45A7A1FF2ADD78A600DB0CE7 /* MockCardsProvider.swift */,
+				45A7A1F82ADD787A00DB0CE7 /* SearchCardsTests.swift */,
+				456B73AB2ADE90F4002329A3 /* AuthenticationTests.swift */,
 			);
 			path = ValuCardsNewTests;
 			sourceTree = "<group>";
@@ -364,9 +369,10 @@
 			);
 			name = ValuCardsNewTests;
 			packageProductDependencies = (
-				4588EC292ADE6F4E00594693 /* SDWebImage */,
-				4588EC2B2ADE6F5E00594693 /* GoogleSignIn */,
-				4588EC2D2ADE6F9F00594693 /* FirebaseAuth */,
+				456B73AD2ADE922C002329A3 /* FirebaseAuth */,
+				456B73AF2ADE924D002329A3 /* GoogleSignIn */,
+				456B73B12ADE9253002329A3 /* DGCharts */,
+				456B73B32ADE926A002329A3 /* SDWebImage */,
 			);
 			productName = ValuCardsNewTests;
 			productReference = 45A7A1F62ADD787900DB0CE7 /* ValuCardsNewTests.xctest */;
@@ -482,7 +488,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A7A2002ADD78A600DB0CE7 /* MockCardsProvider.swift in Sources */,
-				45A7A1F92ADD787A00DB0CE7 /* ValuCardsNewTests.swift in Sources */,
+				456B73AC2ADE90F4002329A3 /* AuthenticationTests.swift in Sources */,
+				45A7A1F92ADD787A00DB0CE7 /* SearchCardsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,20 +840,25 @@
 			package = 452CBD912AB47C2F009C71D1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
-		4588EC292ADE6F4E00594693 /* SDWebImage */ = {
+		456B73AD2ADE922C002329A3 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 450E40F62AC180EF008B225F /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
+			package = 4514BEB82A6FADAA004498FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
-		4588EC2B2ADE6F5E00594693 /* GoogleSignIn */ = {
+		456B73AF2ADE924D002329A3 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 452CBD912AB47C2F009C71D1 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		4588EC2D2ADE6F9F00594693 /* FirebaseAuth */ = {
+		456B73B12ADE9253002329A3 /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4514BEB82A6FADAA004498FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
+			package = 45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		456B73B32ADE926A002329A3 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 450E40F62AC180EF008B225F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 		45B5B3B22AAB044800A0E169 /* DGCharts */ = {
 			isa = XCSwiftPackageProductDependency;

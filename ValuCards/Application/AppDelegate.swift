@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         
         FirebaseApp.configure()
-        window = UIApplication.shared.windows.first
+//        window = UIApplication.shared.windows.first
+        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            window = scene?.windows.first
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

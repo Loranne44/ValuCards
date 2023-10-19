@@ -8,7 +8,7 @@
 import XCTest
 @testable import ValuCards
 
-class CardsModelTests: XCTestCase {
+class SearchCardsTests: XCTestCase {
     var sut: CardsModel!
     var mockProvider: MockCardsProvider!
     
@@ -102,66 +102,66 @@ class CardsModelTests: XCTestCase {
     }
     
     func testSearchCardsJSONDecodingError() {
-            // Given
-            let invalidJsonString = """
+        // Given
+        let invalidJsonString = """
             {
                 "invalidKey": "This JSON doesn't match our model"
             }
             """
-            let mockData = Data(invalidJsonString.utf8)
-            mockProvider.data = mockData
-            
-            let expectation = self.expectation(description: "Search cards should return JSON decoding error")
-            
-            // When
-            var searchResult: ItemSearchResult?
-            var searchError: ErrorCase?
-            sut.searchCards(withName: "TestCard", inCountry: .US) { result in
-                switch result {
-                case .success(let items):
-                    searchResult = items
-                case .failure(let error):
-                    searchError = error
-                }
-                expectation.fulfill()
+        let mockData = Data(invalidJsonString.utf8)
+        mockProvider.data = mockData
+        
+        let expectation = self.expectation(description: "Search cards should return JSON decoding error")
+        
+        // When
+        var searchResult: ItemSearchResult?
+        var searchError: ErrorCase?
+        sut.searchCards(withName: "TestCard", inCountry: .US) { result in
+            switch result {
+            case .success(let items):
+                searchResult = items
+            case .failure(let error):
+                searchError = error
             }
-            
-            waitForExpectations(timeout: 5, handler: nil)
-            
-            // Then
-            XCTAssertNil(searchResult, "Expected no search result.")
-            XCTAssertEqual(searchError, ErrorCase.jsonDecodingError)
+            expectation.fulfill()
         }
-
-        func testSearchCardsInvalidURL() {
-            // Given
-            mockProvider.error = .invalidURL
-            
-            let expectation = self.expectation(description: "Search cards should return invalid URL error")
-            
-            // When
-            var searchResult: ItemSearchResult?
-            var searchError: ErrorCase?
-            sut.searchCards(withName: "TestCard", inCountry: .US) { result in
-                switch result {
-                case .success(let items):
-                    searchResult = items
-                case .failure(let error):
-                    searchError = error
-                }
-                expectation.fulfill()
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        // Then
+        XCTAssertNil(searchResult, "Expected no search result.")
+        XCTAssertEqual(searchError, ErrorCase.jsonDecodingError)
+    }
+    
+    func testSearchCardsInvalidURL() {
+        // Given
+        mockProvider.error = .invalidURL
+        
+        let expectation = self.expectation(description: "Search cards should return invalid URL error")
+        
+        // When
+        var searchResult: ItemSearchResult?
+        var searchError: ErrorCase?
+        sut.searchCards(withName: "TestCard", inCountry: .US) { result in
+            switch result {
+            case .success(let items):
+                searchResult = items
+            case .failure(let error):
+                searchError = error
             }
-            
-            waitForExpectations(timeout: 5, handler: nil)
-            
-            // Then
-            XCTAssertNil(searchResult, "Expected no search result.")
-            XCTAssertEqual(searchError, ErrorCase.invalidURL)
+            expectation.fulfill()
         }
-
-        func testSearchCardsNoMatchingCards() {
-            // Given
-            let emptyJsonString = """
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        // Then
+        XCTAssertNil(searchResult, "Expected no search result.")
+        XCTAssertEqual(searchError, ErrorCase.invalidURL)
+    }
+    
+    func testSearchCardsNoMatchingCards() {
+        // Given
+        let emptyJsonString = """
             {
                 "href": "http://test.com",
                 "total": 0,
@@ -170,36 +170,36 @@ class CardsModelTests: XCTestCase {
                 "itemSummaries": []
             }
             """
-            let mockData = Data(emptyJsonString.utf8)
-            mockProvider.data = mockData
-            
-            let expectation = self.expectation(description: "Search cards should return no cards")
-            
-            // When
-            var searchResult: ItemSearchResult?
-            var searchError: ErrorCase?
-            sut.searchCards(withName: "InvalidCardName", inCountry: .US) { result in
-                switch result {
-                case .success(let items):
-                    searchResult = items
-                case .failure(let error):
-                    searchError = error
-                }
-                expectation.fulfill()
+        let mockData = Data(emptyJsonString.utf8)
+        mockProvider.data = mockData
+        
+        let expectation = self.expectation(description: "Search cards should return no cards")
+        
+        // When
+        var searchResult: ItemSearchResult?
+        var searchError: ErrorCase?
+        sut.searchCards(withName: "InvalidCardName", inCountry: .US) { result in
+            switch result {
+            case .success(let items):
+                searchResult = items
+            case .failure(let error):
+                searchError = error
             }
-            
-            waitForExpectations(timeout: 5, handler: nil)
-            
-            // Then
-            XCTAssertNotNil(searchResult)
-            XCTAssertEqual(searchResult?.itemSummaries.count, 0)
-            XCTAssertNil(searchError, "Expected no error.")
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        // Then
+        XCTAssertNil(searchResult, "Expected no search result.")
+        XCTAssertEqual(searchError, ErrorCase.noCardsFound, "Expected noCardsFound error.")
+    }
     
     func testSearchCardsWithEmptyName() {
         // Given
         let expectation = self.expectation(description: "Search cards should return card name missing error")
         
+        mockProvider.error = .cardNameMissing
         // When
         var searchResult: ItemSearchResult?
         var searchError: ErrorCase?
@@ -219,7 +219,7 @@ class CardsModelTests: XCTestCase {
         XCTAssertNil(searchResult, "Expected no search result.")
         XCTAssertEqual(searchError, ErrorCase.cardNameMissing)
     }
-
+    
     func testSearchCardsServerError() {
         // Given
         mockProvider.error = .serverError
@@ -245,5 +245,4 @@ class CardsModelTests: XCTestCase {
         XCTAssertNil(searchResult, "Expected no search result.")
         XCTAssertEqual(searchError, ErrorCase.serverError)
     }
-
 }
