@@ -17,7 +17,7 @@ jobs:
         env:
           scheme: ${{ 'ValuCards' }}  
           platform: ${{ 'iOS Simulator' }}
-          device: ${{ 'iPhone 15' }} 
+          device: ${{ 'iPhone 14' }} 
         run: |
           xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
       
@@ -25,6 +25,6 @@ jobs:
         env:
           scheme: ${{ 'ValuCards' }}  
           platform: ${{ 'iOS Simulator' }}
-          device: ${{ 'iPhone 15' }}  
+          device: ${{ 'iPhone 14' }}  
         run: |
           xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
