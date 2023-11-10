@@ -1,5 +1,3 @@
-name: iOS starter workflow
-
 on:
   push:
     branches: [ "main" ]
@@ -8,31 +6,25 @@ on:
 
 jobs:
   build:
-    name: Build and Test default scheme using specific iPhone simulator
+    name: Build and Test on iPhone 15 Simulator
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+      
       - name: Build
         env:
-          scheme: ${{ 'default' }}
+          scheme: ${{ 'ValuCards' }}  
           platform: ${{ 'iOS Simulator' }}
-          device: iPhone 15    # Change this to the iPhone model you want to use
+          device: ${{ 'iPhone 15' }} 
         run: |
-          # Specify the simulator directly instead of searching for available devices
-          xcodebuild build-for-testing -scheme "$scheme" -workspace "YourWorkspace.xcworkspace" -destination "platform=$platform,name=$device"
+          xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
+      
       - name: Test
         env:
-          scheme: ${{ 'default' }}
+          scheme: ${{ 'ValuCards' }}  
           platform: ${{ 'iOS Simulator' }}
-          device: iPhone 15    # Change this to the iPhone model you want to use
+          device: ${{ 'iPhone 15' }}  
         run: |
-          # Specify the simulator directly instead of searching for available devices
-          xcodebuild test-without-building -scheme "$scheme" -workspace "YourWorkspace.xcworkspace" -destination "platform=$platform,name=$device"
+          xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
