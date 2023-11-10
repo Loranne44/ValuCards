@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test on iPhone 15 Simulator
+    name: Build and Test on iPhone 13 Simulator
     runs-on: macos-latest
 
     steps:
@@ -15,16 +15,18 @@ jobs:
       
       - name: Build
         env:
-          scheme: ${{ 'ValuCards' }}  
-          platform: ${{ 'iOS Simulator' }}
-          device: ${{ 'iPhone 13' }} 
+          scheme: 'ValuCards'
+          platform: 'iOS Simulator'
+          device: 'iPhone 13'
+          os: '15.5'
         run: |
-          xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
+          xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
       
       - name: Test
         env:
-          scheme: ${{ 'ValuCards' }}  
-          platform: ${{ 'iOS Simulator' }}
-          device: ${{ 'iPhone 13' }}  
+          scheme: 'ValuCards'
+          platform: 'iOS Simulator'
+          device: 'iPhone 13'
+          os: '15.5'
         run: |
-          xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device"
+          xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
