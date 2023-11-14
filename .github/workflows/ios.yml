@@ -18,7 +18,7 @@ jobs:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'Any iOS Simulator Device'
-          os: '16.5'
+          os: '16.2'
         run: |
           xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
       
