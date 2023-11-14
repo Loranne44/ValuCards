@@ -7,6 +7,7 @@
 
 import UIKit
 import DGCharts
+import FirebasePerformance
 
 class ResultViewController: UIViewController {
     
@@ -74,38 +75,53 @@ class ResultViewController: UIViewController {
     // MARK: - Data Fetching
     func fetchCardDetails(completion: @escaping () -> Void) {
         guard let title = cardTitle, let country = selectedCountry else {
-            self.showAlert(for: .countryNotSelected)
+            showAlert(for: .countryNotSelected)
             completion()
             return
         }
         
+        let trace = Performance.startTrace(name: "fetch_card_details")
+
         CardsModel.shared.searchCards(withName: title, inCountry: country) { [weak self] result in
-            guard let self = self else { return }
+            defer {
+                trace?.stop()
+                completion()
+            }
+
             switch result {
             case let .success(card):
-                var filteredCards = card.itemSummaries
-                
-                filteredCards.sort(by: { $0.price.value < $1.price.value })
-                
-                if filteredCards.count > 2 {
-                    filteredCards.removeFirst()
-                    filteredCards.removeLast()
-                }
-                
-                self.averagePrice = self.pricingService.getAveragePrice(from: filteredCards)
-                self.lowestPrice = self.pricingService.getLowestPrice(from: filteredCards)
-                self.highestPrice = self.pricingService.getHighestPrice(from: filteredCards)
-                self.currency = filteredCards.first?.price.currency
-                self.cards = filteredCards
-                self.numberCardsSale = filteredCards.count
-                
+                self?.processCardSearchResults(card)
             case .failure(let error):
-                print(error)
-                self.showAlert(for: .cardSearchError)
-                self.loadingViewController?.dismiss(animated: true, completion: nil)
+                self?.handleSearchError(error)
             }
-            completion()
         }
+    }
+    
+    private func processCardSearchResults(_ card: ItemSearchResult) {
+        var filteredCards = card.itemSummaries
+        filteredCards.sort(by: { $0.price.value < $1.price.value })
+        
+        if filteredCards.count > 2 {
+            filteredCards.removeFirst()
+            filteredCards.removeLast()
+        }
+        
+        self.averagePrice = self.pricingService.getAveragePrice(from: filteredCards)
+        self.lowestPrice = self.pricingService.getLowestPrice(from: filteredCards)
+        self.highestPrice = self.pricingService.getHighestPrice(from: filteredCards)
+        self.currency = filteredCards.first?.price.currency
+        self.cards = filteredCards
+        self.numberCardsSale = filteredCards.count
+        
+        self.setupViews()  // Configure the UI based on the fetched card data
+        self.chartManager.setupPieChartView(pieChartView: self.pieChartView, cards: self.cards, currency: self.currency)
+        self.loadingViewController?.dismiss(animated: true, completion: nil)
+    }
+
+    private func handleSearchError(_ error: ErrorCase) {
+        print(error)
+        showAlert(for: .cardSearchError)
+        self.loadingViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - UI Configuration

@@ -10,7 +10,10 @@ import DGCharts
 
 // MARK: - Value Formatting
 class IntValueFormatter: ValueFormatter {
-    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+    func stringForValue(_ value: Double,
+                        entry _: ChartDataEntry,
+                        dataSetIndex _: Int,
+                        viewPortHandler _: ViewPortHandler?) -> String {
         return String(Int(value))
     }
 }

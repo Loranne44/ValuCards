@@ -7,6 +7,8 @@
 
 import Foundation
 import Alamofire
+import Firebase
+import FirebasePerformance
 
 // MARK: - Cards Provider Protocol
 protocol CardsProviderProtocol {
@@ -16,13 +18,16 @@ protocol CardsProviderProtocol {
 // MARK: - Cards Provider Implementation
 class CardsProvider: CardsProviderProtocol {
     func getRequest(url: URL,  headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void) {
-        
+        let trace = Performance.startTrace(name: "network_request_to_\(url.path)")
+
         AF.request(url,
                    method: .get,
                    headers: headers,
                    interceptor: nil)
         .validate(statusCode: 200..<600)
         .responseData { response in
+            trace?.stop()
+
             switch response.result {
             case .success(let data):
                 completion(.success(data))
@@ -44,3 +49,4 @@ class CardsProvider: CardsProviderProtocol {
     }
 }
 
+// A TESTER

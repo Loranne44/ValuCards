@@ -16,6 +16,9 @@ struct CardPricingService {
     
     // MARK: - Pricing Metrics
     func getAveragePrice(from cards: [ItemSummary]) -> Double {
+        if cards.isEmpty {
+            return 0.0
+        }
         let prices = self.prices(from: cards)
         let sum = prices.reduce(0, +)
         return sum / Double(cards.count)

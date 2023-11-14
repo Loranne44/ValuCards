@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import FirebasePerformance
 
 class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
     
@@ -17,7 +18,11 @@ class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
     
     // MARK: - Firebase Authentication
     func signInWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let trace = Performance.startTrace(name: "signin_with_firebase_email")
+
         Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+            trace?.stop()
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -27,7 +32,11 @@ class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
     }
     
     func signUpWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let trace = Performance.startTrace(name: "signup_with_firebase_email")
+
         Auth.auth().createUser(withEmail: email, password: password) { (_, error) in
+            trace?.stop()
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -38,6 +47,8 @@ class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
     
     // MARK: - Google Authentication
     func signInWithGoogle(presentingController: UIViewController, completion: @escaping (Result<Void, Error>) -> Void) {
+        let trace = Performance.startTrace(name: "signin_with_google")
+
         guard let clientID = FirebaseApp.app()?.options.clientID else {
             completion(.failure(NSError(domain: "FirebaseGoogleAuthenticationManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "Google Client ID missing"])))
             return
@@ -59,6 +70,8 @@ class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
             let accessToken = user.accessToken.tokenString
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
             Auth.auth().signIn(with: credential) { (_, error) in
+                trace?.stop()
+
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -69,10 +82,14 @@ class FirebaseGoogleAuthenticationManager: AuthenticationProtocol {
     }
     
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
+        let trace = Performance.startTrace(name: "logout")
+
         do {
             try Auth.auth().signOut()
+            trace?.stop()
             completion(.success(()))
         } catch {
+            trace?.stop()
             completion(.failure(error))
         }
     }

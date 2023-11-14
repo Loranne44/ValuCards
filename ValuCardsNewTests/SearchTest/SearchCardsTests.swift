@@ -68,7 +68,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNotNil(searchResult, "Expected valid search result.")
@@ -94,7 +94,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
@@ -126,7 +126,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
@@ -152,7 +152,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
@@ -188,7 +188,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
@@ -213,7 +213,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
@@ -239,7 +239,7 @@ class SearchCardsTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
         
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")

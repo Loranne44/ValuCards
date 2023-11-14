@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "A584F4F8-B31F-4A4B-ABEA-57D38DA9E4D3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:ValuCards.xcodeproj",
+          "identifier" : "457972EB2A42F9030099D024",
+          "name" : "ValuCards"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ValuCards.xcodeproj",
+      "identifier" : "457972EB2A42F9030099D024",
+      "name" : "ValuCards"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ValuCards.xcodeproj",
+        "identifier" : "45A7A1F52ADD787900DB0CE7",
+        "name" : "ValuCardsNewTests"
+      }
+    }
+  ],
+  "version" : 1
+}

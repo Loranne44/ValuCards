@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebasePerformance
 
 class SlideViewController: UIViewController {
     
@@ -120,6 +121,7 @@ class SlideViewController: UIViewController {
     }
     
     func updateImageAndTitle() {
+        let trace = Performance.startTrace(name: "image_download")
         let imageUrlString = slideResponseModel.getCurrentImageName()
         var title = slideResponseModel.getCurrentTitle()
             
@@ -129,6 +131,7 @@ class SlideViewController: UIViewController {
         titleLabel.text = title
             
         imageService.downloadImage(from: imageUrlString) { [weak self] image in
+            trace?.stop()
             DispatchQueue.main.async {
                 if let validImage = image {
                     self?.imageView.image = validImage
@@ -157,6 +160,8 @@ class SlideViewController: UIViewController {
     
     // MARK: - Navigation
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
+        let trace = Performance.startTrace(name: "navigate_to_result_view")
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let resultViewController = storyboard.instantiateViewController(withIdentifier: "ResultViewControllerID") as? ResultViewController,
            let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewControllerID") as? LoadingViewController {
@@ -168,7 +173,8 @@ class SlideViewController: UIViewController {
             resultViewController.selectedCountry = self.selectedCountry
             resultViewController.loadingViewController = loadingVC
             self.navigationController?.pushViewController(resultViewController, animated: false)
-            
+            trace?.stop()
+
             /*  // Load data then navigate to ResultViewController
              resultViewController.fetchCardDetails { [weak self] in
                  self?.navigationController?.pushViewController(resultViewController, animated: false)

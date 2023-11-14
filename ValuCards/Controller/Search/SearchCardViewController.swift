@@ -8,6 +8,8 @@
 import UIKit
 import AVFoundation
 import FirebaseAuth
+import Firebase
+import FirebasePerformance
 
 class SearchCardViewController: UIViewController {
     
@@ -73,47 +75,55 @@ class SearchCardViewController: UIViewController {
     }
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
-        search()
+        let trace = Performance.startTrace(name: "manual_card_search")
+            search() {
+                trace?.stop()
+            }
     }
     
     // MARK: - Search Logic
-    func search() {
-            guard let name = cardNameTextField.text, !name.isEmpty else {
-                self.showAlert(for: .cardNameMissing)
-                return
-            }
-            
+    // MARK: - Search Logic
+    func search(completion: @escaping () -> Void) {
+        guard let name = cardNameTextField.text, !name.isEmpty else {
+            showAlert(for: .cardNameMissing)
+            completion() 
+            return
+        }
+        
         let selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
+        let trace = Performance.startTrace(name: "search_cards")
 
-
-            CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
-                DispatchQueue.main.async {
-                    guard let self = self else {
-                        return
-                    }
-                    
-                    switch result {
-                    case let .success(card):
-                        let imagesAndTitles = card.itemSummaries
-                            .compactMap { summary -> (imageName: String, title: String)? in
-                                guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
-                                return (imageName: imageUrl, title: summary.title)
-                            }
-                        
-                        self.imagesAndTitlesToSend = imagesAndTitles
-                        self.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
-                    case let .failure(error):
-                        switch error {
-                        case .noCardsFound:
-                            self.showAlert(for: .otherCardMissing)
-                        default:
-                            self.showAlert(for: .otherCardMissing)
+        CardsModel.shared.searchCards(withName: name, inCountry: selectedCountry) { [weak self] result in
+            trace?.stop()
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(card):
+                    let imagesAndTitles = card.itemSummaries
+                        .compactMap { summary -> (imageName: String, title: String)? in
+                            guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
+                            return (imageName: imageUrl, title: summary.title)
                         }
-                    }
+                    
+                    self?.imagesAndTitlesToSend = imagesAndTitles
+                    self?.performSegue(withIdentifier: "SlideViewControllerSegue", sender: self)
+                    
+                case let .failure(error):
+                    self?.handleSearchError(error)
                 }
+                completion()
             }
         }
-    
+    }
+
+    private func handleSearchError(_ error: ErrorCase) {
+        switch error {
+        case .noCardsFound:
+            showAlert(for: .otherCardMissing)
+        default:
+            showAlert(for: .otherCardMissing)
+        }
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",

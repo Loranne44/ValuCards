@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import FirebasePerformance
 
 class AuthViewController: UIViewController {
     
@@ -42,10 +43,12 @@ class AuthViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        let trace = Performance.startTrace(name: "initial_app_load")
+
         if Auth.auth().currentUser != nil {
             navigateToSearchCardViewController()
         }
+        trace?.stop()
     }
     
     // MARK: - UI Setup
@@ -130,8 +133,11 @@ class AuthViewController: UIViewController {
         }
         
         let sendAction = UIAlertAction(title: "Send", style: .default) { [weak self] (_) in
+            let trace = Performance.startTrace(name: "forgot_password")
             guard let email = alertController.textFields?.first?.text else { return }
             Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+                trace?.stop()
+
                 DispatchQueue.main.async {
                     if error != nil {
                         self?.showAlert(for: .invalidEmail)

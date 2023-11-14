@@ -96,7 +96,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96O-x0-2RG" userLabel="Google">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="30"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="google" title=""/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Google">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="googleAuthButton:" destination="dqb-Wz-MVo" eventType="touchUpInside" id="WQl-bp-B3x"/>
                                         </connections>
@@ -720,7 +723,6 @@
         <image name="cancel 1" width="55" height="55"/>
         <image name="checked 1" width="55" height="55"/>
         <image name="defaultImage" width="679" height="945"/>
-        <image name="google" width="50" height="50"/>
         <image name="logout" width="24" height="26"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
