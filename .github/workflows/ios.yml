@@ -13,6 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
+      - name: Build
+        env:
+          scheme: 'ValuCards'
+          platform: 'iOS Simulator'
+          device: 'iPhone 14 Pro'
+          os: '16.2'
+        run: |
+          xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
+      
       - name: Test
         env:
           scheme: 'ValuCards'
@@ -20,4 +29,4 @@ jobs:
           device: 'iPhone 14 Pro'
           os: '16.2'
         run: |
-          xcodebuild test -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
+          xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
