@@ -58,7 +58,18 @@ class SearchCardViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func didTapLogoutBotton(_ sender: UIButton) {
-        AuthenticationManager.shared.logout { [weak self] result in
+        do {
+                    try Auth.auth().signOut()
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
+                        let navController = UINavigationController(rootViewController: authVC)
+                        self.view.window?.rootViewController = navController
+                        self.view.window?.makeKeyAndVisible()
+                    }
+                } catch {
+                    showAlert(for: .signOutError)
+                }
+        /*AuthenticationManager.shared.logout { [weak self] result in
                     switch result {
                     case .success:
                         // Navigate to auth VC or perform other UI updates
@@ -70,8 +81,8 @@ class SearchCardViewController: UIViewController {
                         }
                     case .failure:
                         self?.showAlert(for: .signOutError)
-                    }
-                }
+                    }*/
+                
     }
     
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
@@ -97,8 +108,9 @@ class SearchCardViewController: UIViewController {
             trace?.stop()
             DispatchQueue.main.async {
                 switch result {
+                    
                 case let .success(card):
-                    let imagesAndTitles = card.itemSummaries
+                     let imagesAndTitles = card.itemSummaries
                         .compactMap { summary -> (imageName: String, title: String)? in
                             guard let imageUrl = summary.thumbnailImages?.first?.imageUrl else { return nil }
                             return (imageName: imageUrl, title: summary.title)
@@ -118,11 +130,30 @@ class SearchCardViewController: UIViewController {
     private func handleSearchError(_ error: ErrorCase) {
         switch error {
         case .noCardsFound:
+            showAlert(for: .noCardsFound)
+        case .invalidURL:
+            showAlert(for: .invalidURL)
+        case .serverError:
+            showAlert(for: .serverError)
+        case .generalNetworkError:
+            showAlert(for: .generalNetworkError)
+        case .jsonDecodingError:
+            showAlert(for: .jsonDecodingError)
+        case .cardNameMissing:
+            showAlert(for: .cardNameMissing)
+        case .requestFailed:
+            showAlert(for: .requestFailed)
+        case .resourceNotFound:
+            showAlert(for: .resourceNotFound)
+        case .otherCardMissing:
             showAlert(for: .otherCardMissing)
+        case .cardSearchError:
+            showAlert(for: .cardSearchError)
         default:
-            showAlert(for: .otherCardMissing)
+            showAlert(for: .generalNetworkError)
         }
     }
+
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

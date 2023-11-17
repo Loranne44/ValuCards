@@ -14,7 +14,7 @@
 		4514BEB42A6FAD73004498FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4514BEB32A6FAD73004498FD /* Alamofire */; };
 		452CBD932AB47C2F009C71D1 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 452CBD922AB47C2F009C71D1 /* GoogleSignIn */; };
 		452CBD952AB47C2F009C71D1 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 452CBD942AB47C2F009C71D1 /* GoogleSignInSwift */; };
-		452CBD972AB48438009C71D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 452CBD962AB48438009C71D1 /* GoogleService-Info.plist */; };
+		4532BB422B0762060027B7E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4532BB412B0762060027B7E2 /* GoogleService-Info.plist */; };
 		45526D482A68422D000843DD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45526D472A68422D000843DD /* ResultViewController.swift */; };
 		4554A4A22AD557D90071D46F /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4554A4A12AD557D90071D46F /* ChartManager.swift */; };
 		456A2E652AB046CF00DA85C1 /* IntValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A2E642AB046CF00DA85C1 /* IntValueFormatter.swift */; };
@@ -47,8 +47,6 @@
 		45A7A1E22AD80B5000DB0CE7 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1E12AD80B5000DB0CE7 /* NumberFormatter+Extensions.swift */; };
 		45A7A1E42AD81D2000DB0CE7 /* FirebaseGoogleAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1E32AD81D2000DB0CE7 /* FirebaseGoogleAuthenticationManager.swift */; };
 		45A7A1E72AD8491B00DB0CE7 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1E62AD8491B00DB0CE7 /* CountryManager.swift */; };
-		45A7A1E92AD8493900DB0CE7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1E82AD8493900DB0CE7 /* AuthenticationManager.swift */; };
-		45A7A1EF2ADD515F00DB0CE7 /* AuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1EE2ADD515F00DB0CE7 /* AuthenticationProtocol.swift */; };
 		45A7A1F92ADD787A00DB0CE7 /* SearchCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1F82ADD787A00DB0CE7 /* SearchCardsTests.swift */; };
 		45A7A2002ADD78A600DB0CE7 /* MockCardsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7A1FF2ADD78A600DB0CE7 /* MockCardsProvider.swift */; };
 		45AA30942AF92570009D6D3C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 45AA30932AF92570009D6D3C /* FirebaseAnalytics */; };
@@ -98,8 +96,8 @@
 		450282172AB32EE600C1D38E /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		450E40F12AC175F4008B225F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		450E40F92AC1862D008B225F /* gifloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gifloader.gif; sourceTree = "<group>"; };
-		452CBD962AB48438009C71D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		452CD0992AE263110085E773 /* ValuCards.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ValuCards.xctestplan; sourceTree = "<group>"; };
+		4532BB412B0762060027B7E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		45526D472A68422D000843DD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		4554A4A12AD557D90071D46F /* ChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		456A2E642AB046CF00DA85C1 /* IntValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntValueFormatter.swift; sourceTree = "<group>"; };
@@ -127,8 +125,6 @@
 		45A7A1E12AD80B5000DB0CE7 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		45A7A1E32AD81D2000DB0CE7 /* FirebaseGoogleAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGoogleAuthenticationManager.swift; sourceTree = "<group>"; };
 		45A7A1E62AD8491B00DB0CE7 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
-		45A7A1E82AD8493900DB0CE7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		45A7A1EE2ADD515F00DB0CE7 /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
 		45A7A1F62ADD787900DB0CE7 /* ValuCardsNewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ValuCardsNewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45A7A1F82ADD787A00DB0CE7 /* SearchCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsTests.swift; sourceTree = "<group>"; };
 		45A7A1FF2ADD78A600DB0CE7 /* MockCardsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCardsProvider.swift; sourceTree = "<group>"; };
@@ -199,9 +195,9 @@
 		457972E32A42F9030099D024 = {
 			isa = PBXGroup;
 			children = (
+				4532BB412B0762060027B7E2 /* GoogleService-Info.plist */,
 				45AA309F2AFA3634009D6D3C /* testImage .jpg */,
 				452CD0992AE263110085E773 /* ValuCards.xctestplan */,
-				452CBD962AB48438009C71D1 /* GoogleService-Info.plist */,
 				457972EE2A42F9030099D024 /* ValuCards */,
 				45A7A1F72ADD787A00DB0CE7 /* ValuCardsNewTests */,
 				457972ED2A42F9030099D024 /* Products */,
@@ -292,8 +288,6 @@
 		45A7A1E52AD823F800DB0CE7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				45A7A1EE2ADD515F00DB0CE7 /* AuthenticationProtocol.swift */,
-				45A7A1E82AD8493900DB0CE7 /* AuthenticationManager.swift */,
 				45A7A1E32AD81D2000DB0CE7 /* FirebaseGoogleAuthenticationManager.swift */,
 			);
 			path = Authentication;
@@ -475,8 +469,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				457972FC2A42F9040099D024 /* LaunchScreen.storyboard in Resources */,
-				452CBD972AB48438009C71D1 /* GoogleService-Info.plist in Resources */,
 				457972F92A42F9040099D024 /* Assets.xcassets in Resources */,
+				4532BB422B0762060027B7E2 /* GoogleService-Info.plist in Resources */,
 				450E40FA2AC1862D008B225F /* gifloader.gif in Resources */,
 				457972F72A42F9030099D024 /* Main.storyboard in Resources */,
 			);
@@ -503,7 +497,6 @@
 				45A7A1E42AD81D2000DB0CE7 /* FirebaseGoogleAuthenticationManager.swift in Sources */,
 				45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */,
 				450282182AB32EE600C1D38E /* ViewHelper.swift in Sources */,
-				45A7A1EF2ADD515F00DB0CE7 /* AuthenticationProtocol.swift in Sources */,
 				456A2E712AB0587400DA85C1 /* EbayCountry.swift in Sources */,
 				457973292A432D240099D024 /* SearchCardViewController.swift in Sources */,
 				4554A4A22AD557D90071D46F /* ChartManager.swift in Sources */,
@@ -524,7 +517,6 @@
 				45A7A1E72AD8491B00DB0CE7 /* CountryManager.swift in Sources */,
 				457972F22A42F9030099D024 /* SceneDelegate.swift in Sources */,
 				459942DF2A4D7B6900BC4AF3 /* Error.swift in Sources */,
-				45A7A1E92AD8493900DB0CE7 /* AuthenticationManager.swift in Sources */,
 				457973272A432C760099D024 /* CardsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,7 +840,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				minimumVersion = 10.18.0;
 			};
 		};
 		45B5B3B12AAB044800A0E169 /* XCRemoteSwiftPackageReference "Charts" */ = {

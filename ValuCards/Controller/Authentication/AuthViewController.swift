@@ -82,7 +82,7 @@ class AuthViewController: UIViewController {
             return
         }
         
-        AuthenticationManager.shared.signInWithFirebase(email: email, password: password) { [weak self] result in
+        AuthManager.shared.signInWithFirebase(email: email, password: password) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -100,7 +100,7 @@ class AuthViewController: UIViewController {
             showAlert(for: .registrationError)
             return
         }
-        AuthenticationManager.shared.signUpWithFirebase(email: email, password: password) { [weak self] result in
+        AuthManager.shared.signUpWithFirebase(email: email, password: password) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -114,7 +114,7 @@ class AuthViewController: UIViewController {
     
     // MARK: - Google Authentication Method
     @IBAction func googleAuthButton(_ sender: UIButton) {
-        AuthenticationManager.shared.signInWithGoogle(presentingController: self) { [weak self] result in
+        AuthManager.shared.signInWithGoogle(presentingController: self) { [weak self] result in
             switch result {
             case .success:
                 self?.navigateToSearchCardViewController()

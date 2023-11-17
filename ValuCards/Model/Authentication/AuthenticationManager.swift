@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
-
+/*
 class AuthenticationManager: AuthenticationProtocol {
     static let shared = AuthenticationManager()
     
@@ -30,3 +30,4 @@ class AuthenticationManager: AuthenticationProtocol {
         }
     }
 }
+*/

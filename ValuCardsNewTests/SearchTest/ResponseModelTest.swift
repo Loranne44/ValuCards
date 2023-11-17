@@ -10,7 +10,6 @@ import XCTest
 
 final class ResponseModelTest: XCTestCase {
     
-    // ResponseModel
     func testShowNextImage() {
         // Given
         let cardItems = [CardItem(imageName: "image1", title: "Title1"),

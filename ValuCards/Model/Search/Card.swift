@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 // MARK: - Data Models
 struct ItemSearchResult: Decodable {
     let href: String
