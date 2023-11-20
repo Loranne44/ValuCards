@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-/*
+
 final class ResponseModelTest: XCTestCase {
     
     func testShowNextImage() {
@@ -78,4 +78,4 @@ final class ResponseModelTest: XCTestCase {
         XCTAssertEqual(sut.getCurrentTitle(), "")
     }
 }
-*/
+
