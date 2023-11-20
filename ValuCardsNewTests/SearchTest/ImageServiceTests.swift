@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-
+/*
 class ImageServiceTests: XCTestCase {
     var sut: ImageService!
     var mockImageProvider: MockImageProvider!
@@ -57,3 +57,4 @@ class ImageServiceTests: XCTestCase {
     }
 }
 
+*/

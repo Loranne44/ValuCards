@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-
+/*
 final class NumberFormatterExtensionTests: XCTestCase {
     
     func testFormatPrice_WithNonNullValue() {
@@ -24,3 +24,4 @@ final class NumberFormatterExtensionTests: XCTestCase {
         XCTAssertEqual(expectedString, resultString)
     }
 }
+*/

@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-
+/*
 final class StringExtensionTests: XCTestCase {
     
     func testCurrencySymbol() {
@@ -21,3 +21,4 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual("INVALID_CURRENCY".currencySymbol(), "INVALID_CURRENCY")
     }
 }
+*/

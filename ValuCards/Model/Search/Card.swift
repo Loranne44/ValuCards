@@ -17,10 +17,10 @@ struct ItemSearchResult: Decodable {
 }
 
 struct ItemSummary: Decodable {
-    let itemId: String
+    let itemId: String?
     let title: String
-    let leafCategoryIds: [String]
-    let categories: [Category]
+    let leafCategoryIds: [String]?
+    let categories: [Category]?
     //   let image: Image?
     let price: Price
     let thumbnailImages: [Image]?

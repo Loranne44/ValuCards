@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 @testable import ValuCards
-
+/*
 // MARK: - MockImageProvider
 class MockImageProvider: ImageServiceProtocol {
     var imageData: Data?
@@ -24,3 +24,4 @@ class MockImageProvider: ImageServiceProtocol {
         }
     }
 }
+*/

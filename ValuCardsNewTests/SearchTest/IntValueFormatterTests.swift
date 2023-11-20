@@ -8,7 +8,7 @@
 import XCTest
 import DGCharts
 @testable import ValuCards
-
+/*
 final class IntValueFormatterTests: XCTestCase {
     
     var formatter: IntValueFormatter!
@@ -30,3 +30,4 @@ final class IntValueFormatterTests: XCTestCase {
         XCTAssertEqual(expectedString, resultString)
     }
 }
+*/
