@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-/*
+
 class CountryManagerTests: XCTestCase {
     var sut: CountryManager!
     let countryKey = "selectedEbayCountry"
@@ -69,4 +69,4 @@ class CountryManagerTests: XCTestCase {
         XCTAssertNil(retrievedCountry)
     }
 }
-*/
+

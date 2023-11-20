@@ -17,7 +17,7 @@ class SearchCardsTests: XCTestCase {
         mockProvider = MockCardsProvider()
         sut = CardsModel(session: mockProvider)
     }
-    /*
+    
     func testSearchCardsSuccess() {
         // Given
         let jsonString = """
@@ -244,5 +244,5 @@ class SearchCardsTests: XCTestCase {
         // Then
         XCTAssertNil(searchResult, "Expected no search result.")
         XCTAssertEqual(searchError, ErrorCase.serverError)
-    }*/
+    }
 }

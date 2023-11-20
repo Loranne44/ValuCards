@@ -56,6 +56,4 @@ class ImageServiceTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 }
-
 */
-
