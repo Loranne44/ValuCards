@@ -49,10 +49,10 @@ class ChartManager {
 
         let dataSet = PieChartDataSet(entries: dataEntries, label: "")
         dataSet.colors = [
-            NSUIColor.systemCyan,
+            NSUIColor.systemGray,
             NSUIColor.systemRed,
             NSUIColor.systemYellow,
-            NSUIColor.systemMint,
+            NSUIColor.systemGreen,
             NSUIColor.systemOrange,
             NSUIColor.systemPurple,
             NSUIColor.systemIndigo

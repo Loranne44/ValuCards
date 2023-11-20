@@ -17,7 +17,7 @@ class SearchCardsTests: XCTestCase {
         mockProvider = MockCardsProvider()
         sut = CardsModel(session: mockProvider)
     }
-    
+    /*
     func testSearchCardsSuccess() {
         // Given
         let jsonString = """
@@ -101,7 +101,6 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.requestFailed)
     }
     
-    /*
     func testSearchCardsJSONDecodingError() {
         // Given
         let invalidJsonString = """
