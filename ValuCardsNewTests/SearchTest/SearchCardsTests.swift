@@ -75,7 +75,6 @@ class SearchCardsTests: XCTestCase {
         XCTAssertNil(searchError, "Expected no error.")
     }
     
-    /*
     func testSearchCardsFailure() {
         // Given
         mockProvider.error = .requestFailed
@@ -102,6 +101,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.requestFailed)
     }
     
+    /*
     func testSearchCardsJSONDecodingError() {
         // Given
         let invalidJsonString = """
