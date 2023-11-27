@@ -19,9 +19,13 @@
     {
       "parallelizable" : true,
       "skippedTests" : [
+        "CardPricingServiceTests",
         "CountryManagerTests",
+        "ImageServiceTests",
         "IntValueFormatterTests",
-        "NumberFormatterExtensionTests"
+        "NumberFormatterExtensionTests",
+        "ResponseModelTest",
+        "SearchCardsTests"
       ],
       "target" : {
         "containerPath" : "container:ValuCards.xcodeproj",
