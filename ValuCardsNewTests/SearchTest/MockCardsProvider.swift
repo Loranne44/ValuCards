@@ -23,3 +23,4 @@ class MockCardsProvider: CardsProviderProtocol {
         }
     }
 }
+
