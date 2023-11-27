@@ -18,15 +18,6 @@
   "testTargets" : [
     {
       "parallelizable" : true,
-      "skippedTests" : [
-        "CardPricingServiceTests",
-        "CountryManagerTests",
-        "ImageServiceTests",
-        "IntValueFormatterTests",
-        "NumberFormatterExtensionTests",
-        "ResponseModelTest",
-        "SearchCardsTests"
-      ],
       "target" : {
         "containerPath" : "container:ValuCards.xcodeproj",
         "identifier" : "45A7A1F52ADD787900DB0CE7",
