@@ -6,19 +6,30 @@ on:
 
 jobs:
   build:
-    name: Build and Test on Any iOS Simulator
+    name: Build and Test on iOS Simulator
     runs-on: macos-latest 
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_14.1.app
+
+      - name: Print Xcode and Swift version
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Clean before build
+        run: xcodebuild clean -project "ValuCards.xcodeproj" -scheme "ValuCards"
+
       - name: Build
         env:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'iPhone 14 Pro'
-          os: '16.2'
+          os: '16.1'
         run: |
           xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
       
@@ -27,6 +38,6 @@ jobs:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'iPhone 14 Pro'
-          os: '16.2'
+          os: '16.1'
         run: |
           xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
