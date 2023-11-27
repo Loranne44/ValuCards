@@ -29,7 +29,7 @@ jobs:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'iPhone 14 Pro'
-          os: '16.2'
+          os: '16.1'
         run: |
           xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
       
@@ -38,6 +38,6 @@ jobs:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'iPhone 14 Pro'
-          os: '16.2'
+          os: '16.1'
         run: |
           xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
