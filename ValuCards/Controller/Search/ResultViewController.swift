@@ -68,11 +68,13 @@ class ResultViewController: UIViewController {
     }
     
     // MARK: - Initialization Methods
+    /// Sets up the background image view for the scroll view
     private func setupBackgroundImageView() {
         self.setupBackgroundImageView(for: backgroundImageView, with: scrollView)
     }
     
     // MARK: - Data Fetching
+    /// Fetches details of the selected card and processes the result
     func fetchCardDetails(completion: @escaping () -> Void) {
         guard let title = cardTitle, let country = selectedCountry else {
             showAlert(for: .countryNotSelected)
@@ -97,6 +99,7 @@ class ResultViewController: UIViewController {
         }
     }
     
+    /// Processes the results of the card search and updates the UI accordingly
     private func processCardSearchResults(_ card: ItemSearchResult) {
         var filteredCards = card.itemSummaries
         filteredCards.sort(by: { $0.price.value < $1.price.value })
@@ -118,6 +121,7 @@ class ResultViewController: UIViewController {
         self.loadingViewController?.dismiss(animated: true, completion: nil)
     }
 
+    /// Handles any errors that occur during the search process
     private func handleSearchError(_ error: ErrorCase) {
         print(error)
         showAlert(for: .cardSearchError)
@@ -125,6 +129,7 @@ class ResultViewController: UIViewController {
     }
     
     // MARK: - UI Configuration
+    /// Sets up various UI elements based on fetched card data
     private func setupViews() {
         cardImageView.image = image
         titleCardLabel.text = cardTitle ?? ""
@@ -145,10 +150,12 @@ class ResultViewController: UIViewController {
         containerAveragePrice.alpha = 0.7
     }
     
+    /// Applies shadow and rounded corners to the given view
     private func applyShadowAndRoundedCorners(to view: UIView, shadowPosition: ViewHelper.ShadowPosition) {
         ViewHelper.applyShadowAndRoundedCorners(to: view, shadowPosition: shadowPosition)
     }
     
+    /// Configures labels for displaying prices
     private func configurePriceLabels(with symbol: String) {
         averagePriceLabel.text = NumberFormatter.formatPrice(averagePrice)
         lowestPriceLabel.text = NumberFormatter.formatPrice(lowestPrice)
@@ -169,26 +176,3 @@ class ResultViewController: UIViewController {
         currencyHighestLabel.text = symbol
     }
 }
-
-
-
-// Cacher quand on swipe vers le haut __OK
-//https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621861-setviewcontrollers remanipuler le tableau
-//https://developer.apple.com/documentation/uikit/uinavigationcontroller/1621873-viewcontrollers // removefirst gérer l'écran de connexion et donc ajouter un bouton déconnexion
-
-// Loader avant d'afficher la bonne vue __OK
-// Mettre les US par défaut et enregistrer le choix précédant pour le réafficher a la prochaine connexion __OK
-// Le back en blanc avec une classe __ OK
-// inscription/Connexion Google/facebook / Apple
-// Tests
-// Changer les logos
-// Mémoriser l'utilisateur connecté __OK
-// Décaler l'appel réseau qui affiche le graphique dans le slide et non le search ? __OK
-
-// Favoris ? Garder dans l'application et que ca ne puisse pas etre transmis ??
-// Dark mode ??
-
-//https://stackoverflow.com/questions/60801204/how-to-use-navigation-controller-on-a-view-after-user-logs-into-the-app
-//https://medium.com/nerd-for-tech/ios-how-to-transition-from-login-screen-to-tab-bar-controller-b0fb5147c2f1
-
-// créer un appel api searchByImage qui prends en parametre l'image renvoyer lors du swipe ou validation boutton de l'utilisateur. Fait une recherche via cette image et donne les caractéristiques de prix lors du result ViewController

@@ -52,6 +52,8 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: - UI Setup
+    
+    /// Customizes UI elements like buttons
     private func setupUIElements() {
         [signUpButton, signInButton, googleButton].forEach {
             $0?.layer.cornerRadius = 15
@@ -60,6 +62,7 @@ class AuthViewController: UIViewController {
         setupViewsFor(pageType: .signIn)
     }
     
+    /// Adjusts view elements based on the selected page type (sign-in or sign-up)
     private func setupViewsFor(pageType: PageType) {
         signInButton.isHidden = pageType == .signUp
         signUpButton.isHidden = pageType == .signIn
@@ -67,15 +70,20 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: - IBActions
+    
+    /// IBActions for button taps and segmented control changes
     @IBAction func forgetPasswordButtonTapped(_ sender: Any) {
         presentForgotPasswordAlert()
     }
     
+    /// Toggles between sign-in and sign-up views based on the segmented control
     @IBAction func segmentedContolChanged(_ sender: UISegmentedControl) {
         currentPageType = sender.selectedSegmentIndex == 0 ? .signIn : .signUp
     }
     
-    // Firebase authentication methods
+    // MARK: - Firebase authentication methods
+
+    /// Handles Firebase sign-in logic
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             showAlert(for: .loginError)
@@ -94,7 +102,7 @@ class AuthViewController: UIViewController {
         }
     }
     
-    // Firebase authentication methods
+    /// Handles Firebase sign-up logic
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             showAlert(for: .registrationError)
@@ -113,6 +121,8 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: - Google Authentication Method
+    
+    ///Handles Google authentication logic
     @IBAction func googleAuthButton(_ sender: UIButton) {
         AuthManager.shared.signInWithGoogle(presentingController: self) { [weak self] result in
             switch result {
@@ -124,6 +134,7 @@ class AuthViewController: UIViewController {
         }
     }
     
+    /// Presents an alert to input email for password reset
     private func presentForgotPasswordAlert() {
         let alertController = UIAlertController(title: "Forgot Password", message: "Enter your email address to receive a password reset link", preferredStyle: .alert)
         
@@ -154,6 +165,7 @@ class AuthViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    /// Navigates to the Search Card View Controller
     private func navigateToSearchCardViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let navigationController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController") as? UINavigationController,

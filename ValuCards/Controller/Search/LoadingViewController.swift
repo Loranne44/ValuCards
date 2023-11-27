@@ -10,6 +10,7 @@ import SDWebImage
 
 class LoadingViewController: UIViewController {
     
+    /// ImageView to display the loading animation
     var imageView: UIImageView!
     
     override func viewDidLoad() {
@@ -19,6 +20,7 @@ class LoadingViewController: UIViewController {
         loadGif()
     }
     
+    /// Sets up the image view with constraints and styling
     private func setupImageView() {
         imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -34,6 +36,7 @@ class LoadingViewController: UIViewController {
         ])
     }
     
+    /// Loads the GIF animation into the image view
     private func loadGif() {
         if let url = Bundle.main.url(forResource: "gifloader", withExtension: "gif") {
             imageView.sd_setImage(with: url)

@@ -9,13 +9,12 @@ import Foundation
 import UIKit
 @testable import ValuCards
 
-// MARK: - MockImageProvider
 class MockImageProvider: ImageServiceProtocol {
     var imageData: Data?
-    var error: Error?
+    var shouldFail: Bool = false
 
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
-        if let error = self.error {
+        if shouldFail {
             completion(nil)
         } else if let imageData = self.imageData {
             completion(UIImage(data: imageData))
@@ -24,4 +23,3 @@ class MockImageProvider: ImageServiceProtocol {
         }
     }
 }
-

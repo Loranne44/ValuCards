@@ -17,6 +17,7 @@ class AuthManager {
     private init() {}
 
     // MARK: - Firebase Authentication
+    /// Signs in a user with Firebase using email and password
     func signInWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let trace = Performance.startTrace(name: "signin_with_firebase_email")
         Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
@@ -30,6 +31,7 @@ class AuthManager {
         }
     }
 
+    /// Signs up a new user with Firebase using email and password
     func signUpWithFirebase(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let trace = Performance.startTrace(name: "signup_with_firebase_email")
 
@@ -45,6 +47,7 @@ class AuthManager {
     }
 
     // MARK: - Google Authentication
+    /// Signs in a user with Google and then Firebase
     func signInWithGoogle(presentingController: UIViewController, completion: @escaping (Result<Void, Error>) -> Void) {
         let trace = Performance.startTrace(name: "signin_with_google")
 
@@ -80,6 +83,7 @@ class AuthManager {
         }
     }
     
+    /// Logs out the current user from Firebase
     func logout(completion: @escaping (Result<Void, Error>) -> Void) {
         let trace = Performance.startTrace(name: "logout")
 

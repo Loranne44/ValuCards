@@ -17,6 +17,7 @@ struct ViewHelper {
     private static let shadowOffset = CGSize(width: 0, height: 0)
     
     // MARK: - Helper Functions
+    /// Applies shadow and rounded corners to a UIView based on shadow position (top or bottom)
     static func applyShadowAndRoundedCorners(to view: UIView, shadowPosition: ShadowPosition) {
         view.layer.cornerRadius = cornerRadius
         view.layer.masksToBounds = false
@@ -38,14 +39,14 @@ struct ViewHelper {
     }
     
     // MARK: - ShadowPosition Enumeration
+    /// Enumeration for specifying shadow position as top or bottom
     enum ShadowPosition {
         case top
         case bottom
     }
 }
 
-
-// A mettre dans un fichier extension
+/// Enumeration for specifying shadow position as top or bottom
 extension UIColor {
     convenience init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

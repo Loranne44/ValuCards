@@ -8,7 +8,9 @@
 import Foundation
 
 // MARK: - Currency Symbol Conversion
+/// Extension on String for converting currency codes to symbols
 extension String {
+    /// Converts currency code (e.g., "USD", "EUR") to symbol (e.g., "$", "€")
     func currencySymbol() -> String {
         switch self {
         case "USD":

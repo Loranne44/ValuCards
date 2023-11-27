@@ -11,15 +11,20 @@ import Firebase
 import FirebasePerformance
 
 // MARK: - Cards Provider Protocol
+/// Protocol defining the requirements for a cards provider service
 protocol CardsProviderProtocol {
     func getRequest(url: URL, headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void)
 }
 
 // MARK: - Cards Provider Implementation
+/// Implementation of the CardsProviderProtocol using Alamofire for network requests
 class CardsProvider: CardsProviderProtocol {
+    
+    /// Performs a GET request to the specified URL with headers and returns the result
     func getRequest(url: URL,  headers: HTTPHeaders, completion: @escaping (Result<Data, ErrorCase>) -> Void) {
         let trace = Performance.startTrace(name: "network_request_to_\(url.path)")
 
+        /// Network request logic using Alamofire
         AF.request(url,
                    method: .get,
                    headers: headers,

@@ -21,7 +21,6 @@ struct ItemSummary: Decodable {
     let title: String
     let leafCategoryIds: [String]?
     let categories: [Category]?
-    //   let image: Image?
     let price: Price
     let thumbnailImages: [Image]?
 }

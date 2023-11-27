@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-/*
+
 class ImageServiceTests: XCTestCase {
     var sut: ImageService!
     var mockImageProvider: MockImageProvider!
@@ -25,12 +25,13 @@ class ImageServiceTests: XCTestCase {
     }
 
     func testSuccessfulImageDownload() {
-        // Assurez-vous que testImage.png est ajoutée aux ressources du bundle de test.
         guard let testImage = UIImage(named: "testImage", in: Bundle(for: type(of: self)), compatibleWith: nil) else {
             XCTFail("Failed to load the test image.")
             return
         }
         mockImageProvider.imageData = testImage.pngData()
+
+        XCTAssertNotNil(mockImageProvider.imageData, "Mock image data should not be nil")
 
         let expectation = self.expectation(description: "Image should be downloaded successfully")
 
@@ -39,12 +40,12 @@ class ImageServiceTests: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
+
     func testFailedImageDownload() {
-        // Simuler un échec de téléchargement d'image
-        mockImageProvider.error = NSError(domain: "network", code: 404, userInfo: nil)
+        mockImageProvider.shouldFail = true
 
         let expectation = self.expectation(description: "Image download should fail")
 
@@ -56,4 +57,3 @@ class ImageServiceTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 }
-*/

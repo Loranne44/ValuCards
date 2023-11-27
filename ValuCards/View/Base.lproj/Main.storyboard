@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dqb-Wz-MVo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dqb-Wz-MVo">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -177,7 +178,7 @@
                                         <rect key="frame" x="15" y="10" width="410" height="69"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf2-ps-GMu">
-                                                <rect key="frame" x="0.0" y="0.0" width="205" height="69"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="199" height="69"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cancel 1" title=""/>
                                                 <connections>
@@ -185,9 +186,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqX-mH-GWb">
-                                                <rect key="frame" x="205" y="0.0" width="205" height="69"/>
+                                                <rect key="frame" x="199" y="0.0" width="211" height="69"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="checked 1"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="checked 1" title=" "/>
                                                 <connections>
                                                     <action selector="validateImageButton:" destination="6jJ-fF-VEh" eventType="touchUpInside" id="vUC-lg-e5O"/>
                                                 </connections>
@@ -299,8 +300,8 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dance To Forget" translatesAutoresizingMaskIntoConstraints="NO" id="iGf-eV-nYC">
                                                 <rect key="frame" x="0.0" y="-103" width="393" height="1403"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-nD-ffY">
-                                                <rect key="frame" x="20" y="0.0" width="353" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-nD-ffY">
+                                                <rect key="frame" x="20" y="0.0" width="353" height="0.0"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -318,22 +319,22 @@
                                                 <color key="backgroundColor" red="0.92941176889999999" green="0.69411766529999996" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OS8-FZ-YyH" userLabel="View Average Price">
-                                                <rect key="frame" x="130.33333333333331" y="43.999999999999993" width="132.33333333333331" height="93.333333333333314"/>
+                                                <rect key="frame" x="126.66666666666669" y="15" width="140" height="604.33333333333337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-aa-EHk">
-                                                        <rect key="frame" x="19.999999999999993" y="15.000000000000004" width="92.333333333333314" height="63.333333333333343"/>
+                                                        <rect key="frame" x="19.999999999999986" y="15" width="100" height="574.33333333333337"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Is3-S3-X7n">
-                                                                <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="46"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="557"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uS-ob-T8Z">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="44.666666666666664" height="46"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uS-ob-T8Z">
+                                                                        <rect key="frame" x="0.0" y="253.66666666666669" width="50" height="50"/>
                                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="40"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCo-r3-aFW">
-                                                                        <rect key="frame" x="44.666666666666657" y="0.0" width="47.666666666666657" height="46"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCo-r3-aFW">
+                                                                        <rect key="frame" x="50" y="253.66666666666669" width="50" height="50"/>
                                                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="40"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -341,7 +342,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Average price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDO-z9-fYS">
-                                                                <rect key="frame" x="0.0" y="46" width="92.333333333333329" height="17.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="557" width="100" height="17.333333333333371"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -357,8 +358,8 @@
                                                     <constraint firstItem="LPN-aa-EHk" firstAttribute="top" secondItem="OS8-FZ-YyH" secondAttribute="top" constant="15" id="ulX-CN-S6S"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="1QM-sB-rF3">
-                                                <rect key="frame" x="20" y="147.33333333333334" width="353" height="492.66666666666663"/>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="1QM-sB-rF3">
+                                                <rect key="frame" x="20" y="629.33333333333337" width="353" height="10.666666666666629"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Mey-W3-FyA">
                                                 <rect key="frame" x="56" y="674" width="281" height="24.333333333333371"/>
@@ -633,12 +634,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0M-s1-j0o">
-                                <rect key="frame" x="367" y="0.0" width="48" height="20"/>
+                                <rect key="frame" x="362.33333333333331" y="0.0" width="52.666666666666686" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="4zq-Jm-SUb"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="logout"/>
+                                <buttonConfiguration key="configuration" style="plain" image="logout" title=" "/>
                                 <connections>
                                     <action selector="didTapLogoutBotton:" destination="KU1-UU-09i" eventType="touchUpInside" id="cSP-jt-z1P"/>
                                 </connections>
@@ -723,12 +724,13 @@
         <image name="cancel 1" width="55" height="55"/>
         <image name="checked 1" width="55" height="55"/>
         <image name="defaultImage" width="679" height="945"/>
+        <image name="icon" width="10.666666984558105" height="10.666666984558105"/>
         <image name="logout" width="24" height="26"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

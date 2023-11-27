@@ -9,15 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : {
-      "targets" : [
-        {
-          "containerPath" : "container:ValuCards.xcodeproj",
-          "identifier" : "457972EB2A42F9030099D024",
-          "name" : "ValuCards"
-        }
-      ]
-    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:ValuCards.xcodeproj",
       "identifier" : "457972EB2A42F9030099D024",

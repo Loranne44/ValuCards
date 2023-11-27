@@ -14,12 +14,12 @@ class CardsModel {
     static let shared = CardsModel()
     
     // MARK: - Properties
-   // private var task: DataRequest?
     private let session : CardsProviderProtocol
     
     // MARK: - API Key & Headers
-    static let apiKey = "v^1.1#i^1#p^1#f^0#I^3#r^0#t^H4sIAAAAAAAAAOVYa2wUVRTebbcl2OVNEAnRdYo2UGf2zkz3NXQ32b7chT6W7tIsVR53Z+7A0HkxD9oFg7XBJqJRCaCGRgMN8UUUMRh/qFVICGo04h/TqMRoICE+CQlBQYMz26VsKwGkm9jE/bOZc8899/u+e869Zwb0lk9d0h/rvzjNOaVkXy/oLXE6yQowtbysenppyYIyByhwcO7rXdTr6is9W6tDSVSZdqSriqwjT48kyjqTM4YxU5MZBeqCzshQQjpjsEwy2tLMUARgVE0xFFYRMU+8IYwFORKRJM/SPo7j/DSwrPLVmCkljPG8L0ijEEWHMiTPs9awrpsoLusGlI0wRgGKxkkSp0AKBBlAMYAmgI/uxDwdSNMFRbZcCIBFcmiZ3FytAOqNkUJdR5phBcEi8WhTsi0ab2hsTdV6C2JF8jIkDWiY+tineoVDng4omujGy+g5byZpsizSdcwbGVlhbFAmehXMbcDPKe0HJERB0hfkKYrm6VBRpGxSNAkaN8ZhWwQO53OuDJINwcjeTFFLjcxGxBr5p1YrRLzBY/+tMKEo8ALSwlhjXXRVNJHAIs2KBmUZLcNtteuhxuGJ9gbcF/KDEBUM1OAh6EPQT9bkFxqJlpd53Er1iswJtmi6p1Ux6pCFGo3VJsD4CrSxnNrkNi3KGzaiAj8SXNWwJthpb+rILprGBtneVyRZQnhyjzffgdHZhqEJGdNAoxHGD+QkCmNQVQUOGz+Yy8V8+vToYWyDYaiM19vd3U1004SirfdSAJDedEtzkt2AJIjZvnat5/yFm0/AhRwVFlkzdYExsqqFpcfKVQuAvB6L1ASCFAjmdR8LKzLe+g9DAWfv2IooVoX4SIoL8TRFcwHg8/OoGBUSySep18aBMjCLS1DrQoYqQhbhrJVnpoQ0gWNoH0/RQR7hnD/E4zUhnsczPs6PkzxCAKFMhg0F/0+FcqupnkSshozi5Hqx8jzW5Y2mVGFFg69JShqbm1Qzm02HuJ6NaajG/UI6tKJ61crWdF26uSV8q9VwXfL1omApk7LWL4oAdq0XTwRFNxA3IXpJVlFRQhEFNju5NpjWuATUjGwSiaJlmBDJqKrGi3RWF4vevzwmbo93Ee+o/+Z+ui4r3U7ZycXKnq9bAaAqEPYNRLCK5FXsWodW+2Gb1+ZQT4i3YHWuk4q1RXKErcCNtJyEYtMl9M0soSFdMTWr2yba7A4spXQh2brPDE0RRaR1kBOuZ0kyDZgR0WQr7CIkuAAn2WVLBgCo8Qestm1CvNjcVbp2sh1JRTmKXU2311Z7x77jRxy5H9nnPAb6nEMlTieoBfeRleDe8tKVrlL3Al0wECFAntCF9bL17qohogtlVShoJXMc5wf3xOoXNLY9t2RrKnty4ITDXfCJYd9qMH/0I8PUUrKi4IsDWHhtpIyccec0iiZJS8UgoADdCSqvjbrIea65Ve+6RPHoObh7485nS6veWfPoul9eAdNGnZzOMoerz+mA2zZF2o8x7zvK9h//1bk12lz7WHnDrm3bP1w8r8JLHPh58dfv/f4mOVjBnIw9Nben85Gt3JJEX9UXP/3p6r/7qysnWvY23nNqx/aFzyz8Zv6RyvmBtHT2/JYnnl6WPLJ93tBd7siXdZm9hPQHBfbcMfDxiwdDq2etbdzlfrx63cE3hl3OyMCF7/aj4SvDy3fM/uCldeZgc8fDPz4/9LZDqu4dDC29WPV5ydmh3TufnC4ol9acRi8MuBeZRxNXpmAz3jr+2fLYgdpjkTP3n+uKzUrNPONqef2jT3u+VYZfbXecdiN45nBHJup+aM5l8lLswqFPXvtt5sCmH14+1P/95QfVxQ+0JLYsnf3X4VMrR/byb7/jdY/8EQAA"
+    static let apiKey = "2v^1.1#i^1#p^1#I^3#r^0#f^0#t^H4sIAAAAAAAAAOVYf2wTVRxvt26KMIwBnSEQ6k0SHN717npd23OtdBtlxbFutCxlE/H17h3cdr077l3ZiqLLCMiPGAIBNEIi+o+/Mo0GBf4QcJlMEZQQTIiREIzCVEIi8Qcgi961ZXSTALImNrH/NO/7vu/7vp/P9/t973uP7C4dV7m2fu0fZda7inZ1k91FVis1nhxXWjJrYnHRlBILmaNg3dX9cLetp3iwGoGEpLILIFIVGUF7V0KSEZsW+rCkJrMKQCJiZZCAiNU5NhKY38DSBMmqmqIrnCJh9lCdD6OdwBkXeCfgeB463aQhla/ZjCo+jPcIlOChoStOewVA0cY8QkkYkpEOZN1YT9JOnKJwmomSbtbFsBRDeBlXK2ZvgRoSFdlQIUjMn3aXTa/Vcny9uasAIajphhHMHwoEI+FAqG5OY7TakWPLn+UhogM9iUaOahUe2luAlIQ33waltdlIkuMgQpjDn9lhpFE2cM2ZO3A/TbUzTnMUH3fTHM1xHtKbFyqDipYA+s39MCUijwtpVRbKuqinbsWowUa8HXJ6dtRomAjV2c2/5iSQREGEmg+bUxNYFGhqwvwNigZkGc7DTbZrgcbjTQvqcJe3ivTSHjeDe4ELgiqKyW6UsZaledROtYrMiyZpyN6o6DXQ8BqO5obJ4cZQCsthLSDopke5et5hDqlWM6iZKCb1ZbIZV5gwiLCnh7eOwPBqXdfEeFKHwxZGT6Qp8mFAVUUeGz2ZzsVs+nQhH7ZM11XW4ejs7CQ6nYSiLXXQJEk5YvMbItwymACYoWvWekZfvPUCXExD4aCxEomsnlINX7qMXDUckJdifsbtoUlPlveRbvlHS/8hyMHsGFkR+aoQjuG5KsYLXbzbxTBMPgrEn81Rh+kGjIMUngBaB9RVCXAQ54w0SyagJvKs0yXQTo8Acb7KK+CMVxDwuIuvwikBQhLCeJzzev5PdXK7mR6BnAb1vKR63tK8vsMRiKpic50rmIjoK4JqMpWKefmu9hhQQ1VizNs8a9HCxlhNrGG+73aL4YbgayXRYCZq7F94tV6vIB3yY4IX4RQVNimSyKUKK8BOjW8Cmp6KQEkyBGMCGVDVUH6O6rzB+5fHxJ3hzt8V9R9dTzdEhcyULSxU5npkGACqSJg3EMEpCYdi1jowug9TvCTt9Zhwi0bjWlCoDZAZtCKf6TgJxYRLoBUcoUGkJDWj2SbCZgMWVTqgbNxnuqZIEtRaqDHXcyKR1EFcgoVW2HlIcBEU2GVLuUnSQ9GMa2zHEZe+SpcU2pGUl6PYFryzrtox8hvfb0n/qB5rH9lj3V9ktZLV5AyqgnyotHihrXjCFCTqkBCBQCBxqWx8umqQ6IApFYha0STLxde31ddOmRPeXvlMNHVsx4BlQs4Tw67F5IPDjwzjiqnxOS8O5NTrMyXUveVltJMy4k0aPTrFtJIV12dt1AO2yXsnH/yorLLkjUcrhl5sP+P+uvybWA1ZNqxktZZYbD1Wy6QLg5d+PTz15zcfe2vbzN6t2IEfn9/TN3Q11LDzTBt+5LcXeslng/YP57X2TV/YVYpmlPj6vx8KHz0ZUVZ27hsIfGnbfHb6yVMf7N76btkOJnB45+AK58cv3fPXT19dUF7buM59YM/+qcc/XZVY+apnfHjNZyeiE08vHvz8ifNXrO9JTz3Zf7x5f0t7X3kZRQ98cv/71erAqf6rbX9e7rlQfuJI4922LYOW2RX7fsHfBhu3XFlfUzlzdnD1c9+2Tfvu3NFz5TtP/HBk6JF3rt4n7+3fuPv0GrXW88rBTdPgweXVq6uJTZOjv/cuJw5tdpzv7r288phlQ9vZuRuOrlp3SZn9eNehl7/Y3n9x39wrT6/KxPJvW3TkT/wRAAA="
     
+    /// Generates headers for API requests based on the country
     private func generateHeaders(for country: EbayCountry) -> HTTPHeaders {
         return [
             "Authorization": "Bearer \(CardsModel.apiKey)",
@@ -28,10 +28,12 @@ class CardsModel {
     }
     
     // MARK: - Initialization
+    /// Initializes the model with a specific session for network requests
     init(session: CardsProviderProtocol = CardsProvider()) {
         self.session = session
     }
     
+    /// Performs a network request with the given URL components and headers
     private func performRequest(with components: URLComponents?,
                                 headers: HTTPHeaders,
                                 completion: @escaping (Result<Data, ErrorCase>) -> Void) {
@@ -50,6 +52,7 @@ class CardsModel {
         }
     }
     
+    /// Creates URL components for a search query
     private func componentsForSearch(query: String) -> URLComponents? {
         var components = URLComponents(string: "https://api.ebay.com/buy/browse/v1/item_summary/search")
         components?.queryItems = [
@@ -61,7 +64,9 @@ class CardsModel {
     }
     
     // MARK: - SearchCards method by name
+    /// Searches for cards by name and country, handling the network request and response
     func searchCards(withName name: String, inCountry country: EbayCountry, completion: @escaping (Result<ItemSearchResult, ErrorCase>) -> Void) {
+        /// Implements the logic to search for cards using eBay's API
         let trace = Performance.startTrace(name: "search_cards")
 
         let searchQuery = name.split(separator: " ").joined(separator: "+")

@@ -24,7 +24,7 @@ class SlideViewController: UIViewController {
     var totalCardCount: Int?
     var selectedCountry: EbayCountry?
     
-    // Gesture and image services
+    /// Gesture and image services
     private let cardGestureHandler = CardGestureHandler()
     private let imageService = ImageService()
     private let colorFilterService = ColorFilterService()
@@ -49,6 +49,7 @@ class SlideViewController: UIViewController {
     }
     
     // MARK: - Setup Methods
+    /// Sets up a color overlay on the image view
     private func setupColorOverlay() {
         colorOverlay.translatesAutoresizingMaskIntoConstraints = false
         imageView.addSubview(colorOverlay)
@@ -61,28 +62,32 @@ class SlideViewController: UIViewController {
         colorOverlay.backgroundColor = .clear
     }
     
+    /// Applies shadow and rounded corners to the description container
     private func setupContainerDescription() {
         ViewHelper.applyShadowAndRoundedCorners(to: containerDescription, shadowPosition: .bottom)
     }
     
+    /// Applies shadow and rounded corners to the check or cancel container
     private func setupContainerCheckOrCancel() {
         ViewHelper.applyShadowAndRoundedCorners(to: containerCheckOrCancel, shadowPosition: .top)
     }
     
+    /// Sets up gesture recognizers for card interaction
     private func setupGestureRecognizers() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         imageView.addGestureRecognizer(panGesture)
     }
     
     // MARK: - Data Preparation
+    /// Prepares data model for card items
     private func prepareDataModel() {
-        // Process the raw data and initialize the model used in this view controller
         let cardItems = imagesAndTitles.map { CardItem(imageName: $0.imageName, title: $0.title) }
         slideResponseModel = ResponseModel(cardItems: cardItems)
         totalCardCount = slideResponseModel.cardItems.count
     }
     
     // MARK: - Gesture Handling
+    /// Handles user gestures on the card (panning)
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         // Handle user’s pan gesture and update the UI accordingly
         switch gesture.state {
@@ -111,15 +116,18 @@ class SlideViewController: UIViewController {
     }
     
     // MARK: - Actions
+    /// Action for navigating to the next image
     @IBAction func nextImageButton(_ sender: UIButton) {
         slideResponseModel.showNextImage()
         updateImageAndTitle()
     }
     
+    /// Action for validating the current image
     @IBAction func validateImageButton(_ sender: UIButton) {
         navigateToResultViewController(with: slideResponseModel.getCurrentTitle(), image: imageView.image)
     }
     
+    /// Updates the displayed image and its title
     func updateImageAndTitle() {
         let trace = Performance.startTrace(name: "image_download")
         let imageUrlString = slideResponseModel.getCurrentImageName()
@@ -143,22 +151,26 @@ class SlideViewController: UIViewController {
         }
     }
     
+    /// Updates the card transform based on the translation of a pan gesture
     private func updateCardTransform(with translation: CGPoint) {
         imageView.transform = cardGestureHandler.getTransformForTranslation(translation)
         imageView.alpha = cardGestureHandler.getAlphaForTranslation(translation)
     }
     
+    /// Applies a color filter based on the card's translation
     private func applyColorFilter() {
         let translationPoint = CGPoint(x: imageView.transform.tx, y: imageView.transform.ty)
         let color = colorFilterService.filterColorForTranslation(translationPoint)
         colorOverlay.backgroundColor = color
     }
     
+    /// Resets the color filter to clear
     private func resetColorFilter() {
         colorOverlay.backgroundColor = .clear
     }
     
     // MARK: - Navigation
+    /// Navigates to the result view controller with the selected card details
     private func navigateToResultViewController(with cardTitle: String, image: UIImage?) {
         let trace = Performance.startTrace(name: "navigate_to_result_view")
 
@@ -175,10 +187,6 @@ class SlideViewController: UIViewController {
             self.navigationController?.pushViewController(resultViewController, animated: false)
             trace?.stop()
 
-            /*  // Load data then navigate to ResultViewController
-             resultViewController.fetchCardDetails { [weak self] in
-                 self?.navigationController?.pushViewController(resultViewController, animated: false)
-             }*/
         }
     }
     

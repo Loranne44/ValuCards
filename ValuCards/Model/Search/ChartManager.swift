@@ -23,6 +23,8 @@ class ChartManager {
     
     /// Sets up a PieChartView using card data.
     func setupPieChartView(pieChartView: PieChartView, cards: [ValuCards.ItemSummary], currency: String?) {
+        // Logic for configuring the pie chart view
+        
         var counts: [String: Int] = [:]
         for card in cards {
             if let priceValueDouble = Double(card.price.value) {

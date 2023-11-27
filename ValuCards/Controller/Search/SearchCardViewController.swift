@@ -35,20 +35,24 @@ class SearchCardViewController: UIViewController {
         setSavedCountry()
     }
     
+    /// Configures the navigation bar, setting up the back button
     private func setupNavigationBar() {
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backBarButton
     }
     
+    /// Customizes the appearance of the search button
     private func setupSearchButton() {
         searchManuelCardButton.layer.cornerRadius = 15
     }
     
+    /// Sets up the country picker view, including its data source and delegate
     private func setupCountryPicker() {
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
     }
     
+    /// Sets the country picker to the user's previously saved country choice
     private func setSavedCountry() {
             if let savedCountry = CountryManager.shared.getSavedCountryChoice(),
                let index = EbayCountry.allCases.firstIndex(of: savedCountry) {
@@ -57,34 +61,8 @@ class SearchCardViewController: UIViewController {
         }
     
     // MARK: - IBActions
-    @IBAction func didTapLogoutBotton(_ sender: UIButton) {
-        do {
-                    try Auth.auth().signOut()
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
-                        let navController = UINavigationController(rootViewController: authVC)
-                        self.view.window?.rootViewController = navController
-                        self.view.window?.makeKeyAndVisible()
-                    }
-                } catch {
-                    showAlert(for: .signOutError)
-                }
-        /*AuthenticationManager.shared.logout { [weak self] result in
-                    switch result {
-                    case .success:
-                        // Navigate to auth VC or perform other UI updates
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        if let authVC = storyboard.instantiateViewController(withIdentifier: "authViewControllerID") as? AuthViewController {
-                            let navController = UINavigationController(rootViewController: authVC)
-                            self?.view.window?.rootViewController = navController
-                            self?.view.window?.makeKeyAndVisible()
-                        }
-                    case .failure:
-                        self?.showAlert(for: .signOutError)
-                    }*/
-                
-    }
     
+    /// Initiates a manual card search
     @IBAction func SearchManuelCardButton(_ sender: UIButton) {
         let trace = Performance.startTrace(name: "manual_card_search")
             search() {
@@ -93,7 +71,8 @@ class SearchCardViewController: UIViewController {
     }
     
     // MARK: - Search Logic
-    // MARK: - Search Logic
+    
+    /// Performs the search for cards based on user input
     func search(completion: @escaping () -> Void) {
         guard let name = cardNameTextField.text, !name.isEmpty else {
             showAlert(for: .cardNameMissing)
@@ -127,6 +106,7 @@ class SearchCardViewController: UIViewController {
         }
     }
 
+    /// Handles errors encountered during card search
     private func handleSearchError(_ error: ErrorCase) {
         switch error {
         case .noCardsFound:
@@ -156,6 +136,8 @@ class SearchCardViewController: UIViewController {
 
 
     // MARK: - Navigation
+    
+    /// Prepares data for segue navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SlideViewControllerSegue",
            let slideViewController = segue.destination as? SlideViewController {
@@ -163,23 +145,6 @@ class SearchCardViewController: UIViewController {
             slideViewController.selectedCountry = EbayCountry.allCases[countryPickerView.selectedRow(inComponent: 0)]
         }
     }
-    
-    /*
-    // MARK: - User Defaults
-    func saveCountryChoice(country: EbayCountry) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(country.rawValue, forKey: "selectedEbayCountry")
-    }
-    
-    func getSavedCountryChoice() -> EbayCountry? {
-        let userDefaults = UserDefaults.standard
-        if let savedCountryRawValue = userDefaults.string(forKey: "selectedEbayCountry"),
-           let savedCountry = EbayCountry(rawValue: savedCountryRawValue) {
-            return savedCountry
-        }
-        return nil
-    }*/
-   
 }
 
 extension SearchCardViewController : UIPickerViewDataSource {
