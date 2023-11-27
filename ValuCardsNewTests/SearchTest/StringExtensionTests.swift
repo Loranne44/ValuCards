@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ValuCards
-/*
+
 /// Tests for extensions on String specifically for currency symbols.
 final class StringExtensionTests: XCTestCase {
     
@@ -24,4 +24,3 @@ final class StringExtensionTests: XCTestCase {
     }
 }
 
-*/

@@ -4,7 +4,7 @@
 //
 //  Created by Loranne Joncheray on 16/10/2023.
 //
-/*
+
 import XCTest
 @testable import ValuCards
 
@@ -255,4 +255,3 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.serverError)
     }
 }
-*/

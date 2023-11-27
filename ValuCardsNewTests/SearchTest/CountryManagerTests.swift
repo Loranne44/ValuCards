@@ -4,7 +4,7 @@
 //
 //  Created by Loranne Joncheray on 20/10/2023.
 //
-/*
+
 import XCTest
 @testable import ValuCards
 
@@ -75,5 +75,3 @@ class CountryManagerTests: XCTestCase {
         XCTAssertNil(retrievedCountry)
     }
 }
-
-*/
