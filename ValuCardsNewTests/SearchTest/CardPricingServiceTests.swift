@@ -8,6 +8,7 @@
 import XCTest
 @testable import ValuCards
 
+/// Test suite for CardPricingService functionalities.
 class CardPricingServiceTests: XCTestCase {
     
     var sut: CardPricingService!
@@ -22,6 +23,7 @@ class CardPricingServiceTests: XCTestCase {
         super.tearDown()
     }
     
+    /// Test to ensure average price calculation is correct.
     func testGetAveragePrice() {
         // Given
         let cards = [
@@ -37,6 +39,7 @@ class CardPricingServiceTests: XCTestCase {
         XCTAssertEqual(average, 20.0)
     }
     
+    /// Test to verify correct identification of lowest price.
     func testGetLowestPrice() {
         // Given
         let cards = [
@@ -52,6 +55,7 @@ class CardPricingServiceTests: XCTestCase {
         XCTAssertEqual(lowest, 10.0)
     }
     
+    /// Test to ensure highest price identification is correct.
     func testGetHighestPrice() {
         // Given
         let cards = [
@@ -67,6 +71,7 @@ class CardPricingServiceTests: XCTestCase {
         XCTAssertEqual(highest, 30.0)
     }
     
+    /// Test to check handling of empty card array in price calculations.
     func testPricesWithEmptyArray() {
         // Given
         let cards: [ItemSummary] = []

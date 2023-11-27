@@ -8,16 +8,19 @@
 import XCTest
 @testable import ValuCards
 
+/// Test suite for search functionality in CardsModel.
 class SearchCardsTests: XCTestCase {
     var sut: CardsModel!
     var mockProvider: MockCardsProvider!
     
+    /// Setup method to initialize test environment.
     override func setUp() {
         super.setUp()
         mockProvider = MockCardsProvider()
         sut = CardsModel(session: mockProvider)
     }
     
+    // Test to ensure successful card search.
     func testSearchCardsSuccess() {
         // Given
         let jsonString = """
@@ -75,6 +78,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertNil(searchError, "Expected no error.")
     }
     
+    // Test to handle failure scenario in card search.
     func testSearchCardsFailure() {
         // Given
         mockProvider.error = .requestFailed
@@ -101,6 +105,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.requestFailed)
     }
     
+    /// Test to check behavior with invalid JSON data.
     func testSearchCardsJSONDecodingError() {
         // Given
         let invalidJsonString = """
@@ -133,6 +138,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.jsonDecodingError)
     }
     
+    /// Test to verify behavior with invalid URL error.
     func testSearchCardsInvalidURL() {
         // Given
         mockProvider.error = .invalidURL
@@ -159,6 +165,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.invalidURL)
     }
     
+    /// Test to ensure handling of no matching cards scenario.
     func testSearchCardsNoMatchingCards() {
         // Given
         let emptyJsonString = """
@@ -195,6 +202,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.noCardsFound, "Expected noCardsFound error.")
     }
     
+    /// Test to verify behavior with empty search query.
     func testSearchCardsWithEmptyName() {
         // Given
         let expectation = self.expectation(description: "Search cards should return card name missing error")
@@ -220,6 +228,7 @@ class SearchCardsTests: XCTestCase {
         XCTAssertEqual(searchError, ErrorCase.cardNameMissing)
     }
     
+    /// Test to handle server error scenarios.
     func testSearchCardsServerError() {
         // Given
         mockProvider.error = .serverError

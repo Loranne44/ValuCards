@@ -8,6 +8,7 @@
 import XCTest
 @testable import ValuCards
 
+/// Test suite for CountryManager functionalities.
 class CountryManagerTests: XCTestCase {
     var sut: CountryManager!
     let countryKey = "selectedEbayCountry"
@@ -17,12 +18,14 @@ class CountryManagerTests: XCTestCase {
         sut = CountryManager.shared
     }
     
+    /// Teardown method for clean-up after tests.
     override func tearDown() {
         super.tearDown()
         // Cleanup: remove the stored country after each test
         UserDefaults.standard.removeObject(forKey: countryKey)
     }
     
+    /// Test to verify correct saving of country choice in UserDefaults.
     func testSaveCountryChoice_SavesToUserDefaults() {
         // Given
         let country = EbayCountry.US
@@ -35,6 +38,7 @@ class CountryManagerTests: XCTestCase {
         XCTAssertEqual(savedCountryRawValue, country.rawValue)
     }
     
+    /// Test to ensure correct retrieval of saved country choice from UserDefaults.
     func testGetSavedCountryChoice_RetrievesFromUserDefaults() {
         // Given
         let country = EbayCountry.CH
@@ -47,6 +51,7 @@ class CountryManagerTests: XCTestCase {
         XCTAssertEqual(retrievedCountry, country)
     }
     
+    /// Test to handle scenario where no country choice is saved.
     func testGetSavedCountryChoice_ReturnsNil_WhenNoCountryIsSaved() {
         // Given: No country saved in UserDefaults
         
@@ -57,6 +62,7 @@ class CountryManagerTests: XCTestCase {
         XCTAssertNil(retrievedCountry)
     }
     
+    /// Test to handle invalid country value saved in UserDefaults.
     func testGetSavedCountryChoice_ReturnsNil_WhenInvalidCountryRawValueIsSaved() {
         // Given
         let invalidCountryRawValue = "INVALID_COUNTRY"

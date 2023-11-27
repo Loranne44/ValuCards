@@ -8,6 +8,7 @@
 import XCTest
 @testable import ValuCards
 
+/// Tests for ImageService, handling the downloading of images.
 class ImageServiceTests: XCTestCase {
     var sut: ImageService!
     var mockImageProvider: MockImageProvider!
@@ -24,6 +25,7 @@ class ImageServiceTests: XCTestCase {
         super.tearDown()
     }
 
+    /// Test to verify successful image download functionality.
     func testSuccessfulImageDownload() {
         guard let testImage = UIImage(named: "testImage", in: Bundle(for: type(of: self)), compatibleWith: nil) else {
             XCTFail("Failed to load the test image.")
@@ -43,7 +45,7 @@ class ImageServiceTests: XCTestCase {
         waitForExpectations(timeout: 10)
     }
 
-
+    /// Test to verify behavior when image download fails.
     func testFailedImageDownload() {
         mockImageProvider.shouldFail = true
 

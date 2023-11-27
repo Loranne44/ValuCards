@@ -8,8 +8,10 @@
 import XCTest
 @testable import ValuCards
 
+/// Tests for extensions on String specifically for currency symbols.
 final class StringExtensionTests: XCTestCase {
     
+    /// Test to verify correct currency symbol conversion for different currency codes.
     func testCurrencySymbol() {
         XCTAssertEqual("USD".currencySymbol(), "$")
         XCTAssertEqual("EUR".currencySymbol(), "€")
