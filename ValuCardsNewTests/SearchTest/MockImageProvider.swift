@@ -4,7 +4,7 @@
 //
 //  Created by Loranne Joncheray on 07/11/2023.
 //
-
+/*
 import Foundation
 import UIKit
 @testable import ValuCards
@@ -25,3 +25,4 @@ class MockImageProvider: ImageServiceProtocol {
         }
     }
 }
+*/

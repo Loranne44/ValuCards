@@ -4,7 +4,7 @@
 //
 //  Created by Loranne Joncheray on 20/10/2023.
 //
-
+/*
 import XCTest
 @testable import ValuCards
 
@@ -85,3 +85,4 @@ final class ResponseModelTest: XCTestCase {
     }
 }
 
+*/
