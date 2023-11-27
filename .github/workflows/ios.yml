@@ -12,7 +12,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
+      # Etape de Cache - Restaurer le Cache
+      - name: Cache DerivedData
+        uses: actions/cache@v2
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-xcode-${{ hashFiles('**/Podfile.lock') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-xcode-${{ hashFiles('**/Podfile.lock') }}-
+
       - name: Build
         env:
           scheme: 'ValuCards'
