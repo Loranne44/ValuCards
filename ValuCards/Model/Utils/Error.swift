@@ -33,6 +33,7 @@ enum ErrorCase: Error {
         case imageDownloadError
         case gifLoadingError
     
+    // Message
     var message: String {
         switch self {
         case .invalidURL:
