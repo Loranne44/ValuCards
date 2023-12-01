@@ -24,20 +24,20 @@ jobs:
       - name: Clean before build
         run: xcodebuild clean -project "ValuCards.xcodeproj" -scheme "ValuCards"
 
-      - name: Build
-        env:
-          scheme: 'ValuCards'
-          platform: 'iOS Simulator'
-          device: 'iPhone 14 Pro'
-          os: '16.1'
-        run: |
-          xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
+#      - name: Build
+#        env:
+#          scheme: 'ValuCards'
+#          platform: 'iOS Simulator'
+ #         device: 'iPhone 14 Pro'
+ #         os: '16.1'
+ #       run: |
+ #         xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
       
-      - name: Test
+      - name: Test 
         env:
           scheme: 'ValuCards'
           platform: 'iOS Simulator'
           device: 'iPhone 14 Pro'
           os: '16.1'
         run: |
-          xcodebuild test-without-building -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
+          xcodebuild test -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os" -allowProvisioningUpdates
