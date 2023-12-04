@@ -55,7 +55,6 @@ class ImageServiceTests: XCTestCase {
             XCTAssertNil(image)
             expectation.fulfill()
         }
-
         waitForExpectations(timeout: 1)
     }
 }
