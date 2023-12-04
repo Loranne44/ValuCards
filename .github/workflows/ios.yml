@@ -21,18 +21,9 @@ jobs:
           xcodebuild -version
           swift --version
 
-#      - name: Clean before build
- #       run: xcodebuild clean -project "ValuCards.xcodeproj" -scheme "ValuCards"
+      - name: Install Pods
+        run: pod install
 
-#      - name: Build
-#        env:
-#          scheme: 'ValuCards'
-#          platform: 'iOS Simulator'
- #         device: 'iPhone 14 Pro'
- #         os: '16.1'
- #       run: |
- #         xcodebuild build-for-testing -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os"
-      
       - name: Test 
         env:
           scheme: 'ValuCards'
@@ -40,4 +31,4 @@ jobs:
           device: 'iPhone 14 Pro'
           os: '16.1'
         run: |
-          xcodebuild test -scheme "$scheme" -project "ValuCards.xcodeproj" -destination "platform=$platform,name=$device,OS=$os" -allowProvisioningUpdates
+          xcodebuild test -workspace "ValuCards.xcworkspace" -scheme "$scheme" -destination "platform=$platform,name=$device,OS=$os" -allowProvisioningUpdates
