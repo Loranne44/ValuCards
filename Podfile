@@ -13,6 +13,8 @@ target 'ValuCards' do
   pod 'FirebaseAuth'
   pod 'FirebasePerformance'
 
+target :ValuCardsNewTests
+
 post_install do |installer_representation|
   installer_representation.pods_project.targets.each do |target|
     installer_representation.aggregate_targets.each do |target|

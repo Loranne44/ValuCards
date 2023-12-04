@@ -50,6 +50,7 @@
 		45F19C3D2A5FDE1F00274D05 /* SlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F19C3C2A5FDE1F00274D05 /* SlideViewController.swift */; };
 		45F433C52AA5D596003BDB0E /* CardPricingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C42AA5D596003BDB0E /* CardPricingService.swift */; };
 		45F433C72AA5E1BC003BDB0E /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F433C62AA5E1BC003BDB0E /* UIViewController+Alerts.swift */; };
+		7785ADA6076372F219CEB53B /* Pods_ValuCards_ValuCardsNewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E970A0A9F9F37E04BDC571 /* Pods_ValuCards_ValuCardsNewTests.framework */; };
 		DF01F2A0E8D70058CE4B5E3E /* Pods_ValuCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E5130D6B3FFECA14A0D7B82 /* Pods-ValuCards-ValuCardsNewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValuCards-ValuCardsNewTests.release.xcconfig"; path = "Target Support Files/Pods-ValuCards-ValuCardsNewTests/Pods-ValuCards-ValuCardsNewTests.release.xcconfig"; sourceTree = "<group>"; };
+		19E970A0A9F9F37E04BDC571 /* Pods_ValuCards_ValuCardsNewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValuCards_ValuCardsNewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EA9CC4BE9A4B42D60007365 /* Pods-ValuCards-ValuCardsNewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValuCards-ValuCardsNewTests.debug.xcconfig"; path = "Target Support Files/Pods-ValuCards-ValuCardsNewTests/Pods-ValuCards-ValuCardsNewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		450282172AB32EE600C1D38E /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		45063EF42B14921400218CDC /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
 		450E40F12AC175F4008B225F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7785ADA6076372F219CEB53B /* Pods_ValuCards_ValuCardsNewTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +330,7 @@
 				858118CA3FB982FAA5E6D273 /* Pods_ValuCards.framework */,
 				F9E7088ABF5389C3BA11BA20 /* Pods_ValuCards_ValuCardsUITests.framework */,
 				B1439C23CC65CA86A2C9C36C /* Pods_ValuCardsTests.framework */,
+				19E970A0A9F9F37E04BDC571 /* Pods_ValuCards_ValuCardsNewTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -334,6 +340,8 @@
 			children = (
 				CBF2DFF80C0C62C4504FA76E /* Pods-ValuCards.debug.xcconfig */,
 				698ABD1FBB558A3FE21191EC /* Pods-ValuCards.release.xcconfig */,
+				1EA9CC4BE9A4B42D60007365 /* Pods-ValuCards-ValuCardsNewTests.debug.xcconfig */,
+				0E5130D6B3FFECA14A0D7B82 /* Pods-ValuCards-ValuCardsNewTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -365,9 +373,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45A7A1FC2ADD787A00DB0CE7 /* Build configuration list for PBXNativeTarget "ValuCardsNewTests" */;
 			buildPhases = (
+				29BEB56480C41FB96E34ED26 /* [CP] Check Pods Manifest.lock */,
 				45A7A1F22ADD787900DB0CE7 /* Sources */,
 				45A7A1F32ADD787900DB0CE7 /* Frameworks */,
 				45A7A1F42ADD787900DB0CE7 /* Resources */,
+				438F04495A204C78A443AF67 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -456,6 +466,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ValuCards/Pods-ValuCards-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29BEB56480C41FB96E34ED26 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ValuCards-ValuCardsNewTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		438F04495A204C78A443AF67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ValuCards-ValuCardsNewTests/Pods-ValuCards-ValuCardsNewTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ValuCards-ValuCardsNewTests/Pods-ValuCards-ValuCardsNewTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ValuCards-ValuCardsNewTests/Pods-ValuCards-ValuCardsNewTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E585EDCA64D2B5E61DF297F7 /* [CP] Check Pods Manifest.lock */ = {
@@ -757,12 +806,14 @@
 		};
 		45A7A1FD2ADD787A00DB0CE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EA9CC4BE9A4B42D60007365 /* Pods-ValuCards-ValuCardsNewTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = ZBZ792969D;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -777,12 +828,14 @@
 		};
 		45A7A1FE2ADD787A00DB0CE7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E5130D6B3FFECA14A0D7B82 /* Pods-ValuCards-ValuCardsNewTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = ZBZ792969D;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";

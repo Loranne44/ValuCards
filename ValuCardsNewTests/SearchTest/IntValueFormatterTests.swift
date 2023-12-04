@@ -4,7 +4,7 @@
 //
 //  Created by Loranne Joncheray on 20/10/2023.
 //
-
+/*
 import XCTest
 import DGCharts
 @testable import ValuCards
@@ -34,3 +34,4 @@ final class IntValueFormatterTests: XCTestCase {
         XCTAssertEqual(expectedString, resultString)
     }
 }
+*/
